@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="mergeo:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="mergeo.war">
+      <element id="artifact" artifact-name="mergeo:war exploded" />
+    </root>
+  </artifact>
+</component>
