@@ -54,7 +54,28 @@
         <version>2.4</version>
     </dependency>
 
+      <!-- Geotriples dependecy -->
+    <dependency>
+        <groupId>eu.linkedeodata</groupId>
+        <artifactId>geotriples</artifactId>
+        <version>1.1.6-SNAPSHOT</version>
+    </dependency>
+
   </dependencies>
+
+  <repositories>
+
+      <!-- Geotriples repository -->
+    <repository>
+      <id>GeoTriples-mvn-repo</id>
+      <url>https://raw.github.com/LinkedEOData/GeoTriples/mvn-repo-snapshots/</url>
+      <snapshots>
+        <enabled>true</enabled>
+        <updatePolicy>always</updatePolicy>
+      </snapshots>
+    </repository>
+
+  </repositories>
   <build>
     <finalName>mergeo</finalName>
   </build>
