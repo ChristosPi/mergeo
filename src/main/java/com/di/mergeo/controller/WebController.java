@@ -23,4 +23,8 @@ public class WebController {
     public String geotriplesPage() {
         return "geotriples";
     }
+    @RequestMapping(value = "/geotriples_success", method = RequestMethod.GET)
+    public String geotriples_successPage() {
+        return "geotriples_success";
+    }
 }
