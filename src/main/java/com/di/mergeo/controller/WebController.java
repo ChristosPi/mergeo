@@ -17,11 +17,8 @@ public class WebController {
         return "index";
     }
     @RequestMapping(value = "/geotriples", method = RequestMethod.GET)
-    public String geotriplesPage() {
+    public String geotriples_successPage(@ModelAttribute("fileName") String name,
+                                         @ModelAttribute("outmap_code") String outmapcode) {
         return "geotriples";
-    }
-    @RequestMapping(value = "/geotriples_success", method = RequestMethod.GET)
-    public String geotriples_successPage(@ModelAttribute("fileName") String name) {
-        return "geotriples_success";
     }
 }
