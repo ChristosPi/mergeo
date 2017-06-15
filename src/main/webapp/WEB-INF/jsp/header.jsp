@@ -24,8 +24,8 @@
             </nav>
             <ul class="nav navbar-nav">
                 <li><a href="/geotriples">1.Transformation</a></li>
-                <li><a href="#">2.Endpoint</a></li>
-                <li><a href="#">3.Sextant</a></li>
+                <li><a href="/endpoint">2.Endpoint</a></li>
+                <li><a href="/sextant">3.Sextant</a></li>
             </ul>
         </nav>
     </section>
