@@ -1,31 +1,38 @@
 package com.di.mergeo.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class InputModel {
-    private String type;        // shp or rdb or xml
-    private String uploadpath;  // if there is a file
-    private String filename;    // filename or rdb name
-    private String baseuri;     // rdb uri
-    private boolean rml;        // is rml or not
-    private String user;        // username for rdb
-    private String password;    // password for rdb
-    private String driver;      // rdb driver
-    private String jdbcurl;     // rdb jdbc
 
-    private String rootpath;    // for xml
-    private String rootelement; // for xml
-    private String namespace;   // for xml
-    private String namespaces;  // for xml
-    private String xsdfilepath; // for xml
-
+    /* Common characteristics for every input form */
+    private String type;
     private String outmap_fullpath;
+    private String uploadpath;
+    private String name;
 
-    public String getOutmap_fullpath() {
-        return outmap_fullpath;
-    }
+    /* Characteristics for RDB input form */
+    private String rdb_baseuri;
+    private boolean rdb_rml;
+    private String rdb_user;
+    private String rdb_password;
+    private String rdb_driver;
+    private String rdb_jdbcurl;
 
-    public void setOutmap_fullpath(String outmap_fullpath) {
-        this.outmap_fullpath = outmap_fullpath;
-    }
+    /* Characteristics for ShapeFile input form */
+    private MultipartFile shp_inputfile;
+    private String shp_baseuri;
+    private boolean shp_rml;
+
+    /* Characteristics for XML file input form */
+    private MultipartFile xml_inputfile;
+    private String xml_baseuri;
+    private String xml_rootpath;
+    private String xml_rootelement;
+    private String xml_namespace;
+    private String xml_namespaces;
+    private MultipartFile xml_xsdfile;
+
+    /*** Getters & Setters for class data ***/
 
     public String getType() {
         return type;
@@ -33,6 +40,14 @@ public class InputModel {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getOutmap_fullpath() {
+        return outmap_fullpath;
+    }
+
+    public void setOutmap_fullpath(String outmap_fullpath) {
+        this.outmap_fullpath = outmap_fullpath;
     }
 
     public String getUploadpath() {
@@ -43,100 +58,141 @@ public class InputModel {
         this.uploadpath = uploadpath;
     }
 
-    public String getFilename() {
-        return filename;
+    public String getName() {
+        return name;
     }
 
-    public void setFilename(String filename) {
-        this.filename = filename;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getBaseuri() {
-        return baseuri;
+    public String getRdb_baseuri() {
+        return rdb_baseuri;
     }
 
-    public void setBaseuri(String baseuri) {
-        this.baseuri = baseuri;
+    public void setRdb_baseuri(String rdb_baseuri) {
+        this.rdb_baseuri = rdb_baseuri;
     }
 
-    public boolean isRml() {
-        return rml;
+    public boolean isRdb_rml() {
+        return rdb_rml;
     }
 
-    public void setRml(boolean rml) {
-        this.rml = rml;
+    public void setRdb_rml(boolean rdb_rml) {
+        this.rdb_rml = rdb_rml;
     }
 
-    public String getUser() {
-        return user;
+    public String getRdb_user() {
+        return rdb_user;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setRdb_user(String rdb_user) {
+        this.rdb_user = rdb_user;
     }
 
-    public String getPassword() {
-        return password;
+    public String getRdb_password() {
+        return rdb_password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setRdb_password(String rdb_password) {
+        this.rdb_password = rdb_password;
     }
 
-    public String getDriver() {
-        return driver;
+    public String getRdb_driver() {
+        return rdb_driver;
     }
 
-    public void setDriver(String driver) {
-        this.driver = driver;
+    public void setRdb_driver(String rdb_driver) {
+        this.rdb_driver = rdb_driver;
     }
 
-    public String getJdbcurl() {
-        return jdbcurl;
+    public String getRdb_jdbcurl() {
+        return rdb_jdbcurl;
     }
 
-    public void setJdbcurl(String jdbcurl) {
-        this.jdbcurl = jdbcurl;
+    public void setRdb_jdbcurl(String rdb_jdbcurl) {
+        this.rdb_jdbcurl = rdb_jdbcurl;
     }
 
-    public String getRootpath() {
-        return rootpath;
+
+    public MultipartFile getShp_inputfile() {
+        return shp_inputfile;
     }
 
-    public void setRootpath(String rootpath) {
-        this.rootpath = rootpath;
+    public void setShp_inputfile(MultipartFile shp_inputfile) {
+        this.shp_inputfile = shp_inputfile;
     }
 
-    public String getRootelement() {
-        return rootelement;
+    public String getShp_baseuri() {
+        return shp_baseuri;
     }
 
-    public void setRootelement(String rootelement) {
-        this.rootelement = rootelement;
+    public void setShp_baseuri(String shp_baseuri) {
+        this.shp_baseuri = shp_baseuri;
     }
 
-    public String getNamespace() {
-        return namespace;
+    public boolean isShp_rml() {
+        return shp_rml;
     }
 
-    public void setNamespace(String namespace) {
-        this.namespace = namespace;
+    public void setShp_rml(boolean shp_rml) {
+        this.shp_rml = shp_rml;
     }
 
-    public String getNamespaces() {
-        return namespaces;
+
+    public MultipartFile getXml_inputfile() {
+        return xml_inputfile;
     }
 
-    public void setNamespaces(String namespaces) {
-        this.namespaces = namespaces;
+    public void setXml_inputfile(MultipartFile xml_inputfile) {
+        this.xml_inputfile = xml_inputfile;
     }
 
-    public String getXsdfilepath() {
-        return xsdfilepath;
+    public String getXml_baseuri() {
+        return xml_baseuri;
     }
 
-    public void setXsdfilepath(String xsdfilepath) {
-        this.xsdfilepath = xsdfilepath;
+    public void setXml_baseuri(String xml_baseuri) {
+        this.xml_baseuri = xml_baseuri;
     }
 
+    public String getXml_rootpath() {
+        return xml_rootpath;
+    }
+
+    public void setXml_rootpath(String xml_rootpath) {
+        this.xml_rootpath = xml_rootpath;
+    }
+
+    public String getXml_rootelement() {
+        return xml_rootelement;
+    }
+
+    public void setXml_rootelement(String xml_rootelement) {
+        this.xml_rootelement = xml_rootelement;
+    }
+
+    public String getXml_namespace() {
+        return xml_namespace;
+    }
+
+    public void setXml_namespace(String xml_namespace) {
+        this.xml_namespace = xml_namespace;
+    }
+
+    public String getXml_namespaces() {
+        return xml_namespaces;
+    }
+
+    public void setXml_namespaces(String xml_namespaces) {
+        this.xml_namespaces = xml_namespaces;
+    }
+
+    public MultipartFile getXml_xsdfile() {
+        return xml_xsdfile;
+    }
+
+    public void setXml_xsdfilepath(String xml_xsdfilepath) {
+        this.xml_xsdfile = xml_xsdfile;
+    }
 }

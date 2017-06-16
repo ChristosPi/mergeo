@@ -13,11 +13,11 @@
 
 <body>
 <div class="container-fluid">
-    <c:if test="${not empty filename}">
+    <c:if test="${not empty type}">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
                 <div class="alert alert-info" role="alert">
-                    <strong>Input OK!</strong> Currently working on: ${filename}
+                    <strong>Input OK!</strong> Currently working on: ${name}
                 </div>
             </div>
         </div>
@@ -25,7 +25,7 @@
 
     <div class="row">
         <c:choose>
-            <c:when test="${not empty filename}">
+            <c:when test="${not empty type}">
                 <%--Left Panel - Options when an input has already been given --%>
                 <div class="col-sm-6 col-md-6">
                     <div class="panel panel-default">
@@ -52,59 +52,31 @@
 
                             <div class="tab-content">
 
-                                    <%--Relational Database form--%>
+                                <%--Relational Database form--%>
                                 <div class="tab-pane active" id="rdatabase">
-                                    <%--<form role="form" method="POST" action="/geotriplesrdb"><br>--%>
-                                        <%--<div class="form-group">--%>
-                                            <%--<label for="rdbbaseuri">BaseURI</label>--%>
-                                            <%--<input name="baseuri" type="text" class="form-control" id="rdbbaseuri" value="http://example.org/" required>--%>
-                                        <%--</div>--%>
-                                        <%--<div class="form-group">--%>
-                                            <%--<label for="user">Username</label>--%>
-                                            <%--<input name="user" type="text" class="form-control" id="user">--%>
-                                        <%--</div>--%>
-                                        <%--<div class="form-group">--%>
-                                            <%--<label for="password">Password</label>--%>
-                                            <%--<input name="password" type="password" class="form-control" id="password">--%>
-                                        <%--</div>--%>
-                                        <%--<div class="form-group">--%>
-                                            <%--<label for="driver">Driver</label>--%>
-                                            <%--<input name="driver" type="text" class="form-control" id="driver">--%>
-                                        <%--</div>--%>
-                                        <%--<div class="form-group">--%>
-                                            <%--<label for="jdbcurl">JDBC URL</label>--%>
-                                            <%--<input name="jdbcurl" type="text" class="form-control" id="jdbcurl" required>--%>
-                                        <%--</div>--%>
-                                        <%--<div class="form-group">--%>
-                                            <%--<label><input type="checkbox" name="rml" value="-rml"> RML</label>--%>
-                                        <%--</div>--%>
-                                        <%--<div class="form-group">--%>
-                                            <%--<button type="submit" class="btn btn-success">Connect</button>--%>
-                                        <%--</div>--%>
-                                    <%--</form>--%>
-                                    <form:form method="POST" action="/geotriplesrdb">
+                                    <form:form method="POST" action="/geotriples_rdb">
                                         <div class="form-group">
-                                            <form:label path="baseuri" for="rdbbaseuri">BaseURI</form:label>
-                                            <form:input path="baseuri" type="text" class="form-control" id="rdbbaseuri" value="http://example.org/" required="required"/>
+                                            <form:label path="rdb_baseuri" for="rdbbaseuri">BaseURI</form:label>
+                                            <form:input path="rdb_baseuri" type="text" class="form-control" id="rdbbaseuri" value="http://example.org/" required="required" />
                                         </div>
                                         <div class="form-group">
-                                            <form:label path="user" for="user">Username</form:label>
-                                            <form:input path="user" type="text" class="form-control" id="user" />
+                                            <form:label path="rdb_user" for="user">Username</form:label>
+                                            <form:input path="rdb_user" type="text" class="form-control" id="user" />
                                         </div>
                                         <div class="form-group">
-                                            <form:label path="password" for="password">Password</form:label>
-                                            <form:input path="password" type="password" class="form-control" id="password" />
+                                            <form:label path="rdb_password" for="password">Password</form:label>
+                                            <form:input path="rdb_password" type="password" class="form-control" id="password" />
                                         </div>
                                         <div class="form-group">
-                                            <form:label path="driver" for="driver">Driver</form:label>
-                                            <form:input path="driver" type="text" class="form-control" id="driver" />
+                                            <form:label path="rdb_driver" for="driver">Driver</form:label>
+                                            <form:input path="rdb_driver" type="text" class="form-control" id="driver" />
                                         </div>
                                         <div class="form-group">
-                                            <form:label path="jdbcurl" for="jdbcurl">JDBC URL</form:label>
-                                            <form:input path="jdbcurl" type="text" class="form-control" id="jdbcurl" required="required" />
+                                            <form:label path="rdb_jdbcurl" for="jdbcurl">JDBC URL</form:label>
+                                            <form:input path="rdb_jdbcurl" type="text" class="form-control" id="jdbcurl" required="required" />
                                         </div>
                                         <div class="form-group">
-                                            <form:label path="rml"><form:checkbox path="rml" value="-rml" /> RML</form:label>
+                                            <form:label path="rdb_rml"><form:checkbox path="rdb_rml" value="-rml" /> RML</form:label>
                                         </div>
                                         <div class="form-group">
                                             <button type="submit" class="btn btn-success">Connect</button>
@@ -112,64 +84,64 @@
                                     </form:form>
                                 </div>
 
-                                    <%--Shapefile form--%>
+                                <%--Shapefile form--%>
                                 <div class="tab-pane fade" id="shapefile">
-                                    <form role="form" method="POST" action="/geotriplesshape" enctype="multipart/form-data"><br>
+                                    <form:form method="POST" action="/geotriples_shape" enctype="multipart/form-data"><br>
                                         <div class="form-group">
-                                            <label for="shapeinput">File input</label>
-                                            <input type="file" name="inputfile" id="shapeinput" required>
+                                            <form:label path="shp_inputfile" for="shapeinput">File input</form:label>
+                                            <form:input path="shp_inputfile" type="file" id="shapeinput" required="required" />
                                             <p class="help-block">Choose a file to convert with GeoTriples</p>
                                         </div>
                                         <div class="form-group">
-                                            <label for="shapebaseuri">BaseURI</label>
-                                            <input name="baseuri" type="text" class="form-control" id="shapebaseuri" value="http://example.org/" required>
+                                            <form:label path="shp_baseuri" for="shapebaseuri">BaseURI</form:label>
+                                            <form:input path="shp_baseuri" type="text" class="form-control" id="shapebaseuri" value="http://example.org/" required="required" />
                                         </div>
                                         <div class="form-group">
-                                            <label><input type="checkbox" name="rml" value="-rml"> RML</label>
+                                            <form:label path="shp_rml"><form:checkbox path="shp_rml" value="-rml" /> RML</form:label>
                                         </div>
                                         <div class="form-group  ">
                                             <button type="submit" class="btn btn-success">Upload</button>
                                         </div>
-                                    </form>
+                                    </form:form>
                                 </div>
 
-                                    <%--XML file form--%>
+                                <%--XML file form--%>
                                 <div class="tab-pane fade" id="xmlfile">
-                                    <form role="form" method="POST" action="/geotriplesxml" enctype="multipart/form-data"><br>
+                                    <form:form method="POST" action="/geotriples_xml" enctype="multipart/form-data"><br>
                                         <div class="form-group">
-                                            <label for="xmlinput">File input</label>
-                                            <input type="file" name="inputfile" id="xmlinput" required>
+                                            <form:label path="xml_inputfile" for="xmlinput">File input</form:label>
+                                            <form:input path="xml_inputfile" type="file" id="xmlinput" required="required" />
                                             <p class="help-block">Choose a file to convert with GeoTriples</p>
                                         </div>
                                         <div class="form-group">
-                                            <label for="xmlbaseuri">BaseURI</label>
-                                            <input name="baseuri" type="text" class="form-control" id="xmlbaseuri" value="http://example.org/" required>
+                                            <form:label path="xml_baseuri" for="xmlbaseuri">BaseURI</form:label>
+                                            <form:input path="xml_baseuri" type="text" class="form-control" id="xmlbaseuri" value="http://example.org/" required="required" />
                                         </div>
                                         <div class="form-group">
-                                            <label for="rootpath">Rootpath</label>
-                                            <input name="rootpath" type="text" class="form-control" id="rootpath" value="rootpath">
+                                            <form:label path="xml_rootpath" for="rootpath">Rootpath</form:label>
+                                            <form:input path="xml_rootpath" type="text" class="form-control" id="rootpath" />
                                         </div>
                                         <div class="form-group">
-                                            <label for="rootelement">Rootelement</label>
-                                            <input name="rootelement" type="text" class="form-control" id="rootelement" value="rootelement">
+                                            <form:label path="xml_rootelement" for="rootelement">Rootelement</form:label>
+                                            <form:input path="xml_rootelement" type="text" class="form-control" id="rootelement" />
                                         </div>
                                         <div class="form-group">
-                                            <label for="namespace">Namespace</label>
-                                            <input name="namespace" type="text" class="form-control" id="namespace" value="namespace">
+                                            <form:label path="xml_namespace" for="namespace">Namespace</form:label>
+                                            <form:input path="xml_namespace" type="text" class="form-control" id="namespace" />
                                         </div>
                                         <div class="form-group">
-                                            <label for="namespaces">Namespaces</label>
-                                            <input name="namespaces" type="text" class="form-control" id="namespaces" value="namespaces">
+                                            <form:label path="xml_namespaces" for="namespaces">Namespaces</form:label>
+                                            <form:input path="xml_namespaces" type="text" class="form-control" id="namespaces" />
                                         </div>
                                         <div class="form-group">
-                                            <label for="xsdfile">XSD File Input</label>
-                                            <input type="file" name="xsdfile" id="xsdfile" required>
+                                            <form:label path="xml_xsdfile" for="xsdfile">XSD File Input</form:label>
+                                            <form:input path="xml_xsdfile" type="file" id="xsdfile" />
                                             <p class="help-block">Choose XSD file (Required for XMLs)</p>
                                         </div>
                                         <div class="form-group">
                                             <button type="submit" class="btn btn-success">Upload</button>
                                         </div>
-                                    </form>
+                                    </form:form>
                                 </div>
                             </div>
                         </div>
