@@ -1,6 +1,7 @@
 package com.di.mergeo.service;
 
-import com.di.mergeo.model.InputModel;
+import com.di.mergeo.model.MapInputModel;
+import com.di.mergeo.model.RdfInputModel;
 import eu.linkedeodata.geotriples.GeoTriplesCMD;
 
 import java.io.*;
@@ -9,8 +10,12 @@ import java.util.List;
 
 public class GeotriplesService {
 
+    /*******************************************************************************************************************
+     *                                      Generate Mapping Methods!
+     ******************************************************************************************************************/
+
     /************************************ Relational Database Service Method ******************************************/
-    public static void GTRdbMapping(InputModel inputmodel) throws Exception {
+    public static void GTRdbMapping(MapInputModel inputmodel) throws Exception {
 
         File dir = new File(inputmodel.getUploadpath() + File.separator + "datafiles");
         if (!dir.exists()) dir.mkdirs();
@@ -58,7 +63,7 @@ public class GeotriplesService {
     }
 
     /***************************************** Shapefile Service Method ***********************************************/
-    public static void GTShapeMapping(InputModel inputmodel) throws Exception {
+    public static void GTShapeMapping(MapInputModel inputmodel) throws Exception {
 
         if (!inputmodel.getShp_inputfile().isEmpty()) {
 
@@ -110,7 +115,7 @@ public class GeotriplesService {
     }
 
     /****************************************** XMLfile Service Method ************************************************/
-    public static void GTXmlMapping(InputModel inputmodel) throws Exception {
+    public static void GTXmlMapping(MapInputModel inputmodel) throws Exception {
 
         if (!inputmodel.getXml_inputfile().isEmpty()) {
 
@@ -191,5 +196,107 @@ public class GeotriplesService {
         else {
             System.out.println("BUG BUG BUG");
         }
+    }
+
+    /*******************************************************************************************************************
+     *                                          Dump to RDF Methods!
+     ******************************************************************************************************************/
+
+    /**************************************** RDB to RDF Service Method ***********************************************/
+    public static void GTRdbToRdf(RdfInputModel rdfInputModel) throws Exception {
+
+        File dir = new File(rdfInputModel.getUploadpath() + File.separator + "datafiles");
+        if (!dir.exists()) dir.mkdirs();
+
+        File dir2 = new File(rdfInputModel.getUploadpath() + File.separator + "datafiles" + File.separator + "rdf-data");
+        if (!dir2.exists()) dir2.mkdirs();
+
+        String dbname = rdfInputModel.getRdb_jdbcurl().substring(rdfInputModel.getRdb_jdbcurl().lastIndexOf("/")+1);
+        String outrdf_fullpath = dir2.getAbsolutePath() + File.separator + dbname + "-rdf.nt";
+
+        List<String> cmdlist = new ArrayList<String>();
+        cmdlist.add("dump_rdf");
+        cmdlist.add("-b");
+        cmdlist.add(rdfInputModel.getRdb_baseuri());
+
+        if(rdfInputModel.getRdb_user() != null && !rdfInputModel.getRdb_user().isEmpty()){
+            cmdlist.add("-u");
+            cmdlist.add(rdfInputModel.getRdb_user());
+        }
+        if(rdfInputModel.getRdb_password() != null && !rdfInputModel.getRdb_password().isEmpty()){
+            cmdlist.add("-p");
+            cmdlist.add(rdfInputModel.getRdb_password());
+        }
+        if(rdfInputModel.getRdb_driver() != null && !rdfInputModel.getRdb_driver().isEmpty()){
+            cmdlist.add("-d");
+            cmdlist.add(rdfInputModel.getRdb_driver());
+        }
+
+        cmdlist.add("-o");
+        cmdlist.add(outrdf_fullpath);
+
+        cmdlist.add("-f");
+        cmdlist.add(rdfInputModel.getRdb_format());
+
+        if( rdfInputModel.isRdb_rml() ){
+            cmdlist.add("-rml");
+        }
+
+        cmdlist.add("-j");
+        cmdlist.add(rdfInputModel.getRdb_jdbcurl());
+
+        cmdlist.add(rdfInputModel.getRdb_mapfullpath());
+
+        String[] dumprdf_cmd = cmdlist.toArray(new String[0]);
+
+        GeoTriplesCMD.main(dumprdf_cmd);
+        System.out.println("HERE IS RELATIONAL DATABASE --- RDF");
+    }
+
+    /************************************* Shapefile to RDF Service Method ********************************************/
+    public static void GTShpToRdf(RdfInputModel rdfInputModel) throws Exception {
+
+        File dir2 = new File(rdfInputModel.getUploadpath() + File.separator + "datafiles" + File.separator + "rdf-data");
+        if (!dir2.exists()) dir2.mkdirs();
+
+        String sourcefile_name = rdfInputModel.getShp_sourcefile();
+        String sourcefile_path = rdfInputModel.getUploadpath()  + "datafiles" + File.separator
+                                    + "input-data" + File.separator + sourcefile_name;
+
+        String outrdf_fullpath = dir2.getAbsolutePath() + File.separator +
+                                sourcefile_name.substring(0, sourcefile_name.indexOf('.')) + "-rdf.nt";
+
+        List<String> cmdlist = new ArrayList<String>();
+        cmdlist.add("dump_rdf");
+        cmdlist.add("-sh");
+        cmdlist.add(sourcefile_path);
+        cmdlist.add("-b");
+        cmdlist.add(rdfInputModel.getShp_baseuri());
+        cmdlist.add("-f");
+        cmdlist.add(rdfInputModel.getShp_format());
+        cmdlist.add("-o");
+        cmdlist.add(outrdf_fullpath);
+
+        if( rdfInputModel.isRdb_rml() ){
+            cmdlist.add("-rml");
+        }
+
+        if(rdfInputModel.getShp_epsgcode() != null && !rdfInputModel.getShp_epsgcode().isEmpty()){
+            cmdlist.add("-s");
+            cmdlist.add(rdfInputModel.getShp_epsgcode());
+        }
+
+        cmdlist.add(rdfInputModel.getShp_mapfullpath());
+
+        String[] dumprdf_cmd = cmdlist.toArray(new String[0]);
+
+        GeoTriplesCMD.main(dumprdf_cmd);
+        System.out.println("HERE IS SHAPEFILE --- RDF");
+
+    }
+
+    /************************************* XML/JSON to RDF Service Method *********************************************/
+    public static void GTXmlToRdf(RdfInputModel rdfInputModel){
+
     }
 }

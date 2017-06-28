@@ -2,7 +2,7 @@ package com.di.mergeo.model;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class InputModel {
+public class MapInputModel {
 
     /* Common characteristics for every input form */
     private String type;
