@@ -9,7 +9,6 @@ public class RdfInputModel {
     private String outrdf_fullpath;
     private String uploadpath;
     private String name;
-//    private String inputmap_fullpath;
 
     /* Characteristics for RDB input form */
     private String rdb_baseuri;
@@ -20,7 +19,6 @@ public class RdfInputModel {
     private String rdb_jdbcurl;
     private String rdb_format;
     private String rdb_mapfullpath;
-//    private MultipartFile rdb_inputmapfile;
 
     /* Characteristics for ShapeFile input form */
     private String shp_baseuri;
@@ -29,16 +27,13 @@ public class RdfInputModel {
     private String shp_epsgcode;
     private String shp_mapfullpath;
     private String shp_sourcefile;
-//
-//    /* Characteristics for XML file input form */
-//    private MultipartFile xml_inputfile;
-//    private String xml_baseuri;
-//    private String xml_rootpath;
-//    private String xml_rootelement;
-//    private String xml_namespace;
-//    private String xml_namespaces;
-//    private MultipartFile xml_xsdfile;
 
+    /* Characteristics for XML file input form */
+    private String xml_baseuri;
+    private String xml_format;
+    private String xml_epsgcode;
+    private String xml_mapfullpath;
+    private boolean xml_rml;
 
     public String getType() {
         return type;
@@ -71,14 +66,6 @@ public class RdfInputModel {
     public void setName(String name) {
         this.name = name;
     }
-
-//    public String getInputmap_fullpath() {
-//        return inputmap_fullpath;
-//    }
-//
-//    public void setInputmap_fullpath(String inputmap_fullpath) {
-//        this.inputmap_fullpath = inputmap_fullpath;
-//    }
 
     public String getRdb_baseuri() {
         return rdb_baseuri;
@@ -144,14 +131,6 @@ public class RdfInputModel {
         this.rdb_mapfullpath = rdb_mapfullpath;
     }
 
-    //    public MultipartFile getRdb_inputmapfile() {
-//        return rdb_inputmapfile;
-//    }
-//
-//    public void setRdb_inputmapfile(MultipartFile rdb_inputmapfile) {
-//        this.rdb_inputmapfile = rdb_inputmapfile;
-//    }
-
     public String getShp_baseuri() {
         return shp_baseuri;
     }
@@ -198,5 +177,45 @@ public class RdfInputModel {
 
     public void setShp_sourcefile(String shp_sourcefile) {
         this.shp_sourcefile = shp_sourcefile;
+    }
+
+    public String getXml_baseuri() {
+        return xml_baseuri;
+    }
+
+    public void setXml_baseuri(String xml_baseuri) {
+        this.xml_baseuri = xml_baseuri;
+    }
+
+    public String getXml_format() {
+        return xml_format;
+    }
+
+    public void setXml_format(String xml_format) {
+        this.xml_format = xml_format;
+    }
+
+    public String getXml_epsgcode() {
+        return xml_epsgcode;
+    }
+
+    public void setXml_epsgcode(String xml_epsgcode) {
+        this.xml_epsgcode = xml_epsgcode;
+    }
+
+    public String getXml_mapfullpath() {
+        return xml_mapfullpath;
+    }
+
+    public void setXml_mapfullpath(String xml_mapfullpath) {
+        this.xml_mapfullpath = xml_mapfullpath;
+    }
+
+    public boolean isXml_rml() {
+        return xml_rml;
+    }
+
+    public void setXml_rml(boolean xml_rml) {
+        this.xml_rml = xml_rml;
     }
 }

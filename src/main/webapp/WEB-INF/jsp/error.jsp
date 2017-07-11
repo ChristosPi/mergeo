@@ -5,12 +5,13 @@
 <html>
 <head>
     <jsp:include page="header.jsp"/>
-    <link href="<s:url value="/resources/css/geotriples.css"/>" rel="stylesheet">
-    <title>MerGEO|Transform</title>
+    <link href="<c:url value="/resources/css/index.css" />" rel="stylesheet">
+    <title>MerGEO|Error</title>
 </head>
 <body>
-<div class="container">
-    <h1>Final geotriples page :)</h1>
-</div>
+    <article>
+        <h2>We are so sorry :(</h2>
+        <img src="./../../resources/img/error.png" alt="..." class="img-responsive center-block"/>
+    </article>
 </body>
 </html>

@@ -7,7 +7,7 @@
     <title>MerGeo</title>
 </head>
 <body>
-    <section class="container-fluid">
+    <section class="container">
 
         <header class="row">
             <div class="col-md-6">

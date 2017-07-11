@@ -145,7 +145,8 @@ public class GeotriplesService {
             String outmap_fullpath = dir3.getAbsolutePath() + File.separator + inputfile_name + "-map.ttl";
 
             /* Process for the XSD given file */
-            if (!inputmodel.getXml_xsdfile().isEmpty()) {
+
+            if (inputmodel.getXml_xsdfile() != null && !inputmodel.getXml_xsdfile().isEmpty()) {
                 xsd_name = inputmodel.getXml_xsdfile().getOriginalFilename();
                 xsd_bytes = inputmodel.getXml_xsdfile().getBytes();
                 xsd_serverFile = new File(dir2.getAbsolutePath() + File.separator + xsd_name);
@@ -188,7 +189,7 @@ public class GeotriplesService {
             String[] mapping_cmd = cmdlist.toArray(new String[0]);
 
             GeoTriplesCMD.main(mapping_cmd);
-            System.out.println("HERE IS SHAPEFILE");
+            System.out.println("HERE IS XML FILE");
 
             inputmodel.setName(name);
             inputmodel.setOutmap_fullpath(outmap_fullpath);
@@ -268,8 +269,8 @@ public class GeotriplesService {
 
         List<String> cmdlist = new ArrayList<String>();
         cmdlist.add("dump_rdf");
-        cmdlist.add("-sh");
-        cmdlist.add(sourcefile_path);
+//        cmdlist.add("-sh");
+//        cmdlist.add(sourcefile_path);
         cmdlist.add("-b");
         cmdlist.add(rdfInputModel.getShp_baseuri());
         cmdlist.add("-f");
@@ -296,7 +297,40 @@ public class GeotriplesService {
     }
 
     /************************************* XML/JSON to RDF Service Method *********************************************/
-    public static void GTXmlToRdf(RdfInputModel rdfInputModel){
+    public static void GTXmlToRdf(RdfInputModel rdfInputModel) throws Exception {
 
+        File dir2 = new File(rdfInputModel.getUploadpath() + File.separator + "datafiles" + File.separator + "rdf-data");
+        if (!dir2.exists()) dir2.mkdirs();
+
+        File temp = new File(rdfInputModel.getXml_mapfullpath());
+        String out_name = temp.getName();
+        out_name = out_name.substring(0, out_name.indexOf('-'));
+        out_name += "-rdf.nt";
+
+        String outrdf_fullpath = dir2.getAbsolutePath() + File.separator + out_name;
+
+        List<String> cmdlist = new ArrayList<String>();
+        cmdlist.add("dump_rdf");
+        if( rdfInputModel.isXml_rml() ){
+            cmdlist.add("-rml");
+        }
+        cmdlist.add("-f");
+        cmdlist.add(rdfInputModel.getXml_format());
+        cmdlist.add("-b");
+        cmdlist.add(rdfInputModel.getXml_baseuri());
+        cmdlist.add("-o");
+        cmdlist.add(outrdf_fullpath);
+
+        if(rdfInputModel.getXml_epsgcode() != null && !rdfInputModel.getXml_epsgcode().isEmpty()){
+            cmdlist.add("-s");
+            cmdlist.add(rdfInputModel.getXml_epsgcode());
+        }
+
+        cmdlist.add(rdfInputModel.getXml_mapfullpath());
+
+        String[] dumprdf_cmd = cmdlist.toArray(new String[0]);
+
+        GeoTriplesCMD.main(dumprdf_cmd);
+        System.out.println("HERE IS XML/JSON --- RDF");
     }
 }

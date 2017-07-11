@@ -9,10 +9,18 @@
     <%@ page import="java.lang.String"%>
     <link href="<s:url value="/resources/css/geotriples.css"/>" rel="stylesheet">
     <title>MerGEO|Transform</title>
+
+    <script>
+        function make_changes() {
+            document.getElementById("out-map").readOnly = false;
+            document.getElementById("save-btn").style.visibility = "visible";
+        }
+    </script>
+
 </head>
 
 <body>
-<div class="container-fluid">
+<div class="container">
     <c:if test="${not empty type}">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
@@ -83,11 +91,11 @@
                                 <form:input path="shp_baseuri" type="text" class="form-control" id="shp_baseuri" value="http://example.org/" required="required" />
                             </div>
                             <div class="form-group">
-                                <form:label path="shp_epsgcode" for="driver">EPSG Code</form:label>
+                                <form:label path="shp_epsgcode" for="shp_epsgcode">EPSG Code</form:label>
                                 <form:input path="shp_epsgcode" type="text" class="form-control" id="shp_epsgcode" />
                             </div>
                             <div class="form-group">
-                                <form:label path="shp_mapfullpath" for="inputmap_fullpath">Mapping file path</form:label>
+                                <form:label path="shp_mapfullpath" for="shp_mapfullpath">Mapping file path</form:label>
                                 <form:input path="shp_mapfullpath" type="text" class="form-control" readonly="true" id="shp_mapfullpath" required="required" value="${outmap_fullpath}"/>
                             </div>
                             <div class="form-group">
@@ -105,7 +113,33 @@
                         </form:form>
                     </c:when>
                     <c:when test="${ type == 'xml'}">
-
+                        <%--XML/JSON form--%>
+                        <form:form method="POST" action="/geotriples_rdf_xml">
+                            <div class="form-group">
+                                <form:label path="xml_baseuri" for="xml_baseuri">BaseURI</form:label>
+                                <form:input path="xml_baseuri" type="text" class="form-control" id="xml_baseuri" value="http://example.org/" required="required" />
+                            </div>
+                            <div class="form-group">
+                                <form:label path="xml_epsgcode" for="xml_epsgcode">EPSG Code</form:label>
+                                <form:input path="xml_epsgcode" type="text" class="form-control" id="xml_epsgcode" />
+                            </div>
+                            <div class="form-group">
+                                <form:label path="xml_mapfullpath" for="xml_mapfullpath">Mapping file path</form:label>
+                                <form:input path="xml_mapfullpath" type="text" class="form-control" readonly="true" id="xml_mapfullpath" required="required" value="${outmap_fullpath}"/>
+                            </div>
+                            <div class="form-group">
+                                <form:label path="xml_format">Choose format type</form:label><br>
+                                <form:radiobutton path="xml_format" value="N3" label="N3" checked="checked"/>
+                                <form:radiobutton path="xml_format" value="RDF" label="RDF/XML"/>
+                                <form:radiobutton path="xml_format" value="TURTLE" label="TURTLE"/>
+                            </div>
+                            <div class="form-group">
+                                <form:label path="xml_rml"><form:checkbox path="xml_rml" value="-rml" checked="checked" readonly="true"/> RML</form:label>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success">Dump to RDF</button>
+                            </div>
+                        </form:form>
                     </c:when>
                 </c:choose>
             </div>
@@ -114,21 +148,32 @@
 
         <%--Right Panel - Mapping output--%>
         <div class="col-sm-6 col-md-6">
-            <div class="panel panel-primary">
-                <div class="panel-heading">Generated mapping</div>
-                <div class="panel-body">
-                    <div class="form-group">
-                        <label for="out-map">Output code:</label>
-                        <textarea readonly style="resize: none" class="form-control" rows="15" id="out-map"><%
-                            String outmap_file = (String) request.getAttribute("outmap_fullpath");
-                            if( outmap_file != null && !outmap_file.isEmpty()){
-                                FileInputStream outmap_code = new FileInputStream(outmap_file);
-                                String outmap_code_str= org.apache.commons.io.IOUtils.toString(outmap_code);
-                                request.setAttribute("outmap_display", outmap_code_str);
-                            }
-                        %><c:out value="${outmap_display}"/>
-                    </textarea>
+            <div class="row">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Generated mapping</div>
+                    <div class="panel-body">
+
+                        <div class="form-group">
+                            <label for="out-map">Output code:</label>
+                            <textarea readonly style="resize: none" class="form-control" rows="15" id="out-map"><%
+                                String outmap_file = (String) request.getAttribute("outmap_fullpath");
+                                if( outmap_file != null && !outmap_file.isEmpty()){
+                                    FileInputStream outmap_code = new FileInputStream(outmap_file);
+                                    String outmap_code_str= org.apache.commons.io.IOUtils.toString(outmap_code);
+                                    request.setAttribute("outmap_display", outmap_code_str);
+                                }
+                            %><c:out value="${outmap_display}"/>
+                            </textarea>
+                        </div>
                     </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <button onclick="make_changes()" class="btn btn-warning">Hmm, something seems wrong. Let's edit!</button>
+                </div>
+                <div class="col-md-offset-4 col-md-4">
+                    <button style="visibility: hidden;" id="save-btn" class="btn btn-success">Save changes</button>
                 </div>
             </div>
         </div>

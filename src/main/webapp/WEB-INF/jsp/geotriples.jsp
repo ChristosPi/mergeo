@@ -5,14 +5,12 @@
 <html>
 <head>
     <jsp:include page="header.jsp"/>
-    <%@ page import="java.io.*"%>
-    <%@ page import="java.lang.String"%>
     <link href="<s:url value="/resources/css/geotriples.css"/>" rel="stylesheet">
     <title>MerGEO|Transform</title>
 </head>
 
 <body>
-<div class="container-fluid">
+<div class="container">
 
     <div class="row">
         <%--Left Panel - Input Options when there is no input given--%>
