@@ -23,9 +23,9 @@
                 <a class="navbar-brand active" href="/">MerGe<span class="glyphicon glyphicon-globe"></span></a>
             </nav>
             <ul class="nav navbar-nav">
-                <li><a href="/geotriples"><span class="glyphicon glyphicon-transfer"></span> Transformation</a></li>
-                <li><a href="/endpoint"><span class="glyphicon glyphicon-import"></span> Endpoint</a></li>
-                <li><a href="/sextant"><span class="glyphicon glyphicon-map-marker"></span> Sextant</a></li>
+                <li><a href="/geotriples"><span class="glyphicon glyphicon-transfer"></span> 1.Transformation</a></li>
+                <li><a href="/endpoint"><span class="glyphicon glyphicon-import"></span> 2.Endpoint</a></li>
+                <li><a href="/sextant"><span class="glyphicon glyphicon-map-marker"></span> 3.Sextant</a></li>
             </ul>
         </nav>
     </section>
