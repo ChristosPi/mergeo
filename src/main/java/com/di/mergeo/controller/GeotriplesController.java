@@ -7,6 +7,7 @@ import org.apache.velocity.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.ui.ModelMap;
@@ -85,14 +86,19 @@ public class GeotriplesController {
 
     /*************************************** Handler for RDF Relational Database **************************************/
     @RequestMapping(value = "/geotriples_rdf_rdb", method = RequestMethod.POST)
-    public String rdf_rdbInput(@ModelAttribute("SpringWeb")RdfInputModel rdfinputmodel, ModelMap model) throws Exception {
+    public ModelAndView rdf_rdbInput(@ModelAttribute("SpringWeb")RdfInputModel rdfinputmodel, ModelMap model) throws Exception {
 
         rdfinputmodel.setUploadpath(context.getRealPath(""));
         rdfinputmodel.setType("rdb");
 
         GeotriplesService.GTRdbToRdf(rdfinputmodel);
 
-        return "geotriples_final";
+        ModelAndView mav = new ModelAndView("geotriples_final");
+
+        mav.addObject("name", rdfinputmodel.getName());
+        mav.addObject("outrdf_fullpath", rdfinputmodel.getOutrdf_fullpath());
+
+        return mav;
     }
     /******************************************** Handler for RDF Shapefile *******************************************/
     @RequestMapping(value = "/geotriples_rdf_shp", method = RequestMethod.POST)

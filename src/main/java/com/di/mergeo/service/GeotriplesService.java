@@ -252,6 +252,10 @@ public class GeotriplesService {
         String[] dumprdf_cmd = cmdlist.toArray(new String[0]);
 
         GeoTriplesCMD.main(dumprdf_cmd);
+
+        rdfInputModel.setOutrdf_fullpath(outrdf_fullpath);
+        rdfInputModel.setName(dbname + "-rdf.nt");
+
         System.out.println("HERE IS RELATIONAL DATABASE --- RDF");
     }
 
