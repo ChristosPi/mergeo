@@ -30,10 +30,10 @@ public class WebController {
         return new ModelAndView("geotriples", "command", new MapInputModel());
     }
 
-    @RequestMapping(value = "/geotriples_rdf", method = RequestMethod.GET)
-    public ModelAndView geotriples_rdf() {
-        return new ModelAndView("geotriples_rdf", "command", new RdfInputModel());
-    }
+//    @RequestMapping(value = "/geotriples_rdf", method = RequestMethod.GET)
+//    public ModelAndView geotriples_rdf() {
+//        return new ModelAndView("geotriples_rdf", "command", new RdfInputModel());
+//    }
 
     @RequestMapping(value = "/endpoint", method = RequestMethod.GET)
     public String endpoint() {

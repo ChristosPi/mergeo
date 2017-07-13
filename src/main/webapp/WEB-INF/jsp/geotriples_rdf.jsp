@@ -23,11 +23,22 @@
 <div class="container">
     <c:if test="${not empty type}">
         <div class="row">
-            <div class="col-md-4 col-md-offset-4">
-                <div class="alert alert-info" role="alert">
-                    <strong>Input OK!</strong> Currently working on: ${name}
-                </div>
-            </div>
+            <c:choose>
+                <c:when test="${changed == true}">
+                    <div class="col-md-4 col-md-offset-4">
+                        <div class="alert alert-success" role="alert">
+                            <strong>Changes saved!</strong> Currently working on: ${name}
+                        </div>
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <div class="col-md-4 col-md-offset-4">
+                        <div class="alert alert-info" role="alert">
+                            <strong>Input OK!</strong> Currently working on: ${name}
+                        </div>
+                    </div>
+                </c:otherwise>
+            </c:choose>
         </div>
     </c:if>
 
@@ -155,7 +166,7 @@
 
                         <div class="form-group">
                             <label for="out-map">Output code:</label>
-                            <textarea readonly style="resize: none" class="form-control" rows="15" id="out-map"><%
+                            <textarea form="save_form" name="map_data" readonly style="resize: none" class="form-control" rows="15" id="out-map"><%
                                 String outmap_file = (String) request.getAttribute("outmap_fullpath");
                                 if( outmap_file != null && !outmap_file.isEmpty()){
                                     FileInputStream outmap_code = new FileInputStream(outmap_file);
@@ -173,7 +184,12 @@
                     <button onclick="make_changes()" class="btn btn-warning">Hmm, something seems wrong. Let's edit!</button>
                 </div>
                 <div class="col-md-offset-4 col-md-4">
-                    <button style="visibility: hidden;" id="save-btn" class="btn btn-success">Save changes</button>
+                    <form action="/geotriples_map_save" method="post" id="save_form">
+                        <input type="hidden" name="name" value=${name}>
+                        <input type="hidden" name="outmap_fullpath" value=${outmap_fullpath}>
+                        <input type="hidden" name="type" value=${type}>
+                        <button type="submit" style="visibility: hidden;" id="save-btn" class="btn btn-success">Save changes</button>
+                    </form>
                 </div>
             </div>
         </div>

@@ -3,6 +3,7 @@ package com.di.mergeo.service;
 import com.di.mergeo.model.MapInputModel;
 import com.di.mergeo.model.RdfInputModel;
 import eu.linkedeodata.geotriples.GeoTriplesCMD;
+import org.apache.commons.io.FileUtils;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -332,5 +333,15 @@ public class GeotriplesService {
 
         GeoTriplesCMD.main(dumprdf_cmd);
         System.out.println("HERE IS XML/JSON --- RDF");
+    }
+
+    /******************************************************************************************************************/
+    /******************************************************************************************************************/
+    public static void saveFileChanges(String file_fullpath, String new_data) throws IOException {
+
+        File serverFile = new File(file_fullpath);
+        FileUtils.writeStringToFile(serverFile, new_data);
+        System.out.println("Changes saved :)");
+
     }
 }

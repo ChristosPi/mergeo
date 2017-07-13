@@ -13,6 +13,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.ServletContext;
+import java.io.IOException;
 
 @Controller
 public class GeotriplesController {
@@ -33,11 +34,13 @@ public class GeotriplesController {
 
         GeotriplesService.GTRdbMapping(inputmodel);
 
-        model.addAttribute("name", inputmodel.getName());
-        model.addAttribute("outmap_fullpath", inputmodel.getOutmap_fullpath());
-        model.addAttribute("type", inputmodel.getType());
+        ModelAndView mav = new ModelAndView("geotriples_rdf", "command", new RdfInputModel());
 
-        return new ModelAndView("geotriples_rdf", "command", new RdfInputModel());
+        mav.addObject("name", inputmodel.getName());
+        mav.addObject("outmap_fullpath", inputmodel.getOutmap_fullpath());
+        mav.addObject("type", inputmodel.getType());
+
+        return mav;
     }
 
     /****************************************** Handler for ShapeFile input *******************************************/
@@ -49,11 +52,13 @@ public class GeotriplesController {
 
         GeotriplesService.GTShapeMapping(inputmodel);
 
-        model.addAttribute("name", inputmodel.getName());
-        model.addAttribute("outmap_fullpath", inputmodel.getOutmap_fullpath());
-        model.addAttribute("type", inputmodel.getType());
+        ModelAndView mav = new ModelAndView("geotriples_rdf", "command", new RdfInputModel());
 
-        return new ModelAndView("geotriples_rdf", "command", new RdfInputModel());
+        mav.addObject("name", inputmodel.getName());
+        mav.addObject("outmap_fullpath", inputmodel.getOutmap_fullpath());
+        mav.addObject("type", inputmodel.getType());
+
+        return mav;
     }
 
     /******************************************* Handler for XML file input *******************************************/
@@ -65,11 +70,13 @@ public class GeotriplesController {
 
         GeotriplesService.GTXmlMapping(inputmodel);
 
-        model.addAttribute("name", inputmodel.getName());
-        model.addAttribute("outmap_fullpath", inputmodel.getOutmap_fullpath());
-        model.addAttribute("type", inputmodel.getType());
+        ModelAndView mav = new ModelAndView("geotriples_rdf", "command", new RdfInputModel());
 
-        return new ModelAndView("geotriples_rdf", "command", new RdfInputModel());
+        mav.addObject("name", inputmodel.getName());
+        mav.addObject("outmap_fullpath", inputmodel.getOutmap_fullpath());
+        mav.addObject("type", inputmodel.getType());
+
+        return mav;
     }
 
     /*******************************************************************************************************************
@@ -110,6 +117,58 @@ public class GeotriplesController {
         return "geotriples_final";
     }
 
+    /*******************************************************************************************************************
+    *******************************************************************************************************************/
+    @RequestMapping(value = "/geotriples_map_save", method = RequestMethod.POST)
+    public ModelAndView map_saveChanges(@ModelAttribute("SpringWeb") ModelMap model,
+                                        @RequestParam("name") String name,
+                                        @RequestParam("outmap_fullpath") String outmap_fullpath,
+                                        @RequestParam("type") String type,
+                                        @RequestParam("map_data") String map_data) throws IOException {
+
+        ModelAndView mav = new ModelAndView("geotriples_rdf", "command", new RdfInputModel());
+
+        mav.addObject("name", name);
+        mav.addObject("outmap_fullpath", outmap_fullpath);
+        mav.addObject("type", type);
+        mav.addObject("changed",true);
+
+        GeotriplesService.saveFileChanges(outmap_fullpath, map_data);
+
+//        System.out.println(map_data);
+//        System.out.println(name);
+//        System.out.println(outmap_fullpath);
+//        System.out.println(type);
+
+        return mav;
+    }
+    /*******************************************************************************************************************
+     ******************************************************************************************************************/
+    @RequestMapping(value = "/geotriples_rdf_save", method = RequestMethod.POST)
+    public ModelAndView rdf_saveChanges(@ModelAttribute("SpringWeb") ModelMap model,
+                                        @RequestParam("name") String name,
+                                        @RequestParam("outmap_fullpath") String outmap_fullpath,
+                                        @RequestParam("type") String type,
+                                        @RequestParam("rdf_data") String rdf_data) throws IOException {
+
+        ModelAndView mav = new ModelAndView("geotriples_final", "command", new RdfInputModel());
+
+        mav.addObject("name", name);
+        mav.addObject("outmap_fullpath", outmap_fullpath);
+        mav.addObject("type", type);
+        mav.addObject("changed",true);
+
+        GeotriplesService.saveFileChanges(outmap_fullpath, rdf_data);
+
+//        System.out.println(map_data);
+//        System.out.println(map_data);
+//        System.out.println(map_data);
+//        System.out.println(name);
+//        System.out.println(outmap_fullpath);
+//        System.out.println(type);
+
+        return mav;
+    }
 //    @ExceptionHandler(ResourceNotFoundException.class)
 //    @ResponseStatus(HttpStatus.NOT_FOUND)
 //    public String handleResourceNotFoundException() {
