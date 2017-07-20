@@ -3,11 +3,8 @@ package com.di.mergeo.controller;
 import com.di.mergeo.model.MapInputModel;
 import com.di.mergeo.model.RdfInputModel;
 import com.di.mergeo.service.GeotriplesService;
-import org.apache.velocity.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.ui.ModelMap;
@@ -100,6 +97,7 @@ public class GeotriplesController {
 
         return mav;
     }
+
     /******************************************** Handler for RDF Shapefile *******************************************/
     @RequestMapping(value = "/geotriples_rdf_shp", method = RequestMethod.POST)
     public String rdf_shpInput(@ModelAttribute("SpringWeb")RdfInputModel rdfinputmodel, ModelMap model) throws Exception {
@@ -111,6 +109,7 @@ public class GeotriplesController {
 
         return "geotriples_final";
     }
+
     /******************************************** Handler for RDF XML/JSON ********************************************/
     @RequestMapping(value = "/geotriples_rdf_xml", method = RequestMethod.POST)
     public String rdf_xmlInput(@ModelAttribute("SpringWeb")RdfInputModel rdfinputmodel, ModelMap model) throws Exception {
@@ -126,8 +125,7 @@ public class GeotriplesController {
     /*******************************************************************************************************************
     *******************************************************************************************************************/
     @RequestMapping(value = "/geotriples_map_save", method = RequestMethod.POST)
-    public ModelAndView map_saveChanges(@ModelAttribute("SpringWeb") ModelMap model,
-                                        @RequestParam("name") String name,
+    public ModelAndView map_saveChanges(@RequestParam("name") String name,
                                         @RequestParam("outmap_fullpath") String outmap_fullpath,
                                         @RequestParam("type") String type,
                                         @RequestParam("map_data") String map_data) throws IOException {
@@ -151,20 +149,17 @@ public class GeotriplesController {
     /*******************************************************************************************************************
      ******************************************************************************************************************/
     @RequestMapping(value = "/geotriples_rdf_save", method = RequestMethod.POST)
-    public ModelAndView rdf_saveChanges(@ModelAttribute("SpringWeb") ModelMap model,
-                                        @RequestParam("name") String name,
-                                        @RequestParam("outmap_fullpath") String outmap_fullpath,
-                                        @RequestParam("type") String type,
+    public ModelAndView rdf_saveChanges(@RequestParam("name") String name,
+                                        @RequestParam("outrdf_fullpath") String outrdf_fullpath,
                                         @RequestParam("rdf_data") String rdf_data) throws IOException {
 
-        ModelAndView mav = new ModelAndView("geotriples_final", "command", new RdfInputModel());
+        ModelAndView mav = new ModelAndView("geotriples_final");
 
         mav.addObject("name", name);
-        mav.addObject("outmap_fullpath", outmap_fullpath);
-        mav.addObject("type", type);
+        mav.addObject("outrdf_fullpath", outrdf_fullpath);
         mav.addObject("changed",true);
 
-        GeotriplesService.saveFileChanges(outmap_fullpath, rdf_data);
+        GeotriplesService.saveFileChanges(outrdf_fullpath, rdf_data);
 
 //        System.out.println(map_data);
 //        System.out.println(map_data);

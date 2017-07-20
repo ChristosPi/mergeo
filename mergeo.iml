@@ -56,7 +56,6 @@
     <orderEntry type="library" name="Maven: com.jayway.jsonpath:json-path:0.8.1" level="project" />
     <orderEntry type="library" name="Maven: net.minidev:json-smart:1.1.1" level="project" />
     <orderEntry type="library" name="Maven: net.antidot:db2triples:1.0.2" level="project" />
-    <orderEntry type="library" name="Maven: postgresql:postgresql:9.1-901.jdbc4" level="project" />
     <orderEntry type="library" name="Maven: commons-cli:commons-cli:1.2" level="project" />
     <orderEntry type="library" name="Maven: org.openrdf.sesame:sesame-sail-nativerdf:2.6.10" level="project" />
     <orderEntry type="library" name="Maven: org.openrdf.sesame:sesame-sail-api:2.6.10" level="project" />
@@ -186,5 +185,6 @@
     <orderEntry type="library" name="Maven: org.openrdf.sesame:sesame-repository-sail:2.6.3" level="project" />
     <orderEntry type="library" name="Maven: org.openrdf.sesame:sesame-sail-memory:2.6.3" level="project" />
     <orderEntry type="library" name="Maven: org.openrdf.sesame:sesame-queryparser-sparql:2.6.3" level="project" />
+    <orderEntry type="library" name="Maven: postgresql:postgresql:9.1-901-1.jdbc4" level="project" />
   </component>
 </module>

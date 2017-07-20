@@ -11,7 +11,7 @@
 
     <script>
         function make_changes() {
-            document.getElementById("out-map").readOnly = false;
+            document.getElementById("out-rdf").readOnly = false;
             document.getElementById("save-btn").style.visibility = "visible";
         }
     </script>
@@ -19,6 +19,7 @@
 </head>
 <body>
 <div class="container">
+
     <c:if test="${not empty name}">
         <div class="row">
             <c:choose>
@@ -41,7 +42,23 @@
     </c:if>
 
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-3">
+            <button onclick="make_changes()" class="btn btn-warning">Hmm, something seems wrong. Let's edit!</button>
+        </div>
+        <div class="col-md-2">
+            <form action="/geotriples_rdf_save" method="post" id="save_form">
+                <input type="hidden" name="name" value=${name}>
+                <input type="hidden" name="outrdf_fullpath" value=${outrdf_fullpath}>
+                <button type="submit" style="visibility: hidden;" id="save-btn" class="btn btn-success">Save changes</button>
+            </form>
+        </div>
+        <div class="col-md-3 col-md-offset-4">
+            <a href="/endpoint" class="btn btn-primary" role="button">Perfect, endpoint's time!</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
             <div class="panel panel-primary">
                 <div class="panel-heading">RDF Output file</div>
                 <div class="panel-body">
@@ -54,23 +71,12 @@
                                 String outrdf_code_str= org.apache.commons.io.IOUtils.toString(outrdf_code);
                                 request.setAttribute("outrdf_display", outrdf_code_str);
                             }
-                            %><c:out value="${outrdf_display}"/>
+                            %>
+                            <%--TODO TODO TODO--%>
+                            Here should be the content of the Dumped-to-RDF file :)
+                            <%--<c:out value="${outrdf_display}"/>--%>
                         </textarea>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="row">
-                <div class="col-md-4">
-                    <button onclick="make_changes()" class="btn btn-warning">Hmm, something seems wrong. Let's edit!</button>
-                </div>
-                <div class="col-md-offset-4 col-md-4">
-                    <form action="/geotriples_rdf_save" method="post" id="save_form">
-                        <input type="hidden" name="name" value=${name}>
-                        <input type="hidden" name="outrdf_fullpath" value=${outrdf_fullpath}>
-                        <button type="submit" style="visibility: hidden;" id="save-btn" class="btn btn-success">Save changes</button>
-                    </form>
                 </div>
             </div>
         </div>

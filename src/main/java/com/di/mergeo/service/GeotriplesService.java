@@ -16,6 +16,7 @@ public class GeotriplesService {
      ******************************************************************************************************************/
 
     /************************************ Relational Database Service Method ******************************************/
+    /******************************************************************************************************************/
     public static void GTRdbMapping(MapInputModel inputmodel) throws Exception {
 
         File dir = new File(inputmodel.getUploadpath() + File.separator + "datafiles");
@@ -64,6 +65,7 @@ public class GeotriplesService {
     }
 
     /***************************************** Shapefile Service Method ***********************************************/
+    /******************************************************************************************************************/
     public static void GTShapeMapping(MapInputModel inputmodel) throws Exception {
 
         if (!inputmodel.getShp_inputfile().isEmpty()) {
@@ -116,6 +118,7 @@ public class GeotriplesService {
     }
 
     /****************************************** XMLfile Service Method ************************************************/
+    /******************************************************************************************************************/
     public static void GTXmlMapping(MapInputModel inputmodel) throws Exception {
 
         if (!inputmodel.getXml_inputfile().isEmpty()) {
@@ -205,6 +208,7 @@ public class GeotriplesService {
      ******************************************************************************************************************/
 
     /**************************************** RDB to RDF Service Method ***********************************************/
+    /******************************************************************************************************************/
     public static void GTRdbToRdf(RdfInputModel rdfInputModel) throws Exception {
 
         File dir = new File(rdfInputModel.getUploadpath() + File.separator + "datafiles");
@@ -260,6 +264,7 @@ public class GeotriplesService {
     }
 
     /************************************* Shapefile to RDF Service Method ********************************************/
+    /******************************************************************************************************************/
     public static void GTShpToRdf(RdfInputModel rdfInputModel) throws Exception {
 
         File dir2 = new File(rdfInputModel.getUploadpath() + File.separator + "datafiles" + File.separator + "rdf-data");
@@ -302,6 +307,7 @@ public class GeotriplesService {
     }
 
     /************************************* XML/JSON to RDF Service Method *********************************************/
+    /******************************************************************************************************************/
     public static void GTXmlToRdf(RdfInputModel rdfInputModel) throws Exception {
 
         File dir2 = new File(rdfInputModel.getUploadpath() + File.separator + "datafiles" + File.separator + "rdf-data");
@@ -339,13 +345,15 @@ public class GeotriplesService {
         System.out.println("HERE IS XML/JSON --- RDF");
     }
 
-    /******************************************************************************************************************/
-    /******************************************************************************************************************/
+    /******************************************************************************************************************
+     *                                      Other helpful methods!
+     ******************************************************************************************************************/
     public static void saveFileChanges(String file_fullpath, String new_data) throws IOException {
 
         File serverFile = new File(file_fullpath);
         FileUtils.writeStringToFile(serverFile, new_data);
         System.out.println("Changes saved :)");
-
     }
+
+    /******************************************************************************************************************/
 }

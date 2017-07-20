@@ -1,14 +1,12 @@
 package com.di.mergeo.controller;
 
+import com.di.mergeo.model.EndpointModel;
 import com.di.mergeo.model.MapInputModel;
-import com.di.mergeo.model.RdfInputModel;
-import org.apache.velocity.exception.ResourceNotFoundException;
-import org.springframework.http.HttpStatus;
+import com.di.mergeo.service.EndpointService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -36,8 +34,11 @@ public class WebController {
 //    }
 
     @RequestMapping(value = "/endpoint", method = RequestMethod.GET)
-    public String endpoint() {
-        return "endpoint";
+    public ModelAndView endpoint() throws Exception {
+
+        EndpointService.strabonDeploy();
+
+        return new ModelAndView("endpoint", "command", new EndpointModel());
     }
 
     @RequestMapping(value = "/sextant", method = RequestMethod.GET)
