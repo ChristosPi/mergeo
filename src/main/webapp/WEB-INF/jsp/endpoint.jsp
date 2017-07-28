@@ -62,7 +62,7 @@
                 <div class="form-group">
                     <form:label class="control-label col-sm-2" path="cp_password" for="cp_password">Credentials: Password</form:label>
                     <div class="col-sm-10">
-                        <form:input path="cp_password" type="cp_password" class="form-control" id="cp_password" required="required" />
+                        <form:input path="cp_password" type="password" class="form-control" id="cp_password" required="required" />
                     </div>
                 </div>
 

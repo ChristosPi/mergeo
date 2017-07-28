@@ -35,9 +35,6 @@ public class WebController {
 
     @RequestMapping(value = "/endpoint", method = RequestMethod.GET)
     public ModelAndView endpoint() throws Exception {
-
-        EndpointService.strabonDeploy();
-
         return new ModelAndView("endpoint", "command", new EndpointModel());
     }
 

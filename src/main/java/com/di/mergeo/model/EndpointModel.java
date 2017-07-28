@@ -15,6 +15,7 @@ public class EndpointModel {
     private String cp_password;
 
     private String endpointname;
+    private String tomcat_location;
 
     public String getHostname() {
         return hostname;
@@ -86,5 +87,13 @@ public class EndpointModel {
 
     public void setEndpointname(String endpointname) {
         this.endpointname = endpointname;
+    }
+
+    public String getTomcat_location() {
+        return tomcat_location;
+    }
+
+    public void setTomcat_location(String tomcat_location) {
+        this.tomcat_location = tomcat_location;
     }
 }
