@@ -34,24 +34,13 @@
           <element id="library" level="project" name="Maven: net.antidot:db2triples:1.0.2" />
           <element id="library" level="project" name="Maven: commons-cli:commons-cli:1.2" />
           <element id="library" level="project" name="Maven: org.openrdf.sesame:sesame-sail-nativerdf:2.6.10" />
-          <element id="library" level="project" name="Maven: org.openrdf.sesame:sesame-sail-api:2.6.10" />
-          <element id="library" level="project" name="Maven: org.openrdf.sesame:sesame-sail-inferencer:2.6.10" />
-          <element id="library" level="project" name="Maven: org.openrdf.sesame:sesame-queryalgebra-evaluation:2.6.10" />
-          <element id="library" level="project" name="Maven: org.openrdf.sesame:sesame-repository-sparql:2.6.10" />
-          <element id="library" level="project" name="Maven: org.openrdf.sesame:sesame-queryalgebra-model:2.6.10" />
-          <element id="library" level="project" name="Maven: org.openrdf.sesame:sesame-query:2.6.10" />
-          <element id="library" level="project" name="Maven: org.openrdf.sesame:sesame-model:2.6.10" />
-          <element id="library" level="project" name="Maven: org.openrdf.sesame:sesame-util:2.6.10" />
           <element id="library" level="project" name="Maven: org.openrdf.sesame:sesame-runtime:2.6.10" />
-          <element id="library" level="project" name="Maven: org.openrdf.sesame:sesame-queryparser-api:2.6.10" />
-          <element id="library" level="project" name="Maven: org.openrdf.sesame:sesame-queryparser-serql:2.6.10" />
           <element id="library" level="project" name="Maven: org.openrdf.sesame:sesame-queryresultio-api:2.6.10" />
           <element id="library" level="project" name="Maven: org.openrdf.sesame:sesame-queryresultio-binary:2.6.10" />
           <element id="library" level="project" name="Maven: org.openrdf.sesame:sesame-queryresultio-sparqljson:2.6.10" />
           <element id="library" level="project" name="Maven: org.openrdf.sesame:sesame-queryresultio-sparqlxml:2.6.10" />
           <element id="library" level="project" name="Maven: org.openrdf.sesame:sesame-queryresultio-text:2.6.10" />
           <element id="library" level="project" name="Maven: net.sf.opencsv:opencsv:2.0" />
-          <element id="library" level="project" name="Maven: org.openrdf.sesame:sesame-repository-api:2.6.10" />
           <element id="library" level="project" name="Maven: org.openrdf.sesame:sesame-repository-manager:2.6.10" />
           <element id="library" level="project" name="Maven: org.openrdf.sesame:sesame-repository-event:2.6.10" />
           <element id="library" level="project" name="Maven: org.openrdf.sesame:sesame-repository-http:2.6.10" />
@@ -60,7 +49,6 @@
           <element id="library" level="project" name="Maven: org.openrdf.sesame:sesame-http-protocol:2.6.10" />
           <element id="library" level="project" name="Maven: org.openrdf.sesame:sesame-http-client:2.6.10" />
           <element id="library" level="project" name="Maven: commons-httpclient:commons-httpclient:3.1" />
-          <element id="library" level="project" name="Maven: org.openrdf.sesame:sesame-rio-api:2.6.10" />
           <element id="library" level="project" name="Maven: org.openrdf.sesame:sesame-rio-binary:2.6.10" />
           <element id="library" level="project" name="Maven: org.openrdf.sesame:sesame-rio-ntriples:2.6.10" />
           <element id="library" level="project" name="Maven: org.openrdf.sesame:sesame-rio-n3:2.6.10" />
@@ -158,8 +146,21 @@
           <element id="library" level="project" name="Maven: org.apache.xmlbeans:xmlbeans:2.6.0" />
           <element id="library" level="project" name="Maven: stax:stax-api:1.0.1" />
           <element id="library" level="project" name="Maven: eu.earthobservatory:strabon-endpoint-client:3.2.11-temporals" />
+          <element id="library" level="project" name="Maven: eu.earthobservatory:strabon:3.2.11-temporals" />
           <element id="library" level="project" name="Maven: org.openrdf.sesame:sesame-repository-sail:2.6.3" />
+          <element id="library" level="project" name="Maven: org.openrdf.sesame:sesame-repository-api:2.6.3" />
+          <element id="library" level="project" name="Maven: org.openrdf.sesame:sesame-sail-api:2.6.3" />
+          <element id="library" level="project" name="Maven: org.openrdf.sesame:sesame-queryparser-api:2.6.3" />
+          <element id="library" level="project" name="Maven: org.openrdf.sesame:sesame-queryalgebra-model:2.6.3" />
+          <element id="library" level="project" name="Maven: org.openrdf.sesame:sesame-query:2.6.3" />
+          <element id="library" level="project" name="Maven: org.openrdf.sesame:sesame-rio-api:2.6.3" />
+          <element id="library" level="project" name="Maven: org.openrdf.sesame:sesame-model:2.6.3" />
           <element id="library" level="project" name="Maven: org.openrdf.sesame:sesame-sail-memory:2.6.3" />
+          <element id="library" level="project" name="Maven: org.openrdf.sesame:sesame-sail-inferencer:2.6.3" />
+          <element id="library" level="project" name="Maven: org.openrdf.sesame:sesame-queryparser-serql:2.6.3" />
+          <element id="library" level="project" name="Maven: org.openrdf.sesame:sesame-queryalgebra-evaluation:2.6.3" />
+          <element id="library" level="project" name="Maven: org.openrdf.sesame:sesame-repository-sparql:2.6.3" />
+          <element id="library" level="project" name="Maven: org.openrdf.sesame:sesame-util:2.6.3" />
           <element id="library" level="project" name="Maven: org.openrdf.sesame:sesame-queryparser-sparql:2.6.3" />
           <element id="library" level="project" name="Maven: postgresql:postgresql:9.1-901-1.jdbc4" />
         </element>

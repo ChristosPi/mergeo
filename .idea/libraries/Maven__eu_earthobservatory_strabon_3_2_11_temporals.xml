@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: eu.earthobservatory:strabon:3.2.11-temporals">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/eu/earthobservatory/strabon/3.2.11-temporals/strabon-3.2.11-temporals.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/eu/earthobservatory/strabon/3.2.11-temporals/strabon-3.2.11-temporals-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/eu/earthobservatory/strabon/3.2.11-temporals/strabon-3.2.11-temporals-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -11,7 +11,20 @@
 
 <div class="container">
     <div class="row">
-        <h2>Endpoint done!</h2>
+        <div class="col-md-3">
+            <form action="/do_store" method="post">
+                <input type="hidden" value="<%request.getAttribute("endpointName");%>" name="endpointName" />
+                <button type="submit" class="btn btn-success">Store something!</button>
+            </form>
+            <form action="/do_query" method="post">
+                <input type="hidden" value="<%request.getAttribute("endpointName");%>" name="endpointName" />
+                <button type="submit" class="btn btn-success">Query something!</button>
+            </form>
+            <form action="/do_update" method="post">
+                <input type="hidden" value="<%request.getAttribute("endpointName");%>" name="endpointName" />
+                <button type="submit" class="btn btn-success">Update something!</button>
+            </form>
+        </div>
     </div>
 </div>
 
