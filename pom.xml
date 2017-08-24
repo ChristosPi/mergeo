@@ -82,6 +82,7 @@
             </exclusions>
         </dependency>
 
+
         <dependency>
             <groupId>eu.earthobservatory</groupId>
             <artifactId>strabon-endpoint-client</artifactId>

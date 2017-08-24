@@ -12,8 +12,8 @@
 <div class="container">
     <div class="row">
         <div class="col-md-3">
-            <form action="/do_store" method="post">
-                <input type="hidden" value="<%request.getAttribute("endpointName");%>" name="endpointName" />
+            <form method="POST" action="/do_store">
+                <input type="hidden" value="${endpointName}" name="endpointName" />
                 <button type="submit" class="btn btn-success">Store something!</button>
             </form>
             <form action="/do_query" method="post">

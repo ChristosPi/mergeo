@@ -8,10 +8,7 @@ import com.di.mergeo.service.EndpointService;
 import org.openrdf.rio.RDFFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.FileInputStream;
@@ -44,11 +41,11 @@ public class EndpointController {
     /* ************************************************************************************************************** */
     /******************************************************************************************************************/
     @RequestMapping(value = "/do_store", method = RequestMethod.POST)
-    public ModelAndView doStore(@RequestParam("endpointName") String endpointName) throws IOException {
+    public ModelAndView doStore(@RequestParam("endpointName") String endpointName)  throws IOException {
 
         GeneralSPARQLEndpoint endpoint = new GeneralSPARQLEndpoint("localhost", 8080, endpointName);
-        endpoint.setUser("oki");
-        endpoint.setPassword("oki");
+        endpoint.setUser(endpointName);
+        endpoint.setPassword(endpointName);
 
         String rdf_file = "/home/chrispi/mergeo/target/mergeo/datafiles/rdf-data/endpoint-rdf.nt";
 
