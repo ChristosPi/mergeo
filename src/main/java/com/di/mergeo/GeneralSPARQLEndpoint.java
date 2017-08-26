@@ -182,7 +182,7 @@ public class GeneralSPARQLEndpoint extends HTTPClient{
 		if (namedGraph!=null)
 			params.add(new BasicNameValuePair("graph", namedGraph.toString()));
 //		UrlEncodedFormEntity encodedEntity = new UrlEncodedFormEntity(params, defaultCharset());
-        UrlEncodedFormEntity encodedEntity = new UrlEncodedFormEntity(params, "utf-8");
+        UrlEncodedFormEntity encodedEntity = new UrlEncodedFormEntity(params, "UTF-8");
 
         method.setEntity(encodedEntity);
 		

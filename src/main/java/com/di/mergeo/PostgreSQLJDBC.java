@@ -42,14 +42,14 @@ public class PostgreSQLJDBC {
 
         con = DriverManager.getConnection(jdbcURI, username, password);
 
-        System.out.println("Database successfully opened :)");
+        System.out.println("[Status] Database successfully connected");
 
         st = con.createStatement();
 
         String query = "CREATE USER " + model.getUsername() + " WITH PASSWORD '"+ model.getPassword()+"' CREATEDB LOGIN";
         st.executeUpdate(query);
 
-        query = "CREATE DATABASE " + model.getDbname() + " TEMPLATE template_postgis";
+        query = "CREATE DATABASE " + model.getDbname() + " TEMPLATE template_mergeo";
         st.executeUpdate(query);
 
         query="GRANT ALL PRIVILEGES ON DATABASE " + model.getDbname() +" TO " + model.getUsername();
@@ -57,6 +57,8 @@ public class PostgreSQLJDBC {
 
         query="ALTER DATABASE " + model.getDbname() + " OWNER TO " + model.getUsername();
         st.executeUpdate(query);
+
+        System.out.println("[Status] Database successfully created");
 
         st.close();
         con.close();

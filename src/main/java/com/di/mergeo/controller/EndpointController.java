@@ -30,7 +30,7 @@ public class EndpointController {
 
         TimeUnit.SECONDS.sleep(10);
 
-        EndpointService.strabonSetCredentials(endmodel);
+//        EndpointService.strabonSetCredentials(endmodel);
 
         ModelAndView mav = new ModelAndView("endpoint_done");
         mav.addObject("endpointName", endmodel.getEndpointname());
@@ -43,16 +43,22 @@ public class EndpointController {
     @RequestMapping(value = "/do_store", method = RequestMethod.POST)
     public ModelAndView doStore(@RequestParam("endpointName") String endpointName)  throws IOException {
 
-        GeneralSPARQLEndpoint endpoint = new GeneralSPARQLEndpoint("localhost", 8080, endpointName);
+        String testTriplet = "<http://example.org/#Spiderman> <http://www.perceive.net/schemas/relationship/enemyOf> <http://example.org/#green-goblin> .";
+
+//        String rdf_file = "/home/chrispi/mergeo/target/mergeo/datafiles/rdf-data/endpoint-rdf.nt";
+//        FileInputStream filestream = new FileInputStream(rdf_file);
+//        String rdf_string= org.apache.commons.io.IOUtils.toString(filestream,"UTF-8");
+
+//        GeneralSPARQLEndpoint testend = new GeneralSPARQLEndpoint("test.strabon.di.uoa.gr",8080,"testEndpoint");
+//        testend.setUser("test");
+//        testend.setPassword("test");
+//        boolean flag = testend.store(testTriplet, RDFFormat.NTRIPLES,null);
+
+        GeneralSPARQLEndpoint endpoint = new GeneralSPARQLEndpoint("localhost", 8080, endpointName.concat("/Store"));
         endpoint.setUser(endpointName);
         endpoint.setPassword(endpointName);
 
-        String rdf_file = "/home/chrispi/mergeo/target/mergeo/datafiles/rdf-data/endpoint-rdf.nt";
-
-        FileInputStream filestream = new FileInputStream(rdf_file);
-        String rdf_string= org.apache.commons.io.IOUtils.toString(filestream);
-
-        boolean check = endpoint.store(rdf_string, RDFFormat.NTRIPLES, null);
+        boolean check = endpoint.store(testTriplet, RDFFormat.NTRIPLES, null);
 
         ModelAndView mav = new ModelAndView("index");
         return mav;
