@@ -11,9 +11,11 @@
 <body>
 <div class="container">
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <label class="col-sm-offset-4">Endpoint Creation Form:</label>
-            <form:form class="form-horizontal" method="POST" action="/endpoint_create">
+
+        <form:form class="form-horizontal" method="POST" action="/endpoint_create">
+
+            <div class="col-md-6">
+                <label class="col-md-offset-5">Connection properties:</label>
                 <div class="form-group">
                     <form:label class="control-label col-sm-2" path="hostname" for="hostname">Hostname</form:label>
                     <div class="col-sm-10">
@@ -50,9 +52,10 @@
                         <form:input path="password" type="password" class="form-control" id="password" required="required" />
                     </div>
                 </div>
+            </div>
 
-                <hr>
-
+            <div class="col-md-6">
+                <label class="col-md-offset-5">Credentials properties:</label>
                 <div class="form-group">
                     <form:label class="control-label col-sm-2" path="cp_username" for="cp_username">Credentials: Username</form:label>
                     <div class="col-sm-10">
@@ -74,13 +77,16 @@
                         <form:input path="endpointname" type="text" class="form-control" id="endpointname" required="required" />
                     </div>
                 </div>
+
+                <hr>
+
                 <div class="form-group">
-                    <div class="col-sm-4 col-sm-offset-8">
+                    <div class="col-sm-offset-9">
                         <button type="submit" class="btn btn-success">Create Endpoint!</button>
                     </div>
                 </div>
-            </form:form>
-        </div>
+            </div>
+        </form:form>
     </div>
 </div>
 </body>
