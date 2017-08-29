@@ -5,6 +5,7 @@ import com.di.mergeo.GeneralSPARQLEndpoint;
 import com.di.mergeo.PostgreSQLJDBC;
 import com.di.mergeo.model.EndpointModel;
 import com.di.mergeo.service.EndpointService;
+import eu.earthobservatory.org.StrabonEndpoint.client.EndpointResult;
 import org.openrdf.rio.RDFFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -17,9 +18,14 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.concurrent.TimeUnit;
 
+import org.openrdf.query.resultio.stSPARQLQueryResultFormat;
+
 import eu.earthobservatory.org.StrabonEndpoint.client.SPARQLEndpoint;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
+@SessionAttributes("endpoint")
 public class EndpointController {
 
     @RequestMapping(value = "/endpoint_create", method = RequestMethod.POST)
@@ -33,15 +39,30 @@ public class EndpointController {
 //        EndpointService.strabonSetCredentials(endmodel);
 
         ModelAndView mav = new ModelAndView("endpoint_done");
-        mav.addObject("endpointName", endmodel.getEndpointname());
+        mav.addObject("endpoint", endmodel);
 
         return mav;
+    }
+    /******************************************************************************************************************/
+    @RequestMapping(value = "/endpoint_run", method = RequestMethod.GET)
+    public ModelAndView endpointRun(HttpServletRequest request){
+
+        EndpointModel endpoint = (EndpointModel)request.getSession().getAttribute("endpoint");
+
+        if(endpoint != null){
+            return new ModelAndView("endpoint_done");
+        }
+        else{
+            ModelAndView mav = new ModelAndView("endpoint", "command", new EndpointModel());
+            mav.addObject("no_end", true);
+            return mav;
+        }
     }
 
     /* ************************************************************************************************************** */
     /******************************************************************************************************************/
     @RequestMapping(value = "/do_store", method = RequestMethod.POST)
-    public ModelAndView doStore(@RequestParam("endpointName") String endpointName)  throws IOException {
+    public ModelAndView doStore(HttpServletRequest request)  throws IOException {
 
         String testTriplet = "<http://example.org/#Spiderman> <http://www.perceive.net/schemas/relationship/enemyOf> <http://example.org/#green-goblin> .";
 
@@ -53,10 +74,10 @@ public class EndpointController {
 //        testend.setUser("test");
 //        testend.setPassword("test");
 //        boolean flag = testend.store(testTriplet, RDFFormat.NTRIPLES,null);
-
-        GeneralSPARQLEndpoint endpoint = new GeneralSPARQLEndpoint("localhost", 8080, endpointName.concat("/Store"));
-        endpoint.setUser(endpointName);
-        endpoint.setPassword(endpointName);
+        EndpointModel endmodel = (EndpointModel)request.getSession().getAttribute("endpoint");
+        GeneralSPARQLEndpoint endpoint = new GeneralSPARQLEndpoint("localhost", 8080, endmodel.getEndpointname().concat("/Store"));
+        endpoint.setUser(endmodel.getCp_username());
+        endpoint.setPassword(endmodel.getCp_password());
 
         boolean check = endpoint.store(testTriplet, RDFFormat.NTRIPLES, null);
 
@@ -66,17 +87,33 @@ public class EndpointController {
 
     /******************************************************************************************************************/
     @RequestMapping(value = "/do_query", method = RequestMethod.POST)
-    public ModelAndView doQuery(){
+    public ModelAndView doQuery(@RequestParam("query") String query, @RequestParam("format") String format,
+                                HttpServletRequest request) throws IOException {
 
+        EndpointModel endmodel = (EndpointModel)request.getSession().getAttribute("endpoint");
+        GeneralSPARQLEndpoint endpoint = new GeneralSPARQLEndpoint("localhost", 8080, endmodel.getEndpointname().concat("/Query"));
+        endpoint.setUser(endmodel.getCp_username());
+        endpoint.setPassword(endmodel.getCp_password());
+
+        // var format will be XML/HTML from html form
+        EndpointResult result = endpoint.query(query, (stSPARQLQueryResultFormat) stSPARQLQueryResultFormat.valueOf("XML"), "strabon");
         ModelAndView mav = new ModelAndView("endpoint_done");
         return mav;
     }
 
     /******************************************************************************************************************/
     @RequestMapping(value = "/do_update", method = RequestMethod.POST)
-    public ModelAndView doUpdate(){
+    public ModelAndView doUpdate(@RequestParam("query") String query, HttpServletRequest request) throws IOException {
 
+        EndpointModel endmodel = (EndpointModel)request.getSession().getAttribute("endpoint");
+        GeneralSPARQLEndpoint endpoint = new GeneralSPARQLEndpoint("localhost", 8080, endmodel.getEndpointname().concat("/Update"));
+        endpoint.setUser(endmodel.getCp_username());
+        endpoint.setPassword(endmodel.getCp_password());
+
+        // var format will be XML/HTML from html form
+        boolean check = endpoint.update(query);
         ModelAndView mav = new ModelAndView("endpoint_done");
         return mav;
+
     }
 }

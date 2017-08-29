@@ -12,5 +12,7 @@
         <h2>Sextant section</h2>
         <p>Follow the steps: 1 - 2 - 3 from our Navigation Bar</p>
     </article>
+
+    <jsp:include page="footer.jsp"/>
 </body>
 </html>

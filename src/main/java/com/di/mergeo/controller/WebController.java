@@ -3,10 +3,13 @@ package com.di.mergeo.controller;
 import com.di.mergeo.model.EndpointModel;
 import com.di.mergeo.model.MapInputModel;
 import com.di.mergeo.service.EndpointService;
+import org.apache.velocity.exception.ResourceNotFoundException;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -43,14 +46,21 @@ public class WebController {
         return "sextant";
     }
 
-    @ExceptionHandler (Exception.class)
-    public String handleAllException(Exception ex){
-        return "error";
-    }
-
-//    @ExceptionHandler(ResourceNotFoundException.class)
-//    @ResponseStatus(HttpStatus.NOT_FOUND)
-//    public String handleResourceNotFoundException() {
+//    @ExceptionHandler (Exception.class)
+//    public String handleAllException(Exception ex){
 //        return "error";
 //    }
+
+    /*                                  Testing methods for Exception Handling                                        */
+    @ExceptionHandler(ResourceNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ModelAndView httpEx(){
+        return new ModelAndView("error");
+    }
+
+    @ExceptionHandler(value={Exception.class})
+    public ModelAndView allEx(){
+        return new ModelAndView("error");
+    }
+    /******************************************************************************************************************/
 }

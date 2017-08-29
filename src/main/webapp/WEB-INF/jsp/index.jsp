@@ -11,6 +11,7 @@
         <h2>Welcome to MerGEO Web-Application</h2>
         <p>Follow the steps: 1 - 2 - 3 from our Navigation Bar</p>
     </article>
-</body>
 
+    <jsp:include page="footer.jsp"/>
+</body>
 </html>

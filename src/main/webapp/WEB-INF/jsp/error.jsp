@@ -10,8 +10,11 @@
 </head>
 <body>
     <article>
-        <h2>We are so sorry :(</h2>
+        <h4>Something went wrong... OR DID YOU MAKE IT GO WRONG?</h4>
+        <h5>Anyway, go away from here! NOW!</h5>
         <img src="./../../resources/img/error.png" alt="..." class="img-responsive center-block"/>
     </article>
+
+    <jsp:include page="footer.jsp"/>
 </body>
 </html>

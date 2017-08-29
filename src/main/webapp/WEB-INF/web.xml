@@ -11,6 +11,11 @@
     <param-value>/WEB-INF/log4j.properties</param-value>
   </context-param>
 
+  <error-page>
+    <error-code>404</error-code>
+    <location>/WEB-INF/jsp/error.jsp</location>
+  </error-page>
+
   <listener>
     <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
   </listener>

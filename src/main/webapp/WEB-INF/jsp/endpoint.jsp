@@ -10,6 +10,17 @@
 </head>
 <body>
 <div class="container">
+    <c:if test="${not empty no_end}">
+        <c:if test="${no_end == true}">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <div class="alert alert-info" role="alert">
+                        <strong>No endpoint found!</strong> Let's create a new one
+                    </div>
+                </div>
+            </div>
+        </c:if>
+    </c:if>
     <div class="row">
 
         <form:form class="form-horizontal" method="POST" action="/endpoint_create">
@@ -89,5 +100,7 @@
         </form:form>
     </div>
 </div>
+
+<jsp:include page="footer.jsp"/>
 </body>
 </html>
