@@ -3,7 +3,9 @@ package com.di.mergeo.controller;
 import com.di.mergeo.model.EndpointModel;
 import com.di.mergeo.model.MapInputModel;
 import com.di.mergeo.service.EndpointService;
+import com.di.mergeo.service.StartupService;
 import org.apache.velocity.exception.ResourceNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -12,12 +14,42 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.PostConstruct;
+import javax.servlet.ServletContext;
+import java.io.IOException;
+
 
 @Controller
 public class WebController {
 
+    @Autowired
+    ServletContext context;
+
+    public static String tomcatPath = System.getProperty("catalina.home"); // Something like foo/fee/tomcat
+    public static String endpointFolder = "/opt/tomcat/endpoint/strabon-endpoint-3.3.2-SNAPSHOT/.";
+    private boolean end_def = false;
+
+    /**************************************** Does the startup work... ************************************************/
+    public void startup_jobs() throws IOException, InterruptedException {
+
+        /* Deploy a default Strabon Endpoint */
+        String warPath = context.getRealPath("/WEB-INF/classes/strabon-endpoint-3.3.2-SNAPSHOT.war");
+        String webappsPath = tomcatPath.concat("/webapps/");
+        StartupService.loadDefaultEndpoint(webappsPath, warPath);
+
+        /* Deploy a Sextant application */
+
+    }
+    /******************************************************************************************************************/
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String main() {
+    public String main() throws IOException, InterruptedException {
+
+        if( !end_def ){
+            startup_jobs();
+            end_def = true;
+        }
+
         return "index";
     }
 
@@ -31,11 +63,6 @@ public class WebController {
         return new ModelAndView("geotriples", "command", new MapInputModel());
     }
 
-//    @RequestMapping(value = "/geotriples_rdf", method = RequestMethod.GET)
-//    public ModelAndView geotriples_rdf() {
-//        return new ModelAndView("geotriples_rdf", "command", new RdfInputModel());
-//    }
-
     @RequestMapping(value = "/endpoint", method = RequestMethod.GET)
     public ModelAndView endpoint() throws Exception {
         return new ModelAndView("endpoint", "command", new EndpointModel());
@@ -46,12 +73,8 @@ public class WebController {
         return "sextant";
     }
 
-//    @ExceptionHandler (Exception.class)
-//    public String handleAllException(Exception ex){
-//        return "error";
-//    }
 
-    /*                                  Testing methods for Exception Handling                                        */
+    /********************************** Testing methods for Exception Handling ****************************************/
     @ExceptionHandler(ResourceNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ModelAndView httpEx(){

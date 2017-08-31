@@ -1,5 +1,6 @@
 package com.di.mergeo.service;
 
+import com.di.mergeo.controller.WebController;
 import com.di.mergeo.model.EndpointModel;
 
 import java.io.File;
@@ -13,7 +14,7 @@ public class EndpointService {
         // 1st method, copying .war file
 
 //        /* TODO - Correct with relative path to application's path */
-//        // String warPath = "/home/chrispi/mergeo/src/main/resources/strabon-endpoint-3.2.11-temporals.war";
+//        // String warPath = "/home/chrispi/mergeo/src/main/resources/strabon-endpoint-default.war";
 //        String warPath = "/home/chrispi/mergeo/src/main/resources/strabon-endpoint-3.3.2-SNAPSHOT.war";
 //
 //        /* TODO - Path changed to endpoint folder, not webapps  */
@@ -32,17 +33,17 @@ public class EndpointService {
 
         // 2nd method, copying folder (not .war), changing the credentials and then move to webapps
 
-        String sourcepath = "/opt/tomcat/endpoint/strabon-endpoint-3.3.2-SNAPSHOT/.";
-        endmodel.setTomcat_location("/opt/tomcat/webapps/");
+        String sourcepath = WebController.endpointFolder;
+        endmodel.setTomcat_location(WebController.tomcatPath.concat("/webapps/"));
 
-        ProcessBuilder pb = new ProcessBuilder("cp", "-a", sourcepath, "/opt/tomcat/endpoint/" + endmodel.getEndpointname());
+        ProcessBuilder pb = new ProcessBuilder("cp", "-a", sourcepath, WebController.tomcatPath.concat("/endpoint/" + endmodel.getEndpointname()));
         Process p = null;
         p = pb.start();
         p.waitFor();
 
         strabonSetCredentials(endmodel);
 
-        pb = new ProcessBuilder("mv", "/opt/tomcat/endpoint/" + endmodel.getEndpointname(), endmodel.getTomcat_location());
+        pb = new ProcessBuilder("mv", WebController.tomcatPath.concat("/endpoint/" + endmodel.getEndpointname()), endmodel.getTomcat_location());
         p = null;
         p = pb.start();
         p.waitFor();
@@ -54,7 +55,7 @@ public class EndpointService {
     public static void strabonSetCredentials(EndpointModel endmodel) throws IOException {
 
 //         String target_folder = endmodel.getTomcat_location() + endmodel.getEndpointname() + File.separator + "WEB-INF/";
-        String target_folder = "/opt/tomcat/endpoint/" + endmodel.getEndpointname() + "/WEB-INF/";
+        String target_folder = WebController.tomcatPath.concat("/endpoint/" + endmodel.getEndpointname() + "/WEB-INF/");
 
         File conn_props = new File(target_folder + "connection.properties");
         File cred_props = new File(target_folder + "credentials.properties");

@@ -22,13 +22,14 @@
             </header>
         </div>
 
-        <nav class="navbar navbar-inverse navbar-static-top">
-            <div class="navbar-header">
-                <%--<a class="navbar-brand active" href="/">MerGe<span class="glyphicon glyphicon-globe"></span></a>--%>
-                <a class="navbar-left active" href="/"><img src="./../../resources/img/logo-light.png" alt="merGeo" width="112" height="47"></a>
-            </div>
+        <nav class="navbar navbar-default navbar-static-top">
+            <%--<div class="navbar-header">--%>
+                <%--&lt;%&ndash;<a class="navbar-brand active" href="/">MerGe<span class="glyphicon glyphicon-globe"></span></a>&ndash;%&gt;--%>
+                <%--<a class="navbar-left active" href="/"><img src="./../../resources/img/logo-light.png" alt="merGeo" width="112" height="47"></a>--%>
+            <%--</div>--%>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
+                    <li style="border-right: 1px solid #18BC9C;"><a href="/index"><span class="glyphicon glyphicon-home"></span> Home</a></li>
                     <li><a href="/geotriples"><span class="glyphicon glyphicon-transfer"></span> 1.Transformation</a></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-import"></span> 2.Endpoint
@@ -40,6 +41,7 @@
                     </li>
                     <%--<li><a href="/endpoint"><span class="glyphicon glyphicon-import"></span> 2.Endpoint</a></li>--%>
                     <li><a href="/sextant"><span class="glyphicon glyphicon-map-marker"></span> 3.Sextant</a></li>
+                    <li style="border-left: 1px solid #18BC9C;"><a href="#"><span class="glyphicon glyphicon-info-sign"></span> Tutorials</a></li>
                 </ul>
             </div>
         </nav>

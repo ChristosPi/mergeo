@@ -12,17 +12,13 @@ public class PostgreSQLJDBC {
     public static void dbConnect(String dbname, String user, String pass) throws ClassNotFoundException, SQLException {
 
         String jdbcURI = "jdbc:postgresql://localhost:5432/" + dbname;
-//        String username = "postgres";
-//        String password = "postgres";
-
         Connection c = null;
-
         Class.forName("org.postgresql.Driver");
 
         c = DriverManager.getConnection(jdbcURI, user, pass);
 
         c.createStatement();
-        System.out.println("Database successfully opened :)");
+        System.out.println("[Status] Database successfully opened");
 
         c.close();
     }
@@ -31,7 +27,7 @@ public class PostgreSQLJDBC {
     public static void dbCreate(EndpointModel model) throws ClassNotFoundException, SQLException {
 
         /* TODO - Assuming these are the defaults */
-        String jdbcURI = "jdbc:postgresql://localhost:5432/template1";
+        String jdbcURI = "jdbc:postgresql://localhost:5432/endpoint";
         String username = "postgres";
         String password = "postgres";
 

@@ -16,7 +16,7 @@
         <%--Left Panel - Input Options when there is no input given--%>
         <div class="col-sm-6 col-md-6">
 
-            <div class="panel panel-success">
+            <div class="panel panel-primary">
                 <div class="panel-heading">Choose input method</div>
                 <div class="panel-body">
 
@@ -126,7 +126,7 @@
 
         <%--Right Panel - Mapping output--%>
         <div class="col-sm-6 col-md-6">
-            <div class="panel panel-success">
+            <div class="panel panel-primary">
                 <div class="panel-heading">Generated mapping</div>
                 <div class="panel-body">
                     <div class="form-group">

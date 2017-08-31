@@ -161,18 +161,6 @@ public class GeotriplesController {
 
         GeotriplesService.saveFileChanges(outrdf_fullpath, rdf_data);
 
-//        System.out.println(map_data);
-//        System.out.println(map_data);
-//        System.out.println(map_data);
-//        System.out.println(name);
-//        System.out.println(outmap_fullpath);
-//        System.out.println(type);
-
         return mav;
     }
-//    @ExceptionHandler(ResourceNotFoundException.class)
-//    @ResponseStatus(HttpStatus.NOT_FOUND)
-//    public String handleResourceNotFoundException() {
-//        return "error";
-//    }
 }
