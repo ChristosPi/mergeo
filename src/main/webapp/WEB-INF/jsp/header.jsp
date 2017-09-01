@@ -10,16 +10,18 @@
     <section class="container-fullwidth">
         <div class="jumbotron">
             <header class="row">
-                <%--<h2 align="center">Welcome to MerGeo</h2>--%>
+                <%--<div class="col-md-2">--%>
+                    <%--<a href="http://en.uoa.gr/"><img src="./../../resources/img/uoa_logo.png" alt="uoa"></a>--%>
+                <%--</div>--%>
                 <div class="com-md-2 col-md-offset-5">
-                    <a href="/"><img src="./../../resources/img/logo.png" alt="merGeo" width="213" height="94"></a>
+                    <a href="/"><img src="./../../resources/img/logo-main.png" alt="merGeo" width="303" height="92"></a>
                 </div>
             </header>
-            <header class="row">
-                <div class="col-md-12">
-                    <h4 align="center">The web-app which combines GeoSpatial tools</h4>
-                </div>
-            </header>
+            <%--<header class="row">--%>
+                <%--<div class="col-md-6">--%>
+                    <%--<h4 align="center">GeoSpatial tools application</h4>--%>
+                <%--</div>--%>
+            <%--</header>--%>
         </div>
 
         <nav class="navbar navbar-default navbar-static-top">

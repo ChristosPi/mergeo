@@ -27,7 +27,7 @@ public class WebController {
 
     public static String tomcatPath = System.getProperty("catalina.home"); // Something like foo/fee/tomcat
     public static String endpointFolder = "/opt/tomcat/endpoint/strabon-endpoint-3.3.2-SNAPSHOT/.";
-    private boolean end_def = false;
+    private boolean startupFlag = false;
 
     /**************************************** Does the startup work... ************************************************/
     public void startup_jobs() throws IOException, InterruptedException {
@@ -35,9 +35,12 @@ public class WebController {
         /* Deploy a default Strabon Endpoint */
         String warPath = context.getRealPath("/WEB-INF/classes/strabon-endpoint-3.3.2-SNAPSHOT.war");
         String webappsPath = tomcatPath.concat("/webapps/");
-        StartupService.loadDefaultEndpoint(webappsPath, warPath);
+        StartupService.loadApplication(webappsPath, warPath);
 
         /* Deploy a Sextant application */
+//        warPath = context.getRealPath("/WEB-INF/classes/SEXTANT.war");
+//        webappsPath = tomcatPath.concat("/webapps/");
+//        StartupService.loadApplication(webappsPath, warPath);
 
     }
     /******************************************************************************************************************/
@@ -45,9 +48,9 @@ public class WebController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String main() throws IOException, InterruptedException {
 
-        if( !end_def ){
+        if( !startupFlag ){
             startup_jobs();
-            end_def = true;
+            startupFlag = true;
         }
 
         return "index";

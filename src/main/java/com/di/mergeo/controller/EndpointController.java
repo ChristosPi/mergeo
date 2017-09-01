@@ -6,22 +6,16 @@ import com.di.mergeo.PostgreSQLJDBC;
 import com.di.mergeo.model.EndpointModel;
 import com.di.mergeo.service.EndpointService;
 import eu.earthobservatory.org.StrabonEndpoint.client.EndpointResult;
-import org.openrdf.rio.RDFFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.concurrent.TimeUnit;
 
 import org.openrdf.query.resultio.stSPARQLQueryResultFormat;
-
-import eu.earthobservatory.org.StrabonEndpoint.client.SPARQLEndpoint;
-
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
@@ -74,14 +68,17 @@ public class EndpointController {
 //        testend.setUser("test");
 //        testend.setPassword("test");
 //        boolean flag = testend.store(testTriplet, RDFFormat.NTRIPLES,null);
-        EndpointModel endmodel = (EndpointModel)request.getSession().getAttribute("endpoint");
-        GeneralSPARQLEndpoint endpoint = new GeneralSPARQLEndpoint("localhost", 8080, endmodel.getEndpointname().concat("/Store"));
-        endpoint.setUser(endmodel.getCp_username());
-        endpoint.setPassword(endmodel.getCp_password());
 
-        boolean check = endpoint.store(testTriplet, RDFFormat.NTRIPLES, null);
 
-        ModelAndView mav = new ModelAndView("index");
+
+//        EndpointModel endmodel = (EndpointModel)request.getSession().getAttribute("endpoint");
+//        GeneralSPARQLEndpoint endpoint = new GeneralSPARQLEndpoint("localhost", 8080, endmodel.getEndpointname().concat("/Store"));
+//        endpoint.setUser(endmodel.getCp_username());
+//        endpoint.setPassword(endmodel.getCp_password());
+//
+//        boolean check = endpoint.store(testTriplet, RDFFormat.NTRIPLES, null);
+
+        ModelAndView mav = new ModelAndView("endpoint_store");
         return mav;
     }
 
@@ -110,10 +107,90 @@ public class EndpointController {
         endpoint.setUser(endmodel.getCp_username());
         endpoint.setPassword(endmodel.getCp_password());
 
-        // var format will be XML/HTML from html form
+        // var format will be XML/HTML/GeoJSON from html form
         boolean check = endpoint.update(query);
         ModelAndView mav = new ModelAndView("endpoint_done");
         return mav;
 
     }
+    /******************************************************************************************************************/
+    @RequestMapping(value = "/endpoint/exquery", method = RequestMethod.POST)
+    public ModelAndView doExQuery(@RequestParam("example") String example, HttpServletRequest request) throws IOException {
+
+        EndpointModel endmodel = (EndpointModel)request.getSession().getAttribute("endpoint");
+        GeneralSPARQLEndpoint endpoint = new GeneralSPARQLEndpoint("localhost", 8080, endmodel.getEndpointname().concat("/Query"));
+        endpoint.setUser(endmodel.getCp_username());
+        endpoint.setPassword(endmodel.getCp_password());
+        String query;
+
+        // SELECT * WHERE { ?s ?p ?o }
+        if( example.equals("1") ){
+            query = "SELECT * \n" +
+                    "WHERE {\n" +
+                    "   ?s ?p ?o \n" +
+                    "}";
+        }
+        // SELECT DISTINCT (?s AS ?subject) WHERE { ?s ?p ?o }
+        else if( example.equals("2")){
+            query = "SELECT DISTINCT (?s AS ?subject)\n" +
+                    "WHERE {\n" +
+                    "   ?s ?p ?o \n" +
+                    "}";
+        }
+        // SELECT (COUNT(?s) AS ?NumOfTriples) WHERE { ?s ?p ?o }
+        else if( example.equals("3")){
+            query = "SELECT (COUNT(?s) AS ?NumOfTriples)\n" +
+                    "WHERE {\n" +
+                    "   ?s ?p ?o \n" +
+                    "}";
+        }
+        // SELECT * WHERE { ?s ?p ?o } LIMIT 10
+        else{
+            query = "SELECT * \n" +
+                    "WHERE {\n" +
+                    "   ?s ?p ?o \n" +
+                    "}\n" +
+                    "LIMIT 10";
+        }
+
+        EndpointResult results = endpoint.query(query, (stSPARQLQueryResultFormat) stSPARQLQueryResultFormat.valueOf("HTML"), "strabon");
+        ModelAndView mav = new ModelAndView("endpoint_done");
+        mav.addObject("endpointResults", results);
+        mav.addObject("query", query);
+        return mav;
+    }
+    /******************************************************************************************************************/
+
+    @RequestMapping(value = "/endpoint/direct_store", method = RequestMethod.POST)
+    public ModelAndView directStore(@RequestParam(value = "graph", required=false) String graph,
+                                    @RequestParam("dinput") String input,
+                                    @RequestParam("rdfformat") String rdfformat,
+                                    @RequestParam(value = "inference", required=false) String inference){
+
+        if(inference != null)
+        {
+            System.out.println("checkbox is checked");
+        }
+        else
+        {
+            System.out.println("checkbox is not checked");
+        }
+
+        // TODO ΕΔΩ ΘΑ ΚΑΛΕΙ ΤΙΣ ΚΑΤΑΛΛΗΛΕΣ ΣΥΝΑΡΤΗΣΕΙΣ ΑΠ ΤΟ ΑΡΧΕΙΟ ΤΟΥ ΓΙΩΡΓΟΥ
+
+        ModelAndView mav = new ModelAndView("endpoint_done");
+        return mav;
+    }
+    /******************************************************************************************************************/
+
+    @RequestMapping(value = "/endpoint/uri_store", method = RequestMethod.POST)
+    public ModelAndView uriStore(@RequestParam("uri_input") String uri_input){
+
+        // TODO ΕΔΩ ΘΑ ΚΑΛΕΙ ΤΙΣ ΚΑΤΑΛΛΗΛΕΣ ΣΥΝΑΡΤΗΣΕΙΣ ΑΠ ΤΟ ΑΡΧΕΙΟ ΤΟΥ ΓΙΩΡΓΟΥ
+
+        ModelAndView mav = new ModelAndView("endpoint_done");
+        return mav;
+    }
+    /******************************************************************************************************************/
+
 }
