@@ -1,5 +1,6 @@
 package com.di.mergeo.controller;
 
+import com.di.mergeo.model.EndpointModel;
 import com.di.mergeo.model.MapInputModel;
 import com.di.mergeo.model.RdfInputModel;
 import com.di.mergeo.service.GeotriplesService;
@@ -90,7 +91,7 @@ public class GeotriplesController {
 
         GeotriplesService.GTRdbToRdf(rdfinputmodel);
 
-        ModelAndView mav = new ModelAndView("geotriples_final");
+        ModelAndView mav = new ModelAndView("geotriples_final", "command", new EndpointModel());
 
         mav.addObject("name", rdfinputmodel.getName());
         mav.addObject("outrdf_fullpath", rdfinputmodel.getOutrdf_fullpath());
@@ -100,26 +101,36 @@ public class GeotriplesController {
 
     /******************************************** Handler for RDF Shapefile *******************************************/
     @RequestMapping(value = "/geotriples_rdf_shp", method = RequestMethod.POST)
-    public String rdf_shpInput(@ModelAttribute("SpringWeb")RdfInputModel rdfinputmodel, ModelMap model) throws Exception {
+    public ModelAndView rdf_shpInput(@ModelAttribute("SpringWeb")RdfInputModel rdfinputmodel, ModelMap model) throws Exception {
 
         rdfinputmodel.setUploadpath(context.getRealPath(""));
         rdfinputmodel.setType("shp");
 
         GeotriplesService.GTShpToRdf(rdfinputmodel);
 
-        return "geotriples_final";
+        ModelAndView mav = new ModelAndView("geotriples_final", "command", new EndpointModel());
+
+        mav.addObject("name", rdfinputmodel.getName());
+        mav.addObject("outrdf_fullpath", rdfinputmodel.getOutrdf_fullpath());
+
+        return mav;
     }
 
     /******************************************** Handler for RDF XML/JSON ********************************************/
     @RequestMapping(value = "/geotriples_rdf_xml", method = RequestMethod.POST)
-    public String rdf_xmlInput(@ModelAttribute("SpringWeb")RdfInputModel rdfinputmodel, ModelMap model) throws Exception {
+    public ModelAndView rdf_xmlInput(@ModelAttribute("SpringWeb")RdfInputModel rdfinputmodel, ModelMap model) throws Exception {
 
         rdfinputmodel.setUploadpath(context.getRealPath(""));
         rdfinputmodel.setType("xml");
 
         GeotriplesService.GTXmlToRdf(rdfinputmodel);
 
-        return "geotriples_final";
+        ModelAndView mav = new ModelAndView("geotriples_final", "command", new EndpointModel());
+
+        mav.addObject("name", rdfinputmodel.getName());
+        mav.addObject("outrdf_fullpath", rdfinputmodel.getOutrdf_fullpath());
+
+        return mav;
     }
 
     /*******************************************************************************************************************
@@ -153,7 +164,7 @@ public class GeotriplesController {
                                         @RequestParam("outrdf_fullpath") String outrdf_fullpath,
                                         @RequestParam("rdf_data") String rdf_data) throws IOException {
 
-        ModelAndView mav = new ModelAndView("geotriples_final");
+        ModelAndView mav = new ModelAndView("geotriples_final", "command", new EndpointModel());
 
         mav.addObject("name", name);
         mav.addObject("outrdf_fullpath", outrdf_fullpath);

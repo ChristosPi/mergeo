@@ -54,27 +54,27 @@
                         <form:form method="POST" action="/geotriples_rdf_rdb">
                             <div class="form-group">
                                 <form:label path="rdb_baseuri" for="rdbbaseuri">BaseURI</form:label>
-                                <form:input path="rdb_baseuri" type="text" class="form-control" id="rdbbaseuri" value="http://example.org/" required="required" />
+                                <form:input path="rdb_baseuri" type="text" class="form-control input-sm" id="rdbbaseuri" value="http://example.com" required="required" />
                             </div>
                             <div class="form-group">
                                 <form:label path="rdb_user" for="user">Username</form:label>
-                                <form:input path="rdb_user" type="text" class="form-control" id="user" />
+                                <form:input path="rdb_user" type="text" class="form-control input-sm" id="user" />
                             </div>
                             <div class="form-group">
                                 <form:label path="rdb_password" for="password">Password</form:label>
-                                <form:input path="rdb_password" type="password" class="form-control" id="password" />
+                                <form:input path="rdb_password" type="password" class="form-control input-sm" id="password" />
                             </div>
                             <div class="form-group">
                                 <form:label path="rdb_driver" for="driver">Driver</form:label>
-                                <form:input path="rdb_driver" type="text" class="form-control" id="driver" />
+                                <form:input path="rdb_driver" type="text" class="form-control input-sm" id="driver" />
                             </div>
                             <div class="form-group">
                                 <form:label path="rdb_jdbcurl" for="jdbcurl">JDBC URL</form:label>
-                                <form:input path="rdb_jdbcurl" type="text" class="form-control" id="jdbcurl" required="required" />
+                                <form:input path="rdb_jdbcurl" type="text" class="form-control input-sm" id="jdbcurl" required="required" />
                             </div>
                             <div class="form-group">
                                 <form:label path="rdb_mapfullpath" for="inputmap_fullpath">Mapping file path</form:label>
-                                <form:input path="rdb_mapfullpath" type="text" class="form-control" readonly="true" id="rdb_mapfullpath" required="required" value="${outmap_fullpath}"/>
+                                <form:input path="rdb_mapfullpath" type="text" class="form-control input-sm" readonly="true" id="rdb_mapfullpath" required="required" value="${outmap_fullpath}"/>
                             </div>
                             <div class="form-group">
                                 <form:label path="rdb_format">Choose format type</form:label><br>
@@ -85,8 +85,11 @@
                             <div class="form-group">
                                 <form:label path="rdb_rml"><form:checkbox path="rdb_rml" value="-rml" /> RML</form:label>
                             </div>
+                            <hr>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-success">Dump to RDF</button>
+                                <div class="col-md-4 col-md-push-4">
+                                    <button type="submit" class="btn btn-success">Dump to RDF</button>
+                                </div>
                             </div>
                         </form:form>
                     </c:when>
@@ -95,31 +98,34 @@
                         <form:form method="POST" action="/geotriples_rdf_shp">
                             <div class="form-group">
                                 <form:label path="shp_sourcefile" for="shp_sourcefile">Source Shapefile</form:label>
-                                <form:input path="shp_sourcefile" type="text" class="form-control" id="shp_sourcefile" value="${name}" readonly="true"/>
+                                <form:input path="shp_sourcefile" type="text" class="form-control input-sm" id="shp_sourcefile" value="${name}" readonly="true"/>
                             </div>
                             <div class="form-group">
                                 <form:label path="shp_baseuri" for="rdbbaseuri">BaseURI</form:label>
-                                <form:input path="shp_baseuri" type="text" class="form-control" id="shp_baseuri" value="http://example.org/" required="required" />
+                                <form:input path="shp_baseuri" type="text" class="form-control input-sm" id="shp_baseuri" value="http://example.com" required="required" />
                             </div>
                             <div class="form-group">
                                 <form:label path="shp_epsgcode" for="shp_epsgcode">EPSG Code</form:label>
-                                <form:input path="shp_epsgcode" type="text" class="form-control" id="shp_epsgcode" />
+                                <form:input path="shp_epsgcode" type="text" class="form-control input-sm" id="shp_epsgcode" />
                             </div>
                             <div class="form-group">
                                 <form:label path="shp_mapfullpath" for="shp_mapfullpath">Mapping file path</form:label>
-                                <form:input path="shp_mapfullpath" type="text" class="form-control" readonly="true" id="shp_mapfullpath" required="required" value="${outmap_fullpath}"/>
+                                <form:input path="shp_mapfullpath" type="text" class="form-control input-sm" readonly="true" id="shp_mapfullpath" required="required" value="${outmap_fullpath}"/>
                             </div>
                             <div class="form-group">
                                 <form:label path="shp_format">Choose format type</form:label><br>
                                 <form:radiobutton path="shp_format" value="N3" label="N3" checked="checked"/>
-                                <form:radiobutton path="shp_format" value="RDF" label="RDF/XML"/>
                                 <form:radiobutton path="shp_format" value="TURTLE" label="TURTLE"/>
+                                <form:radiobutton path="shp_format" value="RDFXML" label="RDF/XML"/>
                             </div>
                             <div class="form-group">
                                 <form:label path="shp_rml"><form:checkbox path="shp_rml" value="-rml" /> RML</form:label>
                             </div>
+                            <hr>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-success">Dump to RDF</button>
+                                <div class="col-md-4 col-md-push-4">
+                                    <button type="submit" class="btn btn-success">Dump to RDF</button>
+                                </div>
                             </div>
                         </form:form>
                     </c:when>
@@ -128,15 +134,15 @@
                         <form:form method="POST" action="/geotriples_rdf_xml">
                             <div class="form-group">
                                 <form:label path="xml_baseuri" for="xml_baseuri">BaseURI</form:label>
-                                <form:input path="xml_baseuri" type="text" class="form-control" id="xml_baseuri" value="http://example.org/" required="required" />
+                                <form:input path="xml_baseuri" type="text" class="form-control input-sm" id="xml_baseuri" value="http://example.com" required="required" />
                             </div>
                             <div class="form-group">
                                 <form:label path="xml_epsgcode" for="xml_epsgcode">EPSG Code</form:label>
-                                <form:input path="xml_epsgcode" type="text" class="form-control" id="xml_epsgcode" />
+                                <form:input path="xml_epsgcode" type="text" class="form-control input-sm" id="xml_epsgcode" />
                             </div>
                             <div class="form-group">
                                 <form:label path="xml_mapfullpath" for="xml_mapfullpath">Mapping file path</form:label>
-                                <form:input path="xml_mapfullpath" type="text" class="form-control" readonly="true" id="xml_mapfullpath" required="required" value="${outmap_fullpath}"/>
+                                <form:input path="xml_mapfullpath" type="text" class="form-control input-sm" readonly="true" id="xml_mapfullpath" required="required" value="${outmap_fullpath}"/>
                             </div>
                             <div class="form-group">
                                 <form:label path="xml_format">Choose format type</form:label><br>
@@ -147,8 +153,11 @@
                             <div class="form-group">
                                 <form:label path="xml_rml"><form:checkbox path="xml_rml" value="-rml" checked="checked" readonly="true"/> RML</form:label>
                             </div>
+                            <hr>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-success">Dump to RDF</button>
+                                <div class="col-md-4 col-md-push-4">
+                                    <button type="submit" class="btn btn-success">Dump to RDF</button>
+                                </div>
                             </div>
                         </form:form>
                     </c:when>
@@ -183,11 +192,11 @@
                 <div class="col-md-4">
                     <button onclick="make_changes()" class="btn btn-warning">Hmm, something seems wrong. Let's edit!</button>
                 </div>
-                <div class="col-md-offset-4 col-md-4">
+                <div class="col-md-4 col-md-push-5">
                     <form action="/geotriples_map_save" method="post" id="save_form">
-                        <input type="hidden" name="name" value=${name}>
-                        <input type="hidden" name="outmap_fullpath" value=${outmap_fullpath}>
-                        <input type="hidden" name="type" value=${type}>
+                        <input type="hidden" name="name" value="${name}">
+                        <input type="hidden" name="outmap_fullpath" value="${outmap_fullpath}">
+                        <input type="hidden" name="type" value="${type}">
                         <button type="submit" style="visibility: hidden;" id="save-btn" class="btn btn-success">Save changes</button>
                     </form>
                 </div>

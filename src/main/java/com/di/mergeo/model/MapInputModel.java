@@ -21,6 +21,7 @@ public class MapInputModel {
     /* Characteristics for ShapeFile input form */
     private MultipartFile shp_inputfile;
     private String shp_baseuri;
+    private String shp_epsgcode;
     private boolean shp_rml;
 
     /* Characteristics for XML file input form */
@@ -139,6 +140,17 @@ public class MapInputModel {
         this.shp_rml = shp_rml;
     }
 
+    public String getShp_epsgcode() {
+        return shp_epsgcode;
+    }
+
+    public void setShp_epsgcode(String shp_epsgcode) {
+        this.shp_epsgcode = shp_epsgcode;
+    }
+
+    public void setXml_xsdfile(MultipartFile xml_xsdfile) {
+        this.xml_xsdfile = xml_xsdfile;
+    }
 
     public MultipartFile getXml_inputfile() {
         return xml_inputfile;

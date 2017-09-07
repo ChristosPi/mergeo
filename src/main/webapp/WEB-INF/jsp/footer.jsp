@@ -2,26 +2,29 @@
 <html>
 <head>
     <link rel="stylesheet" href="/resources/css/footer.css">
-    <script src="https://use.fontawesome.com/7afd968963.js"></script>
 </head>
 <body>
 
 <footer class="footer-distributed">
     <div class="footer-right">
-        <a href="https://github.com/christospi/mergeo"><i class="fa fa-github"></i></a>
+        <a target="_blank" href="https://github.com/christospi/mergeo"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a>
         <br>
         <br>
     </div>
 
     <div class="footer-left">
         <p class="footer-links">
-            <a href="http://www.di.uoa.gr/">About</a>
+            <a target="_blank" href="http://www.di.uoa.gr/"><img src="./../../resources/img/athenaLogo.png" height="50" width="32"></a>
+            <a></a>
+            <a></a>
+            <a></a>
+            <a target="_blank" href="http://geotriples.di.uoa.gr/">GeoTriples</a>
             ·
-            <a href="http://www.di.uoa.gr/">Faq</a>
+            <a target="_blank" href="http://strabon.di.uoa.gr/">Strabon</a>
             ·
-            <a href="http://www.di.uoa.gr/">Contact</a>
+            <a target="_blank" href="http://sextant.di.uoa.gr/">Sextant</a>
         </p>
-        <p>Department of Informatics and Telecommunications - NKUA &copy; 2017</p>
+        <p>Copyright &copy; Department of Informatics and Telecommunications, NKUA 2017</p>
     </div>
 
 </footer>

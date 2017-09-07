@@ -10,8 +10,29 @@
 <body>
 
 <div class="container">
+    <c:if test="${not empty storeStatus}">
+        <c:choose>
+            <c:when test="${storeStatus == true}">
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-4">
+                        <div class="alert alert-success" role="alert" style="text-align: center;">
+                            <strong>Data store status:</strong> OK
+                        </div>
+                    </div>
+                </div>
+            </c:when>
+            <c:otherwise>
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-4">
+                        <div class="alert alert-danger" role="alert" style="text-align: center;">
+                            <strong>Data store status:</strong> Failed
+                        </div>
+                    </div>
+                </div>
+            </c:otherwise>
+        </c:choose>
+    </c:if>
     <div class="row">
-
         <div class="col-md-3">
             <div class="row">
                 <span><h4>Store data:</h4></span>
@@ -47,7 +68,7 @@
         </div>
 
         <div class="col-md-9">
-            <span style="text-align: center;"><h4>Endpoint: <strong>${endpoint.endpointname}</strong></h4></span>
+            <span style="text-align: center;"><h4>Endpoint: <strong>${workEndpoint.endpointname}</strong></h4></span>
             <form action="/do_query" method="post">
                 <div class="form-group">
                     <textarea name="query" class="form-control" rows="18" columns="15" style="text-align: justify;"><c:choose><c:when test="${empty endpointResults}">

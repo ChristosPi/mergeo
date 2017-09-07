@@ -10,7 +10,7 @@
 </head>
 
 <body>
-<div class="container">
+<div class="container-fluid">
 
     <div class="row">
         <%--Left Panel - Input Options when there is no input given--%>
@@ -23,7 +23,7 @@
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#rdatabase" data-toggle="tab">Relational Database</a></li>
                         <li><a href="#shapefile" data-toggle="tab">Shapefile</a></li>
-                        <li><a href="#xmlfile" data-toggle="tab">XML files (RML only)</a></li>
+                        <li><a href="#xmlfile" data-toggle="tab">XML-file</a></li>
                     </ul>
 
                     <div class="tab-content">
@@ -33,29 +33,32 @@
                             <form:form method="POST" action="/geotriples_rdb">
                                 <div class="form-group">
                                     <form:label path="rdb_baseuri" for="rdbbaseuri">BaseURI</form:label>
-                                    <form:input path="rdb_baseuri" type="text" class="form-control" id="rdbbaseuri" value="http://example.org/" required="required" />
+                                    <form:input path="rdb_baseuri" type="text" class="form-control input-sm" id="rdbbaseuri" value="http://example.com" required="required" />
                                 </div>
                                 <div class="form-group">
                                     <form:label path="rdb_user" for="user">Username</form:label>
-                                    <form:input path="rdb_user" type="text" class="form-control" id="user" />
+                                    <form:input path="rdb_user" type="text" class="form-control input-sm" id="user" />
                                 </div>
                                 <div class="form-group">
                                     <form:label path="rdb_password" for="password">Password</form:label>
-                                    <form:input path="rdb_password" type="password" class="form-control" id="password" />
+                                    <form:input path="rdb_password" type="password" class="form-control input-sm" id="password" />
                                 </div>
                                 <div class="form-group">
                                     <form:label path="rdb_driver" for="driver">Driver</form:label>
-                                    <form:input path="rdb_driver" type="text" class="form-control" id="driver" />
+                                    <form:input path="rdb_driver" type="text" class="form-control input-sm" id="driver" />
                                 </div>
                                 <div class="form-group">
                                     <form:label path="rdb_jdbcurl" for="jdbcurl">JDBC URL</form:label>
-                                    <form:input path="rdb_jdbcurl" type="text" class="form-control" id="jdbcurl" required="required" />
+                                    <form:input path="rdb_jdbcurl" type="text" class="form-control input-sm" id="jdbcurl" required="required" />
                                 </div>
                                 <div class="form-group">
                                     <form:label path="rdb_rml"><form:checkbox path="rdb_rml" value="-rml" /> RML</form:label>
                                 </div>
+                                <hr>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-success">Connect</button>
+                                    <div class="col-md-4 col-md-push-4">
+                                        <button type="submit" class="btn btn-success">Generate map</button>
+                                    </div>
                                 </div>
                             </form:form>
                         </div>
@@ -70,13 +73,20 @@
                                 </div>
                                 <div class="form-group">
                                     <form:label path="shp_baseuri" for="shapebaseuri">BaseURI</form:label>
-                                    <form:input path="shp_baseuri" type="text" class="form-control" id="shapebaseuri" value="http://example.org/" required="required" />
+                                    <form:input path="shp_baseuri" type="text" class="form-control input-sm" id="shapebaseuri" value="http://example.com" required="required" />
+                                </div>
+                                <div class="form-group">
+                                    <form:label path="shp_epsgcode" for="shp_epsgcode">EPSG Code</form:label>
+                                    <form:input path="shp_epsgcode" type="text" class="form-control input-sm" id="shp_epsgcode"/>
                                 </div>
                                 <div class="form-group">
                                     <form:label path="shp_rml"><form:checkbox path="shp_rml" value="-rml" /> RML</form:label>
                                 </div>
+                                <hr>
                                 <div class="form-group  ">
-                                    <button type="submit" class="btn btn-success">Upload</button>
+                                    <div class="col-md-4 col-md-push-4">
+                                        <button type="submit" class="btn btn-success">Generate map</button>
+                                    </div>
                                 </div>
                             </form:form>
                         </div>
@@ -91,31 +101,34 @@
                                 </div>
                                 <div class="form-group">
                                     <form:label path="xml_baseuri" for="xmlbaseuri">BaseURI</form:label>
-                                    <form:input path="xml_baseuri" type="text" class="form-control" id="xmlbaseuri" value="http://example.org/" required="required" />
+                                    <form:input path="xml_baseuri" type="text" class="form-control input-sm" id="xmlbaseuri" value="http://example.com" required="required" />
                                 </div>
                                 <div class="form-group">
                                     <form:label path="xml_rootpath" for="rootpath">Rootpath</form:label>
-                                    <form:input path="xml_rootpath" type="text" class="form-control" id="rootpath" />
+                                    <form:input path="xml_rootpath" type="text" class="form-control input-sm" id="rootpath" />
                                 </div>
                                 <div class="form-group">
                                     <form:label path="xml_rootelement" for="rootelement">Rootelement</form:label>
-                                    <form:input path="xml_rootelement" type="text" class="form-control" id="rootelement" />
+                                    <form:input path="xml_rootelement" type="text" class="form-control input-sm" id="rootelement" />
                                 </div>
                                 <div class="form-group">
                                     <form:label path="xml_namespace" for="namespace">Namespace</form:label>
-                                    <form:input path="xml_namespace" type="text" class="form-control" id="namespace" />
+                                    <form:input path="xml_namespace" type="text" class="form-control input-sm" id="namespace" />
                                 </div>
                                 <div class="form-group">
                                     <form:label path="xml_namespaces" for="namespaces">Namespaces</form:label>
-                                    <form:input path="xml_namespaces" type="text" class="form-control" id="namespaces" />
+                                    <form:input path="xml_namespaces" type="text" class="form-control input-sm" id="namespaces" />
                                 </div>
                                 <div class="form-group">
                                     <form:label path="xml_xsdfile" for="xsdfile">XSD File Input</form:label>
                                     <form:input path="xml_xsdfile" type="file" id="xsdfile" />
                                     <p class="help-block">Choose XSD file (Required for XMLs)</p>
                                 </div>
+                                <hr>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-success">Upload</button>
+                                    <div class="col-md-4 col-md-push-4">
+                                        <button type="submit" class="btn btn-success">Generate map</button>
+                                    </div>
                                 </div>
                             </form:form>
                         </div>
