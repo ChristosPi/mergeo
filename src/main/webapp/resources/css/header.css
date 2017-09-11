@@ -15,6 +15,7 @@
 body{
     background: #eee url(../img/background.png);
     overflow-x: hidden;
+    /*min-height: 1500px;*/
 }
 
 .navbar-nav {

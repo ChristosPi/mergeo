@@ -1,27 +1,37 @@
 package com.di.mergeo.controller;
 
+import com.di.mergeo.GeneralSPARQLEndpoint;
+import com.di.mergeo.PostgreSQLJDBC;
 import com.di.mergeo.model.EndpointModel;
 import com.di.mergeo.model.MapInputModel;
 import com.di.mergeo.model.RdfInputModel;
+import com.di.mergeo.service.EndpointService;
 import com.di.mergeo.service.GeotriplesService;
+import org.openrdf.rio.RDFFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.concurrent.TimeUnit;
 
 @Controller
+@SessionAttributes({"endpoint", "workEndpoint"})
 public class GeotriplesController {
 
     @Autowired
     ServletContext context;
 
     /*******************************************************************************************************************
-     *                                       Mapping Transformation!
+     *
+     *                                          Mapping Transformation!
+     *
      ******************************************************************************************************************/
 
     /************************************** Handler for Relational Databse input **************************************/
@@ -79,7 +89,9 @@ public class GeotriplesController {
     }
 
     /*******************************************************************************************************************
-    *                                           RDF Transformation!
+     *
+     *                                          RDF Transformation!
+     *
      ******************************************************************************************************************/
 
     /*************************************** Handler for RDF Relational Database **************************************/
@@ -95,6 +107,7 @@ public class GeotriplesController {
 
         mav.addObject("name", rdfinputmodel.getName());
         mav.addObject("outrdf_fullpath", rdfinputmodel.getOutrdf_fullpath());
+        mav.addObject("outrdf_format", rdfinputmodel.getRdb_format());
 
         return mav;
     }
@@ -112,6 +125,7 @@ public class GeotriplesController {
 
         mav.addObject("name", rdfinputmodel.getName());
         mav.addObject("outrdf_fullpath", rdfinputmodel.getOutrdf_fullpath());
+        mav.addObject("outrdf_format", rdfinputmodel.getShp_format());
 
         return mav;
     }
@@ -129,12 +143,17 @@ public class GeotriplesController {
 
         mav.addObject("name", rdfinputmodel.getName());
         mav.addObject("outrdf_fullpath", rdfinputmodel.getOutrdf_fullpath());
+        mav.addObject("outrdf_format", rdfinputmodel.getXml_format());
 
         return mav;
     }
 
     /*******************************************************************************************************************
-    *******************************************************************************************************************/
+     *
+     *                                         Additional Handlers()
+     *
+     ******************************************************************************************************************/
+
     @RequestMapping(value = "/geotriples_map_save", method = RequestMethod.POST)
     public ModelAndView map_saveChanges(@RequestParam("name") String name,
                                         @RequestParam("outmap_fullpath") String outmap_fullpath,
@@ -150,28 +169,126 @@ public class GeotriplesController {
 
         GeotriplesService.saveFileChanges(outmap_fullpath, map_data);
 
-//        System.out.println(map_data);
-//        System.out.println(name);
-//        System.out.println(outmap_fullpath);
-//        System.out.println(type);
-
         return mav;
     }
+
     /*******************************************************************************************************************
      ******************************************************************************************************************/
     @RequestMapping(value = "/geotriples_rdf_save", method = RequestMethod.POST)
     public ModelAndView rdf_saveChanges(@RequestParam("name") String name,
                                         @RequestParam("outrdf_fullpath") String outrdf_fullpath,
+                                        @RequestParam("outrdf_format") String outrdf_format,
                                         @RequestParam("rdf_data") String rdf_data) throws IOException {
 
         ModelAndView mav = new ModelAndView("geotriples_final", "command", new EndpointModel());
 
         mav.addObject("name", name);
         mav.addObject("outrdf_fullpath", outrdf_fullpath);
+        mav.addObject("outrdf_format", outrdf_format);
         mav.addObject("changed",true);
 
         GeotriplesService.saveFileChanges(outrdf_fullpath, rdf_data);
 
         return mav;
+    }
+
+    /*******************************************************************************************************************
+     ******************************************************************************************************************/
+    @RequestMapping(value = "/geotriples_defstore", method = RequestMethod.POST)
+    public ModelAndView gt_defStore(@RequestParam("rdf_input_path") String rdf_input_path,
+                                    @RequestParam("rdf_input_format") String rdf_input_format,
+                                    HttpServletRequest request) throws IOException {
+
+        EndpointModel endmodel = (EndpointModel) context.getAttribute("defEndpoint");
+        request.getSession().setAttribute("workEndpoint", endmodel);
+
+        GeneralSPARQLEndpoint endpoint = new GeneralSPARQLEndpoint("localhost", 8080, endmodel.getEndpointname().concat("/Store"));
+        endpoint.setUser(endmodel.getCp_username());
+        endpoint.setPassword(endmodel.getCp_password());
+
+        RDFFormat format;
+        String correct_path = "file://" + rdf_input_path;
+
+        URL input = new URL(correct_path);
+
+        if( rdf_input_format.equals("NTRIPLES") ) format = RDFFormat.NTRIPLES;
+        else if( rdf_input_format.equals("RDFXML") ) format = RDFFormat.RDFXML;
+        else format = RDFFormat.TURTLE;
+
+        // TODO - 3rd parameter "graph" must be URL type
+        boolean storeStatus = endpoint.store(input, format, null);
+
+        ModelAndView mav = new ModelAndView("endpoint_done");
+        mav.addObject("workEndpoint", endmodel);
+        mav.addObject("storeStatus", storeStatus);
+        return mav;
+    }
+
+    /*******************************************************************************************************************
+     ******************************************************************************************************************/
+    @RequestMapping(value = "/geotriples_curstore", method = RequestMethod.POST)
+    public ModelAndView gt_curStore(@RequestParam("rdf_input_path") String rdf_input_path,
+                                    @RequestParam("rdf_input_format") String rdf_input_format,
+                                    HttpServletRequest request) throws IOException {
+
+        EndpointModel endmodel = (EndpointModel)request.getSession().getAttribute("endpoint");
+        request.getSession().setAttribute("workEndpoint", endmodel);
+
+        GeneralSPARQLEndpoint endpoint = new GeneralSPARQLEndpoint("localhost", 8080, endmodel.getEndpointname().concat("/Store"));
+        endpoint.setUser(endmodel.getCp_username());
+        endpoint.setPassword(endmodel.getCp_password());
+
+        RDFFormat format;
+        String correct_path = "file://" + rdf_input_path;
+
+        URL input = new URL(correct_path);
+
+        if( rdf_input_format.equals("NTRIPLES") ) format = RDFFormat.NTRIPLES;
+        else if( rdf_input_format.equals("RDFXML") ) format = RDFFormat.RDFXML;
+        else format = RDFFormat.TURTLE;
+
+        // TODO - 3rd parameter "graph" must be URL type
+        boolean storeStatus = endpoint.store(input, format, null);
+
+        ModelAndView mav = new ModelAndView("endpoint_done");
+        mav.addObject("workEndpoint", endmodel);
+        mav.addObject("storeStatus", storeStatus);
+        return mav;
+    }
+
+    /*******************************************************************************************************************
+     ******************************************************************************************************************/
+    @RequestMapping(value = "/geotriples_createnstore", method = RequestMethod.POST)
+    public ModelAndView endpointCreate(@ModelAttribute("SpringWeb")EndpointModel endmodel, ModelMap model,
+                                       @RequestParam("rdf_input_path") String rdf_input_path,
+                                       @RequestParam("rdf_input_format") String rdf_input_format) throws SQLException, ClassNotFoundException, IOException, InterruptedException {
+
+        PostgreSQLJDBC.dbCreate(endmodel);
+        EndpointService.strabonDeploy(endmodel);
+
+        TimeUnit.SECONDS.sleep(15);
+
+        GeneralSPARQLEndpoint endpoint = new GeneralSPARQLEndpoint("localhost", 8080, endmodel.getEndpointname().concat("/Store"));
+        endpoint.setUser(endmodel.getCp_username());
+        endpoint.setPassword(endmodel.getCp_password());
+
+        RDFFormat format;
+        String correct_path = "file://" + rdf_input_path;
+
+        URL input = new URL(correct_path);
+
+        if( rdf_input_format.equals("NTRIPLES") ) format = RDFFormat.NTRIPLES;
+        else if( rdf_input_format.equals("RDFXML") ) format = RDFFormat.RDFXML;
+        else format = RDFFormat.TURTLE;
+
+        // TODO - 3rd parameter "graph" must be URL type
+        boolean storeStatus = endpoint.store(input, format, null);
+
+        ModelAndView mav = new ModelAndView("endpoint_done");
+        mav.addObject("endpoint", endmodel);
+        mav.addObject("workEndpoint", endmodel);
+        mav.addObject("storeStatus", storeStatus);
+        return mav;
+
     }
 }

@@ -9,8 +9,12 @@
  */
 package com.di.mergeo;
 
-import eu.earthobservatory.org.StrabonEndpoint.client.EndpointResult;
-import eu.earthobservatory.org.StrabonEndpoint.client.HTTPClient;
+//import eu.earthobservatory.org.StrabonEndpoint.client.EndpointResult;
+//import eu.earthobservatory.org.StrabonEndpoint.client.HTTPClient;
+
+import com.di.mergeo.strabonEndpointClient.EndpointResult;
+import com.di.mergeo.strabonEndpointClient.HTTPClient;
+import com.di.mergeo.strabonEndpointClient.stSPARQLQueryResultFormat;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -20,7 +24,6 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.xerces.impl.dv.util.Base64;
 import org.openrdf.query.resultio.TupleQueryResultFormat;
-import org.openrdf.query.resultio.stSPARQLQueryResultFormat;
 import org.openrdf.rio.RDFFormat;
 
 import java.io.BufferedReader;

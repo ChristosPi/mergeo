@@ -4,12 +4,14 @@ import com.di.mergeo.GeneralSPARQLEndpoint;
 import com.di.mergeo.PostgreSQLJDBC;
 import com.di.mergeo.model.EndpointModel;
 import com.di.mergeo.service.EndpointService;
-import eu.earthobservatory.org.StrabonEndpoint.client.EndpointResult;
-import org.openrdf.query.resultio.stSPARQLQueryResultFormat;
+import com.di.mergeo.strabonEndpointClient.EndpointResult;
+import com.di.mergeo.strabonEndpointClient.stSPARQLQueryResultFormat;
+import com.di.mergeo.validator.EndpointValidator;
 import org.openrdf.rio.RDFFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -28,7 +30,21 @@ public class EndpointController {
     ServletContext context;
 
     @RequestMapping(value = "/endpoint_create", method = RequestMethod.POST)
-    public ModelAndView endpointCreate(@ModelAttribute("SpringWeb")EndpointModel endmodel, ModelMap model) throws SQLException, ClassNotFoundException, IOException, InterruptedException {
+    public ModelAndView endpointCreate(@ModelAttribute("SpringWeb")EndpointModel endmodel, ModelMap model, BindingResult result) throws SQLException, ClassNotFoundException, IOException, InterruptedException {
+
+        EndpointValidator endValidator = new EndpointValidator();
+        endValidator.validate(endmodel, result);
+
+        if (result.hasErrors()){
+            System.out.println(result.getFieldError().toString());
+
+            ModelAndView mav = new ModelAndView("endpoint", "command", new EndpointModel());
+            mav.addObject("formError", true);
+            return mav;
+        }
+//        else {
+//            // do something else
+//        }
 
         PostgreSQLJDBC.dbCreate(endmodel);
         EndpointService.strabonDeploy(endmodel);
@@ -67,10 +83,7 @@ public class EndpointController {
         ModelAndView mav = new ModelAndView("endpoint_done");
         mav.addObject("workEndpoint", ((EndpointModel) context.getAttribute("defEndpoint")));
 
-//        System.out.println("---- " + ((EndpointModel)((EndpointModel) context.getAttribute("defEndpoint"))).getEndpointname());
-
         return mav;
-
     }
 
     /* ************************************************************************************************************** */
@@ -107,13 +120,15 @@ public class EndpointController {
                                 HttpServletRequest request) throws IOException {
 
         EndpointModel endmodel = (EndpointModel)request.getSession().getAttribute("workEndpoint");
+
         GeneralSPARQLEndpoint endpoint = new GeneralSPARQLEndpoint("localhost", 8080, endmodel.getEndpointname().concat("/Query"));
         endpoint.setUser(endmodel.getCp_username());
         endpoint.setPassword(endmodel.getCp_password());
 
-        // var format will be XML/HTML from html form
         EndpointResult result = endpoint.query(query, (stSPARQLQueryResultFormat) stSPARQLQueryResultFormat.valueOf("XML"), "strabon");
+
         ModelAndView mav = new ModelAndView("endpoint_done");
+        mav.addObject("endpointResults", result);
         return mav;
     }
 

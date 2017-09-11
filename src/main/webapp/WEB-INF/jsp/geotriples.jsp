@@ -23,7 +23,7 @@
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#rdatabase" data-toggle="tab">Relational Database</a></li>
                         <li><a href="#shapefile" data-toggle="tab">Shapefile</a></li>
-                        <li><a href="#xmlfile" data-toggle="tab">XML-file</a></li>
+                        <li><a href="#xmlfile" data-toggle="tab">XML File</a></li>
                     </ul>
 
                     <div class="tab-content">

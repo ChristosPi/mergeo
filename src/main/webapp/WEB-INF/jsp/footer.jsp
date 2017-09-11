@@ -18,6 +18,7 @@
             <a></a>
             <a></a>
             <a></a>
+            <a style="color: darkgrey;">Powered by:</a>
             <a target="_blank" href="http://geotriples.di.uoa.gr/">GeoTriples</a>
             ·
             <a target="_blank" href="http://strabon.di.uoa.gr/">Strabon</a>

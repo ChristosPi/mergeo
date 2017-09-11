@@ -57,34 +57,56 @@
                             }
                             %><c:out value="xaxax"/></textarea>
                     </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <%--<button onclick="make_changes()" class="btn btn-warning disabled">Hmm, something seems wrong. Let's edit!</button>--%>
+                            <button onclick="make_changes()" id="editbtn" class="btn btn-warning">Something seems wrong? Let's edit!</button>
+                        </div>
+                        <div class="col-md-3 col-md-push-6">
+                            <form action="/geotriples_rdf_save" method="post" id="save_form2">
+                                <input type="hidden" name="name" value="${name}">
+                                <input type="hidden" name="outrdf_fullpath" value="${outrdf_fullpath}">
+                                <button type="submit" style="visibility: hidden;" id="save-btn2" class="btn btn-success">Save changes</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
     <div class="row">
-        <div class="col-md-4">
-            <%--<button onclick="make_changes()" class="btn btn-warning disabled">Hmm, something seems wrong. Let's edit!</button>--%>
-            <button class="btn btn-warning disabled">Edit not supported</button>
-        </div>
-        <div class="col-md-3">
-            <form action="/geotriples_rdf_save" method="post" id="save_form2">
-                <input type="hidden" name="name" value="${name}">
-                <input type="hidden" name="outrdf_fullpath" value="${outrdf_fullpath}">
-                <button type="submit" style="visibility: hidden;" id="save-btn2" class="btn btn-success">Save changes</button>
+        <div class="col-md-6">
+            <label for="triplebtn">Transformation Completed! Now save on Endpoint:</label>
+            <%--<div class="btn-group">--%>
+                <%--<a href="#" class="btn btn-success dropdown-toggle" data-toggle="dropdown">Store to Endpoint |  <span class="caret"></span></a>--%>
+                <%--<ul class="dropdown-menu">--%>
+                    <%--<li><a href="/geotriples_defStore">Store on default</a></li>--%>
+                    <%--<c:if test="${not empty endpoint}">--%>
+                        <%--<li><a href="/geotriples_curStore">Store on current</a></li>--%>
+                    <%--</c:if>--%>
+                    <%--<li class="divider"></li>--%>
+                    <%--<li><a href="#" data-toggle="modal" data-target="#modalCreate">Create new endpoint</a></li>--%>
+                <%--</ul>--%>
+            <%--</div>--%>
+
+            <form action="/geotriples_defstore" id="form_defstore" method="post" >
+                <input type="hidden" value="${outrdf_fullpath}" name="rdf_input_path"/>
+                <input type="hidden" value="${outrdf_format}" name="rdf_input_format"/>
             </form>
-        </div>
-        <div class="col-md-3 col-md-push-3">
-            <div class="btn-group">
-                <a href="#" class="btn btn-success dropdown-toggle" data-toggle="dropdown">Store to Endpoint | <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Store on default</a></li>
-                    <li><a href="#">Store on current</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#" data-toggle="modal" data-target="#modalCreate">Create new endpoint</a></li>
-                </ul>
+            <form action="/geotriples_curstore" id="form_curstore" method="post" >
+                <input type="hidden" value="${outrdf_fullpath}" name="rdf_input_path"/>
+                <input type="hidden" value="${outrdf_format}" name="rdf_input_format"/>
+            </form>
+
+            <div id="triplebtn" class="btn-group">
+                <button type="submit" form="form_defstore" class="btn btn-success">Store on default |></button>
+                <c:if test="${not empty endpoint}">
+                    <button type="submit" form="form_curstore" class="btn btn-success"> Store on current |></button>
+                </c:if>
+                <button href="#" data-toggle="modal" data-target="#modalCreate" class="btn btn-primary"> Create new Endpoint</button>
             </div>
         </div>
+
         <div id="modalCreate" class="modal fade" role="dialog">
             <div class="modal-dialog">
 
@@ -94,7 +116,9 @@
                         <h4 class="modal-title">Create a new Endpoint and store RDF data</h4>
                     </div>
                     <div class="modal-body">
-                        <form:form class="form-horizontal" method="post" action="/endpoint_create">
+                        <form:form class="form-horizontal" method="post" action="/geotriples_createnstore">
+                            <input type="hidden" value="${outrdf_fullpath}" name="rdf_input_path"/>
+                            <input type="hidden" value="${outrdf_format}" name="rdf_input_format"/>
 
                             <label class="col-md-offset-5">Connection properties:</label>
                             <div class="form-group">

@@ -100,7 +100,7 @@ public class GeotriplesService {
             cmdlist.add("-b");
             cmdlist.add(inputmodel.getShp_baseuri());
 
-            if(inputmodel.getShp_epsgcode() != null && inputmodel.getShp_epsgcode().isEmpty()){
+            if(inputmodel.getShp_epsgcode() != null && !inputmodel.getShp_epsgcode().isEmpty()){
                 cmdlist.add("-s");
                 cmdlist.add(inputmodel.getShp_epsgcode());
             }
@@ -290,7 +290,7 @@ public class GeotriplesService {
         cmdlist.add("-o");
 
         //If N-Triples
-        if(rdfInputModel.getShp_format().equals("N3")){
+        if(rdfInputModel.getShp_format().equals("NTRIPLES")){
             outrdf_fullpath = dir2.getAbsolutePath() + File.separator +
                     sourcefile_name.substring(0, sourcefile_name.indexOf('.')) + "-rdf.nt";
             cmdlist.add(outrdf_fullpath);
@@ -320,7 +320,7 @@ public class GeotriplesService {
         cmdlist.add("-b");
         cmdlist.add(rdfInputModel.getShp_baseuri());
 
-        if(rdfInputModel.getShp_format().equals("N3")){
+        if(rdfInputModel.getShp_format().equals("NTRIPLES")){
             cmdlist.add("-sh");
             cmdlist.add(sourceShpFile);
         }

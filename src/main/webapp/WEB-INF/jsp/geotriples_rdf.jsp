@@ -78,8 +78,8 @@
                             </div>
                             <div class="form-group">
                                 <form:label path="rdb_format">Choose format type</form:label><br>
-                                <form:radiobutton path="rdb_format" value="N3" label="N3" checked="checked"/>
-                                <form:radiobutton path="rdb_format" value="RDF" label="RDF/XML"/>
+                                <form:radiobutton path="rdb_format" value="NTRIPLES" label="N-Triples" checked="checked"/>
+                                <form:radiobutton path="rdb_format" value="RDFXML" label="RDF/XML"/>
                                 <form:radiobutton path="rdb_format" value="TURTLE" label="TURTLE"/>
                             </div>
                             <div class="form-group">
@@ -114,7 +114,7 @@
                             </div>
                             <div class="form-group">
                                 <form:label path="shp_format">Choose format type</form:label><br>
-                                <form:radiobutton path="shp_format" value="N3" label="N3" checked="checked"/>
+                                <form:radiobutton path="shp_format" value="NTRIPLES" label="N-Triples" checked="checked"/>
                                 <form:radiobutton path="shp_format" value="TURTLE" label="TURTLE"/>
                                 <form:radiobutton path="shp_format" value="RDFXML" label="RDF/XML"/>
                             </div>
@@ -146,8 +146,8 @@
                             </div>
                             <div class="form-group">
                                 <form:label path="xml_format">Choose format type</form:label><br>
-                                <form:radiobutton path="xml_format" value="N3" label="N3" checked="checked"/>
-                                <form:radiobutton path="xml_format" value="RDF" label="RDF/XML"/>
+                                <form:radiobutton path="xml_format" value="NTRIPLES" label="N-Triples" checked="checked"/>
+                                <form:radiobutton path="xml_format" value="RDFXML" label="RDF/XML"/>
                                 <form:radiobutton path="xml_format" value="TURTLE" label="TURTLE"/>
                             </div>
                             <div class="form-group">

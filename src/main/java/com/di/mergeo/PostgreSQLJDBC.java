@@ -9,7 +9,7 @@ import java.sql.Statement;
 
 public class PostgreSQLJDBC {
 
-    public static void dbConnect(String dbname, String user, String pass) throws ClassNotFoundException, SQLException {
+    public static Connection dbConnect(String dbname, String user, String pass) throws ClassNotFoundException, SQLException {
 
         String jdbcURI = "jdbc:postgresql://localhost:5432/" + dbname;
         Connection c = null;
@@ -17,10 +17,10 @@ public class PostgreSQLJDBC {
 
         c = DriverManager.getConnection(jdbcURI, user, pass);
 
-        c.createStatement();
         System.out.println("[Status] Database successfully opened");
 
-        c.close();
+        // c.close();
+        return c;
     }
 
     /******************************************************************************************************************/

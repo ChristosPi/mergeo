@@ -21,6 +21,17 @@
             </div>
         </c:if>
     </c:if>
+    <c:if test="${not empty formError}">
+        <c:if test="${formError == true}">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <div class="alert alert-info" role="alert" style="text-align: center;">
+                        <strong>Form error!</strong> Try again
+                    </div>
+                </div>
+            </div>
+        </c:if>
+    </c:if>
     <div class="row">
 
         <form:form class="form-horizontal" method="POST" action="/endpoint_create">
@@ -49,12 +60,14 @@
                     <form:label class="control-label col-sm-2" path="dbname" for="dbname">Database Name</form:label>
                     <div class="col-sm-10">
                         <form:input path="dbname" type="text" class="form-control input-sm" id="dbname" required="required" />
+                        <form:errors path="dbname" cssStyle="color: #ff0000;" />
                     </div>
                 </div>
                 <div class="form-group">
                     <form:label class="control-label col-sm-2" path="username" for="username">Username</form:label>
                     <div class="col-sm-10">
                         <form:input path="username" type="text" class="form-control input-sm" id="username" required="required" />
+                        <form:errors path="username" cssStyle="color: #ff0000;" />
                     </div>
                 </div>
                 <div class="form-group">

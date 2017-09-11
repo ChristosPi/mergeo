@@ -10,6 +10,10 @@
 
     <context:component-scan base-package = "com.di.mergeo" />
 
+    <!-- Map a validator -->
+    <!--<bean id="EndpointValidator" class="com.di.mergeo.validator.EndpointValidator" />-->
+
+
     <bean id = "viewResolver" class = "org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name = "prefix" value = "/WEB-INF/jsp/" />
         <property name = "suffix" value = ".jsp" />

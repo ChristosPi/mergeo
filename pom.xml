@@ -11,9 +11,24 @@
     <properties>
         <strabon.version>3.3.1</strabon.version>
         <sesame.version>2.6.3</sesame.version>
+        <!--<geotools.version>13.2</geotools.version>-->
     </properties>
 
     <dependencies>
+
+        <!-- -->
+        <!-- -->
+        <!-- -->
+
+        <!--<dependency>-->
+            <!--<groupId>org.geotools</groupId>-->
+            <!--<artifactId>gt-data</artifactId>-->
+            <!--<version>${geotools.version}</version>-->
+        <!--</dependency>-->
+
+        <!-- -->
+        <!-- -->
+        <!-- -->
 
         <dependency>
             <groupId>junit</groupId>
@@ -66,6 +81,13 @@
             <version>2.4</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.3</version>
+        </dependency>
+
         <dependency>
             <groupId>org.openrdf.sesame</groupId>
             <artifactId>sesame-repository-sail</artifactId>
@@ -87,6 +109,25 @@
             <artifactId>postgresql</artifactId>
             <version>9.1-901-1.jdbc4</version>
         </dependency>
+
+
+        <!--<dependency>-->
+            <!--<groupId>eu.earthobservatory</groupId>-->
+            <!--<artifactId>strabon</artifactId>-->
+            <!--<version>3.3.1</version>-->
+            <!--<exclusions>-->
+                <!--<exclusion>-->
+                    <!--<artifactId>gt-data</artifactId>-->
+                    <!--<groupId>org.geotools</groupId>-->
+                <!--</exclusion>-->
+            <!--</exclusions>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+            <!--<groupId>org.geotools</groupId>-->
+            <!--<artifactId>gt-data</artifactId>-->
+            <!--<version>13.2</version>-->
+        <!--</dependency>-->
 
         <!--            GeoTriples and Strabon Dependencies         -->
 
@@ -145,17 +186,17 @@
         <!--</exclusions>-->
         <!--</dependency>-->
 
-        <dependency>
-            <groupId>eu.earthobservatory</groupId>
-            <artifactId>strabon-endpoint-client</artifactId>
-            <version>${strabon.version}</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>gt-data</artifactId>
-                    <groupId>org.geotools</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>eu.earthobservatory</groupId>-->
+            <!--<artifactId>strabon-endpoint-client</artifactId>-->
+            <!--<version>${strabon.version}</version>-->
+            <!--<exclusions>-->
+                <!--<exclusion>-->
+                    <!--<artifactId>gt-data</artifactId>-->
+                    <!--<groupId>org.geotools</groupId>-->
+                <!--</exclusion>-->
+            <!--</exclusions>-->
+        <!--</dependency>-->
 
         <!--<dependency>-->
         <!--<groupId>eu.earthobservatory</groupId>-->
@@ -178,12 +219,6 @@
         <!--<artifactId>gt-data</artifactId>-->
         <!--</exclusion>-->
         <!--</exclusions>-->
-        <!--</dependency>-->
-
-        <!--<dependency>-->
-            <!--<groupId>org.geotools</groupId>-->
-            <!--<artifactId>gt-data</artifactId>-->
-            <!--<version>13.2</version>-->
         <!--</dependency>-->
 
         <!--<dependency>-->
