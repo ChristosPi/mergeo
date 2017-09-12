@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -30,7 +31,9 @@ public class EndpointController {
     ServletContext context;
 
     @RequestMapping(value = "/endpoint_create", method = RequestMethod.POST)
-    public ModelAndView endpointCreate(@ModelAttribute("SpringWeb")EndpointModel endmodel, ModelMap model, BindingResult result) throws SQLException, ClassNotFoundException, IOException, InterruptedException {
+    public ModelAndView endpointCreate(@Valid @ModelAttribute("command") EndpointModel endmodel, ModelMap model,
+                                       BindingResult result)
+            throws SQLException, ClassNotFoundException, IOException, InterruptedException {
 
         EndpointValidator endValidator = new EndpointValidator();
         endValidator.validate(endmodel, result);
@@ -38,20 +41,16 @@ public class EndpointController {
         if (result.hasErrors()){
             System.out.println(result.getFieldError().toString());
 
-            ModelAndView mav = new ModelAndView("endpoint", "command", new EndpointModel());
+            ModelAndView mav = new ModelAndView("endpoint", "command", endmodel);
             mav.addObject("formError", true);
+            mav.addObject("errors", result);
             return mav;
         }
-//        else {
-//            // do something else
-//        }
 
         PostgreSQLJDBC.dbCreate(endmodel);
         EndpointService.strabonDeploy(endmodel);
 
         TimeUnit.SECONDS.sleep(10);
-
-//        EndpointService.strabonSetCredentials(endmodel);
 
         ModelAndView mav = new ModelAndView("endpoint_done");
         mav.addObject("endpoint", endmodel);

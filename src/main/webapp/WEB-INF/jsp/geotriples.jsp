@@ -30,62 +30,98 @@
 
                         <%--Relational Database form--%>
                         <div class="tab-pane active" id="rdatabase">
-                            <form:form method="POST" action="/geotriples_rdb">
-                                <div class="form-group">
-                                    <form:label path="rdb_baseuri" for="rdbbaseuri">BaseURI</form:label>
-                                    <form:input path="rdb_baseuri" type="text" class="form-control input-sm" id="rdbbaseuri" value="http://example.com" required="required" />
-                                </div>
-                                <div class="form-group">
-                                    <form:label path="rdb_user" for="user">Username</form:label>
-                                    <form:input path="rdb_user" type="text" class="form-control input-sm" id="user" />
-                                </div>
-                                <div class="form-group">
-                                    <form:label path="rdb_password" for="password">Password</form:label>
-                                    <form:input path="rdb_password" type="password" class="form-control input-sm" id="password" />
-                                </div>
-                                <div class="form-group">
-                                    <form:label path="rdb_driver" for="driver">Driver</form:label>
-                                    <form:input path="rdb_driver" type="text" class="form-control input-sm" id="driver" />
-                                </div>
-                                <div class="form-group">
-                                    <form:label path="rdb_jdbcurl" for="jdbcurl">JDBC URL</form:label>
-                                    <form:input path="rdb_jdbcurl" type="text" class="form-control input-sm" id="jdbcurl" required="required" />
-                                </div>
-                                <div class="form-group">
-                                    <form:label path="rdb_rml"><form:checkbox path="rdb_rml" value="-rml" /> RML</form:label>
-                                </div>
-                                <hr>
-                                <div class="form-group">
-                                    <div class="col-md-4 col-md-push-4">
-                                        <button type="submit" class="btn btn-success">Generate map</button>
+                            <form:form class="form-horizontal" method="POST" action="/geotriples_rdb">
+                                <div class="col-md-12">
+                                    <legend>Fill out the form:</legend>
+                                    <div class="form-group">
+                                        <form:label class="control-label col-sm-3" path="rdb_baseuri" for="rdbbaseuri">Base URI:</form:label>
+                                        <div class="col-sm-9 input-group">
+                                            <span class="input-group-addon input-sm"><i class="fa fa-database fa-fw"></i></span>
+                                            <form:input path="rdb_baseuri" type="text" class="form-control input-sm" id="rdbbaseuri" value="http://example.com" required="required" />
+                                        </div>
                                     </div>
+                                    <div class="form-group">
+                                        <form:label class="control-label col-sm-3" path="rdb_user" for="user">Username:</form:label>
+                                        <div class="col-sm-9 input-group">
+                                            <span class="input-group-addon input-sm"><i class="fa fa-user fa-fw"></i></span>
+                                            <form:input path="rdb_user" type="text" class="form-control input-sm" id="user" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <form:label class="control-label col-sm-3" path="rdb_password" for="password">Password:</form:label>
+                                        <div class="col-sm-9 input-group">
+                                            <span class="input-group-addon input-sm"><i class="fa fa-lock fa-fw"></i></span>
+                                            <form:input path="rdb_password" type="password" class="form-control input-sm" id="password" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <form:label class="control-label col-sm-3" path="rdb_driver" for="driver">Driver:</form:label>
+                                        <div class="col-sm-9 input-group">
+                                            <span class="input-group-addon input-sm"><i class="fa fa-hdd-o fa-fw"></i></span>
+                                            <form:input path="rdb_driver" type="text" class="form-control input-sm" id="driver" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <form:label class="control-label col-sm-3" path="rdb_jdbcurl" for="jdbcurl">JDBC URL:</form:label>
+                                        <div class="col-sm-9 input-group">
+                                            <span class="input-group-addon input-sm"><i class="fa fa-link fa-fw"></i></span>
+                                            <form:input path="rdb_jdbcurl" type="text" class="form-control input-sm" id="jdbcurl" required="required" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <form:label class="control-label col-sm-3" path="rdb_rml">RML Format:</form:label>
+                                        <div class="col-sm-1">
+                                            <form:checkbox class="form-control input-sm" path="rdb_rml" value="-rml" />
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-group">
+                                        <div class="col-md-4 col-md-push-4">
+                                            <button type="submit" class="btn btn-success">Generate map</button>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </form:form>
                         </div>
 
                         <%--Shapefile form--%>
                         <div class="tab-pane fade" id="shapefile">
-                            <form:form method="POST" action="/geotriples_shape" enctype="multipart/form-data"><br>
-                                <div class="form-group">
-                                    <form:label path="shp_inputfile" for="shapeinput">File input</form:label>
-                                    <form:input path="shp_inputfile" type="file" id="shapeinput" required="required" />
-                                    <p class="help-block">Choose a file to convert with GeoTriples</p>
-                                </div>
-                                <div class="form-group">
-                                    <form:label path="shp_baseuri" for="shapebaseuri">BaseURI</form:label>
-                                    <form:input path="shp_baseuri" type="text" class="form-control input-sm" id="shapebaseuri" value="http://example.com" required="required" />
-                                </div>
-                                <div class="form-group">
-                                    <form:label path="shp_epsgcode" for="shp_epsgcode">EPSG Code</form:label>
-                                    <form:input path="shp_epsgcode" type="text" class="form-control input-sm" id="shp_epsgcode"/>
-                                </div>
-                                <div class="form-group">
-                                    <form:label path="shp_rml"><form:checkbox path="shp_rml" value="-rml" /> RML</form:label>
-                                </div>
-                                <hr>
-                                <div class="form-group  ">
-                                    <div class="col-md-4 col-md-push-4">
-                                        <button type="submit" class="btn btn-success">Generate map</button>
+                            <form:form class="form-horizontal" method="POST" action="/geotriples_shape" enctype="multipart/form-data"><br>
+                                <div class="col-md-12">
+                                    <legend>Fill out the form:</legend>
+                                    <div class="form-group">
+                                        <form:label class="control-label col-sm-3" path="shp_baseuri" for="shapebaseuri">Base URI:</form:label>
+                                        <div class="col-sm-9 input-group">
+                                            <span class="input-group-addon input-sm"><i class="fa fa-database fa-fw"></i></span>
+                                            <form:input path="shp_baseuri" type="text" class="form-control input-sm" id="shapebaseuri" value="http://example.com" required="required" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <form:label class="control-label col-sm-3" path="shp_epsgcode" for="shp_epsgcode">EPSG Code:</form:label>
+                                        <div class="col-sm-9 input-group">
+                                            <span class="input-group-addon input-sm"><i class="fa fa-terminal fa-fw"></i></span>
+                                            <form:input path="shp_epsgcode" type="text" class="form-control input-sm" id="shp_epsgcode"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <form:label class="control-label col-sm-3" path="shp_inputfile" for="shapeinput">File input:</form:label>
+                                        <div class="col-sm-9 input-group">
+                                            <form:input path="shp_inputfile" type="file" id="shapeinput" class="form-control input-sm" required="required" />
+                                            <span class="help-block">Choose a file to convert with GeoTriples</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <form:label class="control-label col-sm-3" path="shp_rml">RML Format:</form:label>
+                                        <div class="col-sm-1">
+                                            <form:checkbox class="form-control input-sm" path="shp_rml" value="-rml" />
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-group ">
+                                        <div class="col-md-4 col-md-push-4">
+                                            <button type="submit" class="btn btn-success">Generate map</button>
+                                        </div>
                                     </div>
                                 </div>
                             </form:form>
@@ -93,41 +129,64 @@
 
                         <%--XML file form--%>
                         <div class="tab-pane fade" id="xmlfile">
-                            <form:form method="POST" action="/geotriples_xml" enctype="multipart/form-data"><br>
-                                <div class="form-group">
-                                    <form:label path="xml_inputfile" for="xmlinput">File input</form:label>
-                                    <form:input path="xml_inputfile" type="file" id="xmlinput" required="required" />
-                                    <p class="help-block">Choose a file to convert with GeoTriples</p>
-                                </div>
-                                <div class="form-group">
-                                    <form:label path="xml_baseuri" for="xmlbaseuri">BaseURI</form:label>
-                                    <form:input path="xml_baseuri" type="text" class="form-control input-sm" id="xmlbaseuri" value="http://example.com" required="required" />
-                                </div>
-                                <div class="form-group">
-                                    <form:label path="xml_rootpath" for="rootpath">Rootpath</form:label>
-                                    <form:input path="xml_rootpath" type="text" class="form-control input-sm" id="rootpath" />
-                                </div>
-                                <div class="form-group">
-                                    <form:label path="xml_rootelement" for="rootelement">Rootelement</form:label>
-                                    <form:input path="xml_rootelement" type="text" class="form-control input-sm" id="rootelement" />
-                                </div>
-                                <div class="form-group">
-                                    <form:label path="xml_namespace" for="namespace">Namespace</form:label>
-                                    <form:input path="xml_namespace" type="text" class="form-control input-sm" id="namespace" />
-                                </div>
-                                <div class="form-group">
-                                    <form:label path="xml_namespaces" for="namespaces">Namespaces</form:label>
-                                    <form:input path="xml_namespaces" type="text" class="form-control input-sm" id="namespaces" />
-                                </div>
-                                <div class="form-group">
-                                    <form:label path="xml_xsdfile" for="xsdfile">XSD File Input</form:label>
-                                    <form:input path="xml_xsdfile" type="file" id="xsdfile" />
-                                    <p class="help-block">Choose XSD file (Required for XMLs)</p>
-                                </div>
-                                <hr>
-                                <div class="form-group">
-                                    <div class="col-md-4 col-md-push-4">
-                                        <button type="submit" class="btn btn-success">Generate map</button>
+                            <form:form class="form-horizontal" method="POST" action="/geotriples_xml" enctype="multipart/form-data"><br>
+
+                                <div class="col-md-12">
+                                <legend>Fill out the form:</legend>
+                                    <div class="form-group">
+                                        <form:label class="control-label col-sm-3" path="xml_baseuri" for="xmlbaseuri">Base URI:</form:label>
+                                        <div class="col-sm-9 input-group">
+                                            <span class="input-group-addon input-sm"><i class="fa fa-database fa-fw"></i></span>
+                                            <form:input path="xml_baseuri" type="text" class="form-control input-sm" id="xmlbaseuri" value="http://example.com" required="required" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <form:label class="control-label col-sm-3" path="xml_rootpath" for="rootpath">Rootpath:</form:label>
+                                        <div class="col-sm-9 input-group">
+                                            <span class="input-group-addon input-sm"><i class="fa fa-folder-open fa-fw"></i></span>
+                                            <form:input path="xml_rootpath" type="text" class="form-control input-sm" id="rootpath" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <form:label class="control-label col-sm-3" path="xml_rootelement" for="rootelement">Rootelement:</form:label>
+                                        <div class="col-sm-9 input-group">
+                                            <span class="input-group-addon input-sm"><i class="fa fa-info fa-fw"></i></span>
+                                            <form:input path="xml_rootelement" type="text" class="form-control input-sm" id="rootelement" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <form:label class="control-label col-sm-3" path="xml_namespace" for="namespace">Namespace:</form:label>
+                                        <div class="col-sm-9 input-group">
+                                            <span class="input-group-addon input-sm"><i class="fa fa-tag fa-fw"></i></span>
+                                            <form:input path="xml_namespace" type="text" class="form-control input-sm" id="namespace" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <form:label class="control-label col-sm-3" path="xml_namespaces" for="namespaces">Namespaces:</form:label>
+                                        <div class="col-sm-9 input-group">
+                                            <span class="input-group-addon input-sm"><i class="fa fa-tags fa-fw"></i></span>
+                                            <form:input path="xml_namespaces" type="text" class="form-control input-sm" id="namespaces" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <form:label class="control-label col-sm-3" path="xml_inputfile" for="xmlinput">File input:</form:label>
+                                        <div class="col-sm-9 input-group">
+                                            <form:input path="xml_inputfile" type="file" id="xmlinput" class="form-control input-sm" required="required" />
+                                            <span class="help-block">Choose a file to convert with GeoTriples</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <form:label class="control-label col-sm-3" path="xml_xsdfile" for="xsdfile">XSD File Input:</form:label>
+                                        <div class="col-sm-9 input-group">
+                                            <form:input path="xml_xsdfile" type="file" class="form-control input-sm" id="xsdfile" />
+                                            <span class="help-block">Choose XSD file (Required for XMLs)</span>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-group">
+                                        <div class="col-md-4 col-md-push-4">
+                                            <button type="submit" class="btn btn-success">Generate map</button>
+                                        </div>
                                     </div>
                                 </div>
                             </form:form>

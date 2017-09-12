@@ -22,10 +22,6 @@ public class EndpointValidator implements Validator {
         EndpointModel endpoint = (EndpointModel) o;
         Statement st;
 
-        if(endpoint.getEndpointname() == null) {
-            errors.rejectValue("DataBase Username:", "error X");
-        }
-
         try {
             Connection con = PostgreSQLJDBC.dbConnect("endpoint", "postgres", "postgres");
             st = con.createStatement();
@@ -37,7 +33,7 @@ public class EndpointValidator implements Validator {
             {
                 System.out.print("Column 1 returned ");
                 System.out.println(rs.getString(1));
-                errors.rejectValue("username", "error XXX");
+                errors.rejectValue("username", "error.username");
             }
 
             query = "SELECT 1 from pg_database where datname='" + endpoint.getDbname()+ "'";
@@ -47,7 +43,7 @@ public class EndpointValidator implements Validator {
             {
                 System.out.print("Column 1 returned ");
                 System.out.println(rs.getString(1));
-                errors.rejectValue("dbname", "error XXX");
+                errors.rejectValue("dbname", "error.dbname");
             }
 
         } catch (ClassNotFoundException e) {

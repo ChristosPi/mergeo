@@ -40,6 +40,17 @@
             </c:choose>
         </div>
     </c:if>
+    <c:if test="${not empty formError}">
+        <c:if test="${formError == true}">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <div class="alert alert-warning" role="alert" style="text-align: center;">
+                        <strong>Form error!</strong> Try again
+                    </div>
+                </div>
+            </div>
+        </c:if>
+    </c:if>
 
     <div class="row">
         <div class="col-md-12">
@@ -92,10 +103,12 @@
             <form action="/geotriples_defstore" id="form_defstore" method="post" >
                 <input type="hidden" value="${outrdf_fullpath}" name="rdf_input_path"/>
                 <input type="hidden" value="${outrdf_format}" name="rdf_input_format"/>
+                <input type="hidden" value="${name}" name="rdf_input_name"/>
             </form>
             <form action="/geotriples_curstore" id="form_curstore" method="post" >
                 <input type="hidden" value="${outrdf_fullpath}" name="rdf_input_path"/>
                 <input type="hidden" value="${outrdf_format}" name="rdf_input_format"/>
+                <input type="hidden" value="${name}" name="rdf_input_name"/>
             </form>
 
             <div id="triplebtn" class="btn-group">
@@ -119,6 +132,7 @@
                         <form:form class="form-horizontal" method="post" action="/geotriples_createnstore">
                             <input type="hidden" value="${outrdf_fullpath}" name="rdf_input_path"/>
                             <input type="hidden" value="${outrdf_format}" name="rdf_input_format"/>
+                            <input type="hidden" value="${name}" name="rdf_input_name"/>
 
                             <label class="col-md-offset-5">Connection properties:</label>
                             <div class="form-group">
@@ -143,12 +157,14 @@
                                 <form:label class="control-label col-sm-2" path="dbname" for="dbname">Database Name</form:label>
                                 <div class="col-sm-10">
                                     <form:input path="dbname" type="text" class="form-control input-sm" id="dbname" required="required" />
+                                    <form:errors path="dbname" cssStyle="color: #ff0000;" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <form:label class="control-label col-sm-2" path="username" for="username">Username</form:label>
                                 <div class="col-sm-10">
                                     <form:input path="username" type="text" class="form-control input-sm" id="username" required="required" />
+                                    <form:errors path="username" cssStyle="color: #ff0000;" />
                                 </div>
                             </div>
                             <div class="form-group">

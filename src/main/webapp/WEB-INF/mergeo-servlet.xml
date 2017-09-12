@@ -13,6 +13,11 @@
     <!-- Map a validator -->
     <!--<bean id="EndpointValidator" class="com.di.mergeo.validator.EndpointValidator" />-->
 
+    <!-- Register the Customer.properties -->
+    <bean id="messageSource"
+          class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename" value="message" />
+    </bean>
 
     <bean id = "viewResolver" class = "org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name = "prefix" value = "/WEB-INF/jsp/" />

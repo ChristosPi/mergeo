@@ -51,7 +51,7 @@
                 <c:choose>
                     <c:when test="${ type == 'rdb'}">
                         <%--Relational Database form--%>
-                        <form:form method="POST" action="/geotriples_rdf_rdb">
+                        <form:form class="form-horizontal" method="POST" action="/geotriples_rdf_rdb">
                             <div class="form-group">
                                 <form:label path="rdb_baseuri" for="rdbbaseuri">BaseURI</form:label>
                                 <form:input path="rdb_baseuri" type="text" class="form-control input-sm" id="rdbbaseuri" value="http://example.com" required="required" />
@@ -95,7 +95,7 @@
                     </c:when>
                     <c:when test="${ type == 'shp'}">
                         <%--Shapefile form--%>
-                        <form:form method="POST" action="/geotriples_rdf_shp">
+                        <form:form class="form-horizontal" method="POST" action="/geotriples_rdf_shp">
                             <div class="form-group">
                                 <form:label path="shp_sourcefile" for="shp_sourcefile">Source Shapefile</form:label>
                                 <form:input path="shp_sourcefile" type="text" class="form-control input-sm" id="shp_sourcefile" value="${name}" readonly="true"/>
@@ -131,7 +131,7 @@
                     </c:when>
                     <c:when test="${ type == 'xml'}">
                         <%--XML/JSON form--%>
-                        <form:form method="POST" action="/geotriples_rdf_xml">
+                        <form:form class="form-horizontal" method="POST" action="/geotriples_rdf_xml">
                             <div class="form-group">
                                 <form:label path="xml_baseuri" for="xml_baseuri">BaseURI</form:label>
                                 <form:input path="xml_baseuri" type="text" class="form-control input-sm" id="xml_baseuri" value="http://example.com" required="required" />

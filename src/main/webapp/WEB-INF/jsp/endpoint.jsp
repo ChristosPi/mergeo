@@ -25,7 +25,7 @@
         <c:if test="${formError == true}">
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
-                    <div class="alert alert-info" role="alert" style="text-align: center;">
+                    <div class="alert alert-warning" role="alert" style="text-align: center;">
                         <strong>Form error!</strong> Try again
                     </div>
                 </div>
@@ -33,84 +33,98 @@
         </c:if>
     </c:if>
     <div class="row">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Endpoint Creation Form</div>
+            <div class="panel-body">
+                <form:form class="form-horizontal" method="POST" action="/endpoint_create">
+                    <div class="col-md-6">
 
-        <form:form class="form-horizontal" method="POST" action="/endpoint_create">
+                        <legend>Database Properties</legend>
 
-            <div class="col-md-6">
-                <label class="col-md-offset-5">Connection properties:</label>
-                <div class="form-group">
-                    <form:label class="control-label col-sm-2" path="hostname" for="hostname">Hostname</form:label>
-                    <div class="col-sm-10">
-                        <form:input path="hostname" type="text" class="form-control input-sm" id="hostname" value="localhost" required="required" />
+                        <div class="form-group">
+                            <form:label class="control-label col-sm-4" path="dbname" for="dbname">Database Name:</form:label>
+                            <div class="col-sm-8 input-group">
+                                <span class="input-group-addon input-sm"><i class="fa fa-database fa-fw"></i></span>
+                                <form:input path="dbname" type="text" class="form-control input-sm" id="dbname" required="required" />
+                                <form:errors path="dbname" cssStyle="color: #ff0000;" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <form:label class="control-label col-sm-4" path="username" for="username">Username:</form:label>
+                            <div class="col-sm-8 input-group">
+                                <span class="input-group-addon input-sm"><i class="fa fa-user fa-fw"></i></span>
+                                <form:input path="username" type="text" class="form-control input-sm" id="username" required="required" />
+                                <form:errors path="username" cssStyle="color: #ff0000;" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <form:label class="control-label col-sm-4" path="password" for="password">Password:</form:label>
+                            <div class="col-sm-8 input-group">
+                                <span class="input-group-addon input-sm"><i class="fa fa-lock fa-fw"></i></span>
+                                <form:input path="password" type="password" class="form-control input-sm" id="password" required="required" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <form:label class="control-label col-sm-4" path="port" for="port">Port:</form:label>
+                            <div class="col-sm-8 input-group">
+                                <span class="input-group-addon input-sm"><i class="fa fa-external-link-square fa-fw"></i></span>
+                                <form:input path="port" type="text" class="form-control input-sm" id="port" required="required" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <form:label class="control-label col-sm-4" path="hostname" for="hostname">Hostname:</form:label>
+                            <div class="col-sm-8 input-group">
+                                <span class="input-group-addon input-sm"><i class="fa fa-desktop fa-fw"></i></span>
+                                <form:input path="hostname" type="text" class="form-control input-sm" id="hostname" value="localhost" required="required" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <form:label class="control-label col-sm-4" path="dbengine" for="dbengine">Database Engine:</form:label>
+                            <div class="col-sm-8 input-group">
+                                <span class="input-group-addon input-sm"><i class="fa fa-database fa-fw"></i></span>
+                                <form:input path="dbengine" type="text" class="form-control input-sm" id="dbengine" value="postgis" required="required" />
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <form:label class="control-label col-sm-2" path="port" for="port">Port</form:label>
-                    <div class="col-sm-10">
-                        <form:input path="port" type="text" class="form-control input-sm" id="port" required="required" />
+
+                    <div class="col-md-6">
+                        <legend>Endpoint's Credentials</legend>
+                        <div class="form-group">
+                            <form:label class="control-label col-sm-4" path="cp_username" for="cp_username">Credentials Username:</form:label>
+                            <div class="col-sm-8 input-group">
+                                <span class="input-group-addon input-sm"><i class="fa fa-user-circle-o fa-fw"></i></span>
+                                <form:input path="cp_username" type="text" class="form-control input-sm" id="cp_username" required="required" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <form:label class="control-label col-sm-4" path="cp_password" for="cp_password">Credentials Password:</form:label>
+                            <div class="col-sm-8 input-group">
+                                <span class="input-group-addon input-sm"><i class="fa fa-lock fa-fw"></i></span>
+                                <form:input path="cp_password" type="password" class="form-control input-sm" id="cp_password" required="required" />
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="form-group">
+                            <form:label class="control-label col-sm-4" path="endpointname" for="endpointname">Endpoint's Name:</form:label>
+                            <div class="col-sm-8 input-group">
+                                <span class="input-group-addon input-sm"><i class="fa fa-envelope-o fa-fw"></i></span>
+                                <form:input path="endpointname" type="text" class="form-control input-sm" id="endpointname" required="required" />
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-8">
+                                <button type="submit" class="btn btn-success btn-block">Create Endpoint</button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <form:label class="control-label col-sm-2" path="dbengine" for="dbengine">Database Engine</form:label>
-                    <div class="col-sm-10">
-                        <form:input path="dbengine" type="text" class="form-control input-sm" id="dbengine" value="postgis" required="required" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <form:label class="control-label col-sm-2" path="dbname" for="dbname">Database Name</form:label>
-                    <div class="col-sm-10">
-                        <form:input path="dbname" type="text" class="form-control input-sm" id="dbname" required="required" />
-                        <form:errors path="dbname" cssStyle="color: #ff0000;" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <form:label class="control-label col-sm-2" path="username" for="username">Username</form:label>
-                    <div class="col-sm-10">
-                        <form:input path="username" type="text" class="form-control input-sm" id="username" required="required" />
-                        <form:errors path="username" cssStyle="color: #ff0000;" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <form:label class="control-label col-sm-2" path="password" for="password">Password</form:label>
-                    <div class="col-sm-10">
-                        <form:input path="password" type="password" class="form-control input-sm" id="password" required="required" />
-                    </div>
-                </div>
+                </form:form>
             </div>
-
-            <div class="col-md-6">
-                <label class="col-md-offset-5">Credentials properties:</label>
-                <div class="form-group">
-                    <form:label class="control-label col-sm-2" path="cp_username" for="cp_username">Credentials: Username</form:label>
-                    <div class="col-sm-10">
-                        <form:input path="cp_username" type="text" class="form-control input-sm" id="cp_username" required="required" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <form:label class="control-label col-sm-2" path="cp_password" for="cp_password">Credentials: Password</form:label>
-                    <div class="col-sm-10">
-                        <form:input path="cp_password" type="password" class="form-control input-sm" id="cp_password" required="required" />
-                    </div>
-                </div>
-
-                <hr>
-
-                <div class="form-group">
-                    <form:label class="control-label col-sm-2" path="endpointname" for="endpointname">Endpoint's Name</form:label>
-                    <div class="col-sm-10">
-                        <form:input path="endpointname" type="text" class="form-control input-sm" id="endpointname" required="required" />
-                    </div>
-                </div>
-
-                <hr>
-
-                <div class="form-group">
-                    <div class="col-sm-offset-9">
-                        <button type="submit" class="btn btn-success">Create Endpoint!</button>
-                    </div>
-                </div>
-            </div>
-        </form:form>
+        </div>
     </div>
 </div>
 

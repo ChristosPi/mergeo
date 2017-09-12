@@ -7,15 +7,18 @@ import com.di.mergeo.model.MapInputModel;
 import com.di.mergeo.model.RdfInputModel;
 import com.di.mergeo.service.EndpointService;
 import com.di.mergeo.service.GeotriplesService;
+import com.di.mergeo.validator.EndpointValidator;
 import org.openrdf.rio.RDFFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -259,9 +262,27 @@ public class GeotriplesController {
     /*******************************************************************************************************************
      ******************************************************************************************************************/
     @RequestMapping(value = "/geotriples_createnstore", method = RequestMethod.POST)
-    public ModelAndView endpointCreate(@ModelAttribute("SpringWeb")EndpointModel endmodel, ModelMap model,
+    public ModelAndView endpointCreate(@Valid @ModelAttribute("command")EndpointModel endmodel, ModelMap model, BindingResult result,
                                        @RequestParam("rdf_input_path") String rdf_input_path,
-                                       @RequestParam("rdf_input_format") String rdf_input_format) throws SQLException, ClassNotFoundException, IOException, InterruptedException {
+                                       @RequestParam("rdf_input_format") String rdf_input_format,
+                                       @RequestParam("rdf_input_name") String rdf_input_name
+                                       ) throws SQLException, ClassNotFoundException, IOException, InterruptedException {
+
+        EndpointValidator endValidator = new EndpointValidator();
+        endValidator.validate(endmodel, result);
+
+        if (result.hasErrors()){
+            System.out.println(result.getFieldError().toString());
+
+            ModelAndView mav = new ModelAndView("geotriples_final", "command", endmodel);
+
+            mav.addObject("name", rdf_input_name);
+            mav.addObject("outrdf_fullpath", rdf_input_path);
+            mav.addObject("outrdf_format", rdf_input_format);
+            mav.addObject("formError", true);
+            mav.addObject("errors", result);
+            return mav;
+        }
 
         PostgreSQLJDBC.dbCreate(endmodel);
         EndpointService.strabonDeploy(endmodel);

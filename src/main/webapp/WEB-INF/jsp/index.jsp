@@ -10,7 +10,7 @@
     <article>
         <h2>Welcome to MerGeo Web-Application</h2>
         <p>Follow the Navbar order, you must!</p>
-        <img src="./../../resources/img/flow.png" width="550" height="415">
+        <img src="./../../resources/img/diagram.png" width="500" height="405.3">
     </article>
 
     <jsp:include page="footer.jsp"/>
