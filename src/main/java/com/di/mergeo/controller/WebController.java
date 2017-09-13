@@ -92,6 +92,11 @@ public class WebController {
         return "sextant";
     }
 
+    @RequestMapping(value = "/info", method = RequestMethod.GET)
+    public String info() {
+        return "info";
+    }
+
 
     /********************************** Testing methods for Exception Handling ****************************************/
 //    @ExceptionHandler(ResourceNotFoundException.class)

@@ -19,7 +19,13 @@
 </head>
 <body>
 <div class="container">
-
+    <div class="row">
+        <div style="text-align: center;" class="col-md-8 col-md-push-2">
+            <h3><strong>GeoTriples</strong> Section</h3>
+            <p>RDF-Data should be ready. Check if everything is alright and move forward into storing them to an
+            Endpoint.</p>
+        </div>
+    </div><hr>
     <c:if test="${not empty name}">
         <div class="row">
             <c:choose>
@@ -43,9 +49,9 @@
     <c:if test="${not empty formError}">
         <c:if test="${formError == true}">
             <div class="row">
-                <div class="col-md-4 col-md-offset-4">
+                <div class="col-md-6 col-md-offset-3">
                     <div class="alert alert-warning" role="alert" style="text-align: center;">
-                        <strong>Form error!</strong> Try again
+                        <strong>Endpoint form error!</strong> Try again
                     </div>
                 </div>
             </div>
@@ -66,7 +72,7 @@
                                 String outrdf_code_str= org.apache.commons.io.IOUtils.toString(outrdf_code);
                                 request.setAttribute("outrdf_display", outrdf_code_str);
                             }
-                            %><c:out value="xaxax"/></textarea>
+                            %><c:out value="Due to data size, the RDF-Preview is not recommended"/></textarea>
                     </div>
                     <div class="row">
                         <div class="col-md-4">
@@ -86,7 +92,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <label for="triplebtn">Transformation Completed! Now save on Endpoint:</label>
             <%--<div class="btn-group">--%>
                 <%--<a href="#" class="btn btn-success dropdown-toggle" data-toggle="dropdown">Store to Endpoint |  <span class="caret"></span></a>--%>
@@ -112,100 +118,108 @@
             </form>
 
             <div id="triplebtn" class="btn-group">
-                <button type="submit" form="form_defstore" class="btn btn-success">Store on default |></button>
+                <button href="#" data-toggle="modal" data-target="#modalCreate" class="btn btn-primary"><i class="fa fa-plus-circle fa-fw"></i> Create new Endpoint</button>
+                <button type="submit" form="form_defstore" class="btn btn-success"><i class="fa fa-arrow-circle-right fa-fw"></i> Store on default Endpoint</button>
                 <c:if test="${not empty endpoint}">
-                    <button type="submit" form="form_curstore" class="btn btn-success"> Store on current |></button>
+                    <button type="submit" form="form_curstore" class="btn btn-success"><i class="fa fa-arrow-circle-right fa-fw"></i> Store on current Endpoint</button>
                 </c:if>
-                <button href="#" data-toggle="modal" data-target="#modalCreate" class="btn btn-primary"> Create new Endpoint</button>
             </div>
         </div>
+    </div>
 
-        <div id="modalCreate" class="modal fade" role="dialog">
-            <div class="modal-dialog">
+    <div id="modalCreate" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Create a new Endpoint and store RDF data</h4>
+                </div>
+                <div class="modal-body">
+                    <form:form class="form-horizontal" method="post" action="/geotriples_createnstore">
+                        <input type="hidden" value="${outrdf_fullpath}" name="rdf_input_path"/>
+                        <input type="hidden" value="${outrdf_format}" name="rdf_input_format"/>
+                        <input type="hidden" value="${name}" name="rdf_input_name"/>
 
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Create a new Endpoint and store RDF data</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form:form class="form-horizontal" method="post" action="/geotriples_createnstore">
-                            <input type="hidden" value="${outrdf_fullpath}" name="rdf_input_path"/>
-                            <input type="hidden" value="${outrdf_format}" name="rdf_input_format"/>
-                            <input type="hidden" value="${name}" name="rdf_input_name"/>
-
-                            <label class="col-md-offset-5">Connection properties:</label>
-                            <div class="form-group">
-                                <form:label class="control-label col-sm-2" path="hostname" for="hostname">Hostname</form:label>
-                                <div class="col-sm-10">
-                                    <form:input path="hostname" type="text" class="form-control input-sm" id="hostname" value="localhost" required="required" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <form:label class="control-label col-sm-2" path="port" for="port">Port</form:label>
-                                <div class="col-sm-10">
-                                    <form:input path="port" type="text" class="form-control input-sm" id="port" required="required" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <form:label class="control-label col-sm-2" path="dbengine" for="dbengine">Database Engine</form:label>
-                                <div class="col-sm-10">
-                                    <form:input path="dbengine" type="text" class="form-control input-sm" id="dbengine" value="postgis" required="required" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <form:label class="control-label col-sm-2" path="dbname" for="dbname">Database Name</form:label>
-                                <div class="col-sm-10">
-                                    <form:input path="dbname" type="text" class="form-control input-sm" id="dbname" required="required" />
-                                    <form:errors path="dbname" cssStyle="color: #ff0000;" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <form:label class="control-label col-sm-2" path="username" for="username">Username</form:label>
-                                <div class="col-sm-10">
-                                    <form:input path="username" type="text" class="form-control input-sm" id="username" required="required" />
-                                    <form:errors path="username" cssStyle="color: #ff0000;" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <form:label class="control-label col-sm-2" path="password" for="password">Password</form:label>
-                                <div class="col-sm-10">
-                                    <form:input path="password" type="password" class="form-control input-sm" id="password" required="required" />
-                                </div>
-                            </div>
-
-                            <label class="col-md-offset-5">Credentials properties:</label>
-                            <div class="form-group">
-                                <form:label class="control-label col-sm-2" path="cp_username" for="cp_username">Credentials: Username</form:label>
-                                <div class="col-sm-10">
-                                    <form:input path="cp_username" type="text" class="form-control input-sm" id="cp_username" required="required" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <form:label class="control-label col-sm-2" path="cp_password" for="cp_password">Credentials: Password</form:label>
-                                <div class="col-sm-10">
-                                    <form:input path="cp_password" type="password" class="form-control input-sm" id="cp_password" required="required" />
-                                </div>
-                            </div>
-
-                            <hr>
-
-                            <div class="form-group">
-                                <form:label class="control-label col-sm-2" path="endpointname" for="endpointname">Endpoint's Name</form:label>
-                                <div class="col-sm-10">
-                                    <form:input path="endpointname" type="text" class="form-control input-sm" id="endpointname" required="required" />
-                                </div>
-                            </div>
-                    </div>
-                    <div class="modal-footer">
+                        <legend>Database Properties</legend>
                         <div class="form-group">
-                            <div class="col-sm-offset-9">
-                                <button type="submit" class="btn btn-success">Create Endpoint!</button>
+                            <form:label class="control-label col-sm-4" path="dbname" for="dbname">Database Name:</form:label>
+                            <div class="col-sm-8 input-group">
+                                <span class="input-group-addon input-sm"><i class="fa fa-database fa-fw"></i></span>
+                                <form:input path="dbname" type="text" class="form-control input-sm" id="dbname" required="required" />
+                                <form:errors path="dbname" cssStyle="color: #ff0000;" />
                             </div>
                         </div>
-                    </div>
-                    </form:form>
+                        <div class="form-group">
+                            <form:label class="control-label col-sm-4" path="username" for="username">Username:</form:label>
+                            <div class="col-sm-8 input-group">
+                                <span class="input-group-addon input-sm"><i class="fa fa-user fa-fw"></i></span>
+                                <form:input path="username" type="text" class="form-control input-sm" id="username" required="required" />
+                                <form:errors path="username" cssStyle="color: #ff0000;" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <form:label class="control-label col-sm-4" path="password" for="password">Password:</form:label>
+                            <div class="col-sm-8 input-group">
+                                <span class="input-group-addon input-sm"><i class="fa fa-lock fa-fw"></i></span>
+                                <form:input path="password" type="password" class="form-control input-sm" id="password" required="required" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <form:label class="control-label col-sm-4" path="port" for="port">Port:</form:label>
+                            <div class="col-sm-8 input-group">
+                                <span class="input-group-addon input-sm"><i class="fa fa-external-link-square fa-fw"></i></span>
+                                <form:input path="port" type="text" class="form-control input-sm" id="port" required="required" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <form:label class="control-label col-sm-4" path="hostname" for="hostname">Hostname:</form:label>
+                            <div class="col-sm-8 input-group">
+                                <span class="input-group-addon input-sm"><i class="fa fa-desktop fa-fw"></i></span>
+                                <form:input path="hostname" type="text" class="form-control input-sm" id="hostname" value="localhost" required="required" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <form:label class="control-label col-sm-4" path="dbengine" for="dbengine">Database Engine:</form:label>
+                            <div class="col-sm-8 input-group">
+                                <span class="input-group-addon input-sm"><i class="fa fa-database fa-fw"></i></span>
+                                <form:input path="dbengine" type="text" class="form-control input-sm" id="dbengine" value="postgis" required="required" />
+                            </div>
+                        </div>
+                        <hr>
+                        <legend>Endpoint's Credentials</legend>
+                        <div class="form-group">
+                            <form:label class="control-label col-sm-4" path="cp_username" for="cp_username">Credentials Username:</form:label>
+                            <div class="col-sm-8 input-group">
+                                <span class="input-group-addon input-sm"><i class="fa fa-user-circle-o fa-fw"></i></span>
+                                <form:input path="cp_username" type="text" class="form-control input-sm" id="cp_username" required="required" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <form:label class="control-label col-sm-4" path="cp_password" for="cp_password">Credentials Password:</form:label>
+                            <div class="col-sm-8 input-group">
+                                <span class="input-group-addon input-sm"><i class="fa fa-lock fa-fw"></i></span>
+                                <form:input path="cp_password" type="password" class="form-control input-sm" id="cp_password" required="required" />
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="form-group">
+                            <form:label class="control-label col-sm-4" path="endpointname" for="endpointname">Endpoint's Name:</form:label>
+                            <div class="col-sm-8 input-group">
+                                <span class="input-group-addon input-sm"><i class="fa fa-id-badge fa-fw"></i></span>
+                                <form:input path="endpointname" type="text" class="form-control input-sm" id="endpointname" required="required" />
+                            </div>
+                        </div>
                 </div>
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <div class="col-sm-offset-9">
+                            <button type="submit" class="btn btn-success">Create Endpoint!</button>
+                        </div>
+                    </div>
+                </div>
+                    </form:form>
             </div>
         </div>
     </div>

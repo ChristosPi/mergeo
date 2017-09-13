@@ -21,6 +21,12 @@
 
 <body>
 <div class="container">
+    <div class="row">
+        <div style="text-align: center;" class="col-md-8 col-md-push-2">
+            <h3><strong>GeoTriples</strong> Section</h3>
+            <p>Now, check if everything is alright, fill out the form and dump these data to RDF.</p>
+        </div>
+    </div><hr>
     <c:if test="${not empty type}">
         <div class="row">
             <c:choose>
@@ -52,43 +58,69 @@
                     <c:when test="${ type == 'rdb'}">
                         <%--Relational Database form--%>
                         <form:form class="form-horizontal" method="POST" action="/geotriples_rdf_rdb">
-                            <div class="form-group">
-                                <form:label path="rdb_baseuri" for="rdbbaseuri">BaseURI</form:label>
-                                <form:input path="rdb_baseuri" type="text" class="form-control input-sm" id="rdbbaseuri" value="http://example.com" required="required" />
-                            </div>
-                            <div class="form-group">
-                                <form:label path="rdb_user" for="user">Username</form:label>
-                                <form:input path="rdb_user" type="text" class="form-control input-sm" id="user" />
-                            </div>
-                            <div class="form-group">
-                                <form:label path="rdb_password" for="password">Password</form:label>
-                                <form:input path="rdb_password" type="password" class="form-control input-sm" id="password" />
-                            </div>
-                            <div class="form-group">
-                                <form:label path="rdb_driver" for="driver">Driver</form:label>
-                                <form:input path="rdb_driver" type="text" class="form-control input-sm" id="driver" />
-                            </div>
-                            <div class="form-group">
-                                <form:label path="rdb_jdbcurl" for="jdbcurl">JDBC URL</form:label>
-                                <form:input path="rdb_jdbcurl" type="text" class="form-control input-sm" id="jdbcurl" required="required" />
-                            </div>
-                            <div class="form-group">
-                                <form:label path="rdb_mapfullpath" for="inputmap_fullpath">Mapping file path</form:label>
-                                <form:input path="rdb_mapfullpath" type="text" class="form-control input-sm" readonly="true" id="rdb_mapfullpath" required="required" value="${outmap_fullpath}"/>
-                            </div>
-                            <div class="form-group">
-                                <form:label path="rdb_format">Choose format type</form:label><br>
-                                <form:radiobutton path="rdb_format" value="NTRIPLES" label="N-Triples" checked="checked"/>
-                                <form:radiobutton path="rdb_format" value="RDFXML" label="RDF/XML"/>
-                                <form:radiobutton path="rdb_format" value="TURTLE" label="TURTLE"/>
-                            </div>
-                            <div class="form-group">
-                                <form:label path="rdb_rml"><form:checkbox path="rdb_rml" value="-rml" /> RML</form:label>
-                            </div>
-                            <hr>
-                            <div class="form-group">
-                                <div class="col-md-4 col-md-push-4">
-                                    <button type="submit" class="btn btn-success">Dump to RDF</button>
+                            <div class="col-md-12">
+                                <legend>Fill out the form:</legend>
+                                <div class="form-group">
+                                    <form:label class="control-label col-sm-3" path="rdb_baseuri" for="rdbbaseuri">Base URI:</form:label>
+                                    <div class="col-sm-9 input-group">
+                                        <span class="input-group-addon input-sm"><i class="fa fa-database fa-fw"></i></span>
+                                        <form:input path="rdb_baseuri" type="text" class="form-control input-sm" id="rdbbaseuri" value="http://example.com" required="required" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <form:label class="control-label col-sm-3" path="rdb_user" for="user">Username:</form:label>
+                                    <div class="col-sm-9 input-group">
+                                        <span class="input-group-addon input-sm"><i class="fa fa-user fa-fw"></i></span>
+                                        <form:input path="rdb_user" type="text" class="form-control input-sm" id="user" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <form:label class="control-label col-sm-3" path="rdb_password" for="password">Password:</form:label>
+                                    <div class="col-sm-9 input-group">
+                                        <span class="input-group-addon input-sm"><i class="fa fa-lock fa-fw"></i></span>
+                                        <form:input path="rdb_password" type="password" class="form-control input-sm" id="password" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <form:label class="control-label col-sm-3" path="rdb_driver" for="driver">Driver:</form:label>
+                                    <div class="col-sm-9 input-group">
+                                        <span class="input-group-addon input-sm"><i class="fa fa-hdd-o fa-fw"></i></span>
+                                        <form:input path="rdb_driver" type="text" class="form-control input-sm" id="driver" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <form:label class="control-label col-sm-3" path="rdb_jdbcurl" for="jdbcurl">JDBC URL:</form:label>
+                                    <div class="col-sm-9 input-group">
+                                        <span class="input-group-addon input-sm"><i class="fa fa-link fa-fw"></i></span>
+                                        <form:input path="rdb_jdbcurl" type="text" class="form-control input-sm" id="jdbcurl" required="required" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <form:label class="control-label col-sm-3" path="rdb_mapfullpath" for="inputmap_fullpath">Mapping file:</form:label>
+                                    <div class="col-sm-9 input-group">
+                                        <span class="input-group-addon input-sm"><i class="fa fa-folder-open fa-fw"></i></span>
+                                        <form:input path="rdb_mapfullpath" type="text" class="form-control input-sm" readonly="true" id="rdb_mapfullpath" required="required" value="${outmap_fullpath}"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <form:label class="control-label col-sm-3" path="rdb_format">Format type:</form:label>
+                                    <div class="col-sm-9 input-group">
+                                        <form:radiobutton cssStyle="margin-right: 3px;" path="rdb_format" value="NTRIPLES" label="N-Triples" checked="checked"/>
+                                        <form:radiobutton cssStyle="margin-left: 20px; margin-right: 3px;" path="rdb_format" value="RDFXML" label="RDF/XML"/>
+                                        <form:radiobutton cssStyle="margin-left: 20px; margin-right: 3px;" path="rdb_format" value="TURTLE" label="TURTLE"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <form:label class="control-label col-sm-3" path="rdb_rml">RML Format:</form:label>
+                                    <div class="col-sm-1 input-group">
+                                        <form:checkbox class="form-control input-sm" path="rdb_rml" value="-rml" />
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="form-group">
+                                    <div class="col-md-6 col-md-offset-3">
+                                        <button type="submit" class="btn btn-success btn-block">Dump to RDF</button>
+                                    </div>
                                 </div>
                             </div>
                         </form:form>
@@ -96,35 +128,55 @@
                     <c:when test="${ type == 'shp'}">
                         <%--Shapefile form--%>
                         <form:form class="form-horizontal" method="POST" action="/geotriples_rdf_shp">
-                            <div class="form-group">
-                                <form:label path="shp_sourcefile" for="shp_sourcefile">Source Shapefile</form:label>
-                                <form:input path="shp_sourcefile" type="text" class="form-control input-sm" id="shp_sourcefile" value="${name}" readonly="true"/>
-                            </div>
-                            <div class="form-group">
-                                <form:label path="shp_baseuri" for="rdbbaseuri">BaseURI</form:label>
-                                <form:input path="shp_baseuri" type="text" class="form-control input-sm" id="shp_baseuri" value="http://example.com" required="required" />
-                            </div>
-                            <div class="form-group">
-                                <form:label path="shp_epsgcode" for="shp_epsgcode">EPSG Code</form:label>
-                                <form:input path="shp_epsgcode" type="text" class="form-control input-sm" id="shp_epsgcode" />
-                            </div>
-                            <div class="form-group">
-                                <form:label path="shp_mapfullpath" for="shp_mapfullpath">Mapping file path</form:label>
-                                <form:input path="shp_mapfullpath" type="text" class="form-control input-sm" readonly="true" id="shp_mapfullpath" required="required" value="${outmap_fullpath}"/>
-                            </div>
-                            <div class="form-group">
-                                <form:label path="shp_format">Choose format type</form:label><br>
-                                <form:radiobutton path="shp_format" value="NTRIPLES" label="N-Triples" checked="checked"/>
-                                <form:radiobutton path="shp_format" value="TURTLE" label="TURTLE"/>
-                                <form:radiobutton path="shp_format" value="RDFXML" label="RDF/XML"/>
-                            </div>
-                            <div class="form-group">
-                                <form:label path="shp_rml"><form:checkbox path="shp_rml" value="-rml" /> RML</form:label>
-                            </div>
-                            <hr>
-                            <div class="form-group">
-                                <div class="col-md-4 col-md-push-4">
-                                    <button type="submit" class="btn btn-success">Dump to RDF</button>
+                            <div class="col-md-12">
+                                <legend>Fill out the form:</legend>
+                                <div class="form-group">
+                                    <form:label class="control-label col-sm-3" path="shp_sourcefile" for="shp_sourcefile">Shapefile:</form:label>
+                                    <div class="col-sm-9 input-group">
+                                        <span class="input-group-addon input-sm"><i class="fa fa-file fa-fw"></i></span>
+                                        <form:input path="shp_sourcefile" type="text" class="form-control input-sm" id="shp_sourcefile" value="${name}" readonly="true"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <form:label class="control-label col-sm-3" path="shp_baseuri" for="rdbbaseuri">Base URI:</form:label>
+                                    <div class="col-sm-9 input-group">
+                                        <span class="input-group-addon input-sm"><i class="fa fa-database fa-fw"></i></span>
+                                        <form:input path="shp_baseuri" type="text" class="form-control input-sm" id="shp_baseuri" value="http://example.com" required="required" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <form:label class="control-label col-sm-3" path="shp_epsgcode" for="shp_epsgcode">EPSG Code:</form:label>
+                                    <div class="col-sm-9 input-group">
+                                        <span class="input-group-addon input-sm"><i class="fa fa-terminal fa-fw"></i></span>
+                                        <form:input path="shp_epsgcode" type="text" class="form-control input-sm" id="shp_epsgcode" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <form:label class="control-label col-sm-3" path="shp_mapfullpath" for="shp_mapfullpath">Mapping file:</form:label>
+                                    <div class="col-sm-9 input-group">
+                                        <span class="input-group-addon input-sm"><i class="fa fa-folder-open fa-fw"></i></span>
+                                        <form:input path="shp_mapfullpath" type="text" class="form-control input-sm" readonly="true" id="shp_mapfullpath" required="required" value="${outmap_fullpath}"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <form:label class="control-label col-sm-3" path="shp_format">Format type:</form:label>
+                                    <div class="col-sm-9 input-group">
+                                        <form:radiobutton cssStyle="margin-right: 3px;" path="shp_format" value="NTRIPLES" label="N-Triples  " checked="checked"/>
+                                        <form:radiobutton cssStyle="margin-left: 20px; margin-right: 3px;" path="shp_format" value="TURTLE" label="Turtle  "/>
+                                        <form:radiobutton cssStyle="margin-left: 20px; margin-right: 3px;" path="shp_format" value="RDFXML" label="RDF/XML  "/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <form:label class="control-label col-sm-3" path="shp_rml">RML Format:</form:label>
+                                    <div class="col-sm-1 input-group">
+                                        <form:checkbox class="form-control input-sm" path="shp_rml" value="-rml" />
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="form-group">
+                                    <div class="col-md-6 col-md-offset-3">
+                                        <button type="submit" class="btn btn-success btn-block">Dump to RDF</button>
+                                    </div>
                                 </div>
                             </div>
                         </form:form>
@@ -132,31 +184,48 @@
                     <c:when test="${ type == 'xml'}">
                         <%--XML/JSON form--%>
                         <form:form class="form-horizontal" method="POST" action="/geotriples_rdf_xml">
-                            <div class="form-group">
-                                <form:label path="xml_baseuri" for="xml_baseuri">BaseURI</form:label>
-                                <form:input path="xml_baseuri" type="text" class="form-control input-sm" id="xml_baseuri" value="http://example.com" required="required" />
-                            </div>
-                            <div class="form-group">
-                                <form:label path="xml_epsgcode" for="xml_epsgcode">EPSG Code</form:label>
-                                <form:input path="xml_epsgcode" type="text" class="form-control input-sm" id="xml_epsgcode" />
-                            </div>
-                            <div class="form-group">
-                                <form:label path="xml_mapfullpath" for="xml_mapfullpath">Mapping file path</form:label>
-                                <form:input path="xml_mapfullpath" type="text" class="form-control input-sm" readonly="true" id="xml_mapfullpath" required="required" value="${outmap_fullpath}"/>
-                            </div>
-                            <div class="form-group">
-                                <form:label path="xml_format">Choose format type</form:label><br>
-                                <form:radiobutton path="xml_format" value="NTRIPLES" label="N-Triples" checked="checked"/>
-                                <form:radiobutton path="xml_format" value="RDFXML" label="RDF/XML"/>
-                                <form:radiobutton path="xml_format" value="TURTLE" label="TURTLE"/>
-                            </div>
-                            <div class="form-group">
-                                <form:label path="xml_rml"><form:checkbox path="xml_rml" value="-rml" checked="checked" readonly="true"/> RML</form:label>
-                            </div>
-                            <hr>
-                            <div class="form-group">
-                                <div class="col-md-4 col-md-push-4">
-                                    <button type="submit" class="btn btn-success">Dump to RDF</button>
+                            <div class="col-md-12">
+                                <legend>Fill out the form:</legend>
+                                <div class="form-group">
+                                    <form:label class="control-label col-sm-3" path="xml_baseuri" for="xml_baseuri">Base URI:</form:label>
+                                    <div class="col-sm-9 input-group">
+                                        <span class="input-group-addon input-sm"><i class="fa fa-database fa-fw"></i></span>
+                                        <form:input path="xml_baseuri" type="text" class="form-control input-sm" id="xml_baseuri" value="http://example.com" required="required" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <form:label class="control-label col-sm-3" path="xml_epsgcode" for="xml_epsgcode">EPSG Code:</form:label>
+                                    <div class="col-sm-9 input-group">
+                                        <span class="input-group-addon input-sm"><i class="fa fa-terminal fa-fw"></i></span>
+                                        <form:input path="xml_epsgcode" type="text" class="form-control input-sm" id="xml_epsgcode" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <form:label class="control-label col-sm-3" path="xml_mapfullpath" for="xml_mapfullpath">Mapping file:</form:label>
+                                    <div class="col-sm-9 input-group">
+                                        <span class="input-group-addon input-sm"><i class="fa fa-folder-open fa-fw"></i></span>
+                                        <form:input path="xml_mapfullpath" type="text" class="form-control input-sm" readonly="true" id="xml_mapfullpath" required="required" value="${outmap_fullpath}"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <form:label class="radio-inline control-label col-sm-3" path="xml_format">Format type:</form:label>
+                                    <div class="col-sm-9 input-group">
+                                        <form:radiobutton cssStyle="margin-right: 3px;" path="xml_format" value="NTRIPLES" label="N-Triples" checked="checked"/>
+                                        <form:radiobutton cssStyle="margin-left: 20px; margin-right: 3px;" path="xml_format" value="RDFXML" label="RDF/XML"/>
+                                        <form:radiobutton cssStyle="margin-left: 20px; margin-right: 3px;" path="xml_format" value="TURTLE" label="TURTLE"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <form:label class="control-label col-sm-3" path="xml_rml">RML Format:</form:label>
+                                    <div class="col-sm-1 input-group">
+                                        <form:checkbox class="form-control input-sm" path="xml_rml" value="-rml" checked="checked" readonly="true"/>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="form-group">
+                                    <div class="col-md-6 col-md-offset-3">
+                                        <button type="submit" class="btn btn-success btn-block">Dump to RDF</button>
+                                    </div>
                                 </div>
                             </div>
                         </form:form>

@@ -14,7 +14,7 @@
 
     <div class="footer-left">
         <p class="footer-links">
-            <a target="_blank" href="http://sextant.di.uoa.gr/"><img src="./../../resources/img/sextant-logo.png" alt="Sextant" height="40" width="88" style="margin-right: 15px; margin-left: 15px;"></a>
+            <a target="_blank" href="http://sextant.di.uoa.gr/"><img src="./../../resources/img/sextant-logo.png" alt="Sextant" height="40" width="88" style="margin-right: 15px;"></a>
             <a>&#8226;</a>
             <a target="_blank" href="http://geotriples.di.uoa.gr/"><img src="./../../resources/img/geotriples-logo.png" alt="GeoTriples" height="25" width="99" style="margin-right: 12px; margin-left: 12px;"></a>
             <a>&#8226;</a>

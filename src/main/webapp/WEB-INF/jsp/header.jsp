@@ -13,15 +13,13 @@
                 <%--<div class="col-md-2">--%>
                     <%--<a href="http://en.uoa.gr/"><img src="./../../resources/img/uoa_logo.png" alt="uoa"></a>--%>
                 <%--</div>--%>
-                <div class="com-md-2 col-md-offset-5">
-                    <a href="/"><img src="./../../resources/img/logo-main.png" alt="merGeo" width="303" height="92"></a>
+                <div class="col-md-6 col-md-push-4">
+                    <a href="/"><img src="./../../resources/img/logo-main.png" alt="merGeo" width="400" height="121.65"></a>
                 </div>
-            </header>
-            <%--<header class="row">--%>
-                <%--<div class="col-md-6">--%>
-                    <%--<h4 align="center">GeoSpatial tools application</h4>--%>
+                <%--<div class="col-md-2 col-md-push-5">--%>
+                    <%--<a href="http://en.uoa.gr/"><img src="./../../resources/img/dit-logo.png" alt="DiT"></a>--%>
                 <%--</div>--%>
-            <%--</header>--%>
+            </header>
         </div>
 
         <nav class="navbar navbar-default navbar-static-top">
@@ -31,21 +29,20 @@
             <%--</div>--%>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li style="border-right: 1px solid #18BC9C;"><a href="/index">[ <span class="glyphicon glyphicon-home"></span> ] Home</a></li>
-                    <li><a href="/geotriples">[ <span class="glyphicon glyphicon-transfer"></span> ] GeoTriples</a></li>
+                    <li style="border-right: 2px solid #18BC9C;"><a href="/index"><i class="fa fa-home fa-lg fa-fw" aria-hidden="true"></i>&nbsp; Home</a></li>
+                    <li><a href="/geotriples"><i class="fa fa-bars fa-lg fa-fw" aria-hidden="true"></i>&nbsp; GeoTriples</a></li>
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">[ <span class="glyphicon glyphicon-import"></span> ] Endpoint
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-download fa-lg fa-fw" aria-hidden="true"></i>&nbsp; Strabon
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="/endpoint">[ <span class="glyphicon glyphicon-plus"></span> ] Create new</a></li>
-                            <li><a href="/endpoint_run">[ <span class="glyphicon glyphicon-saved"></span> ] Work on current</a></li>
+                            <li><a href="/endpoint"><i class="fa fa-plus-circle fa-lg fa-fw" aria-hidden="true"></i>&nbsp; Create new Endpoint</a></li>
+                            <li><a href="/endpoint_run"><i class="fa fa-arrow-circle-right fa-lg fa-fw" aria-hidden="true"></i>&nbsp; Work on current Endpoint</a></li>
                             <li class="divider"></li>
-                            <li><a href="/endpoint_default">[ <span class="glyphicon glyphicon-saved"></span> ] Work on default</a></li>
+                            <li><a href="/endpoint_default"><i class="fa fa-arrow-circle-right fa-lg fa-fw" aria-hidden="true"></i>&nbsp; Work on default Endpoint</a></li>
                         </ul>
                     </li>
-                    <%--<li><a href="/endpoint"><span class="glyphicon glyphicon-import"></span> 2.Endpoint</a></li>--%>
-                    <li><a href="/sextant">[ <span class="glyphicon glyphicon-map-marker"></span> ] Sextant</a></li>
-                    <li style="border-left: 1px solid #18BC9C;"><a href="#">[ <span class="glyphicon glyphicon-info-sign"></span> ] Tutorials</a></li>
+                    <li><a href="/sextant"><i class="fa fa-map-marker fa-lg fa-fw" aria-hidden="true"></i>&nbsp; Sextant</a></li>
+                    <li style="border-left: 2px solid #18BC9C;"><a href="/info"><i class="fa fa-info-circle fa-lg fa-fw" aria-hidden="true"></i>&nbsp; Information</a></li>
                 </ul>
             </div>
         </nav>

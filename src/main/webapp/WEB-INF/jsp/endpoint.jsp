@@ -10,6 +10,13 @@
 </head>
 <body>
 <div class="container">
+    <div class="row">
+        <div style="text-align: center;" class="col-md-8 col-md-push-2">
+            <h3><strong>Strabon</strong> Section</h3>
+            <p>Here you can create a Stranon Endpoint and store your previously created RDF-data (or even upload and
+            store your data). Fill out the form to summon your own Strabon Endpoint.</p>
+        </div>
+    </div><hr>
     <c:if test="${not empty no_end}">
         <c:if test="${no_end == true}">
             <div class="row">
@@ -109,15 +116,15 @@
                         <div class="form-group">
                             <form:label class="control-label col-sm-4" path="endpointname" for="endpointname">Endpoint's Name:</form:label>
                             <div class="col-sm-8 input-group">
-                                <span class="input-group-addon input-sm"><i class="fa fa-envelope-o fa-fw"></i></span>
+                                <span class="input-group-addon input-sm"><i class="fa fa-id-badge fa-fw"></i></span>
                                 <form:input path="endpointname" type="text" class="form-control input-sm" id="endpointname" required="required" />
                             </div>
                         </div>
 
-                        <hr>
+                        <hr><br><br>
 
                         <div class="form-group">
-                            <div class="col-sm-offset-8">
+                            <div class="col-sm-6 col-sm-offset-6">
                                 <button type="submit" class="btn btn-success btn-block">Create Endpoint</button>
                             </div>
                         </div>

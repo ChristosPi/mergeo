@@ -10,6 +10,12 @@
 <body>
 
 <div class="container">
+    <div class="row">
+        <div style="text-align: center;" class="col-md-8 col-md-push-2">
+            <h3><strong>Strabon</strong> Section</h3>
+            <p>The selected Strabon Endpoint is up and running. Let's use it!</p>
+        </div>
+    </div><hr>
     <c:if test="${not empty storeStatus}">
         <c:choose>
             <c:when test="${storeStatus == true}">
@@ -35,13 +41,14 @@
     <div class="row">
         <div class="col-md-3">
             <div class="row">
-                <span><h4>Store data:</h4></span>
+                <span style="text-align: center;"><h4>Store data:</h4></span>
                 <form action="/do_store" method="post" >
                     <button type="submit" class="btn btn-info col-md-12" style="margin-bottom:4px;white-space: normal;">Open 'Store' interface</button>
                 </form>
             </div>
+            <br>
             <div class="row">
-                <span><h4>Example Queries:</h4></span>
+                <span style="text-align: center;"><h4>Example Queries:</h4></span>
                 <form action="/endpoint/exquery" method="post" >
                     <input type="hidden" value="1" name="example"/>
                     <button type="submit" class="btn btn-default col-md-12" style="margin-bottom:4px;white-space: normal;">Find all the triples in the dataset.</button>
@@ -100,7 +107,7 @@ PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
                         </div>
 
                         <div class="col-md-5 col-md-offset-4">
-                            <button type="submit" class="btn btn-default btn-lg">Execute query</button>
+                            <button type="submit" class="btn btn-success btn-lg">Execute Query</button>
                         </div>
                     </div>
                 </div>

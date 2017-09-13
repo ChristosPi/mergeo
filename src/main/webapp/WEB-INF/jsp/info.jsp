@@ -4,19 +4,18 @@
 <html>
 <head>
     <jsp:include page="header.jsp"/>
-    <link href="<s:url value="/resources/css/sextant.css"/>" rel="stylesheet">
-    <title>MerGEO|Sextant</title>
+    <title>MerGEO|Info</title>
 </head>
 <body>
 <div class="container">
     <div class="row">
         <div style="text-align: center;" class="col-md-8 col-md-push-2">
-            <h3><strong>Sextant</strong> Section</h3>
-            <p>I don't know exactly how to use Sextant. So, keep waiting here until something changes :)</p>
+            <h3><strong>Information</strong> Section</h3>
+            <p>Learn about the app & find useful instructions</p>
         </div>
     </div><hr>
 </div>
 
-    <jsp:include page="footer.jsp"/>
+<jsp:include page="footer.jsp"/>
 </body>
 </html>

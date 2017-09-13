@@ -10,9 +10,17 @@
 </head>
 
 <body>
-<div class="container-fluid">
-
+<div class="container">
     <div class="row">
+        <div style="text-align: center;" class="col-md-8 col-md-push-2">
+            <h3><strong>GeoTriples</strong> Section</h3>
+            <p>Here you can transform your data into RDF. Fill out the form, follow the steps and finally store your
+            data into a Strabon Endpoint. Firstly, you have to generate a mapping.</p>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+
         <%--Left Panel - Input Options when there is no input given--%>
         <div class="col-sm-6 col-md-6">
 
@@ -70,14 +78,14 @@
                                     </div>
                                     <div class="form-group">
                                         <form:label class="control-label col-sm-3" path="rdb_rml">RML Format:</form:label>
-                                        <div class="col-sm-1">
+                                        <div class="col-sm-1 input-group">
                                             <form:checkbox class="form-control input-sm" path="rdb_rml" value="-rml" />
                                         </div>
                                     </div>
                                     <hr>
                                     <div class="form-group">
-                                        <div class="col-md-4 col-md-push-4">
-                                            <button type="submit" class="btn btn-success">Generate map</button>
+                                        <div class="col-md-6 col-md-offset-3">
+                                            <button type="submit" class="btn btn-success btn-block">Generate mapping</button>
                                         </div>
                                     </div>
 
@@ -113,14 +121,14 @@
                                     </div>
                                     <div class="form-group">
                                         <form:label class="control-label col-sm-3" path="shp_rml">RML Format:</form:label>
-                                        <div class="col-sm-1">
+                                        <div class="col-sm-1 input-group">
                                             <form:checkbox class="form-control input-sm" path="shp_rml" value="-rml" />
                                         </div>
                                     </div>
                                     <hr>
                                     <div class="form-group ">
-                                        <div class="col-md-4 col-md-push-4">
-                                            <button type="submit" class="btn btn-success">Generate map</button>
+                                        <div class="col-md-6 col-md-offset-3">
+                                            <button type="submit" class="btn btn-success btn-block">Generate mapping</button>
                                         </div>
                                     </div>
                                 </div>
@@ -184,8 +192,8 @@
                                     </div>
                                     <hr>
                                     <div class="form-group">
-                                        <div class="col-md-4 col-md-push-4">
-                                            <button type="submit" class="btn btn-success">Generate map</button>
+                                        <div class="col-md-6 col-md-offset-3">
+                                            <button type="submit" class="btn btn-success btn-block">Generate mapping</button>
                                         </div>
                                     </div>
                                 </div>
