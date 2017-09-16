@@ -7,6 +7,7 @@ import org.apache.commons.io.FileUtils;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class GeotriplesService {
@@ -58,6 +59,8 @@ public class GeotriplesService {
 
         String[] mapping_cmd = cmdlist.toArray(new String[0]);
 
+        System.out.println("[Status] GeoTriples execution:");
+        System.out.println(Arrays.toString(mapping_cmd));
         GeoTriplesCMD.main(mapping_cmd);
         System.out.println("[Status] Mapping generation of RDB is done");
 
@@ -113,6 +116,8 @@ public class GeotriplesService {
 
             String[] mapping_cmd = cmdlist.toArray(new String[0]);
 
+            System.out.println("[Status] GeoTriples execution:");
+            System.out.println(Arrays.toString(mapping_cmd));
             GeoTriplesCMD.main(mapping_cmd);
             System.out.println("[Status] Mapping generation of Shapefile is done");
 
@@ -199,6 +204,8 @@ public class GeotriplesService {
 
             String[] mapping_cmd = cmdlist.toArray(new String[0]);
 
+            System.out.println("[Status] GeoTriples execution:");
+            System.out.println(Arrays.toString(mapping_cmd));
             GeoTriplesCMD.main(mapping_cmd);
             System.out.println("[Status] Mapping generation of XML-file is done");
 
@@ -227,12 +234,38 @@ public class GeotriplesService {
         if (!dir2.exists()) dir2.mkdirs();
 
         String dbname = rdfInputModel.getRdb_jdbcurl().substring(rdfInputModel.getRdb_jdbcurl().lastIndexOf("/")+1);
-        String outrdf_fullpath = dir2.getAbsolutePath() + File.separator + dbname + "-rdf.nt";
+        String outrdf_fullpath;
 
         List<String> cmdlist = new ArrayList<String>();
         cmdlist.add("dump_rdf");
         cmdlist.add("-o");
-        cmdlist.add(outrdf_fullpath);
+
+        //If N-Triples
+        if(rdfInputModel.getRdb_format().equals("NTRIPLES")){
+            outrdf_fullpath = dir2.getAbsolutePath() + File.separator + dbname + "-rdf.nt";
+            cmdlist.add(outrdf_fullpath);
+
+            rdfInputModel.setName(dbname + "-rdf.nt");
+        }
+        //If Turtle
+        else if(rdfInputModel.getRdb_format().equals("TURTLE")){
+            outrdf_fullpath = dir2.getAbsolutePath() + File.separator + dbname + "-rdf.ttl";
+            cmdlist.add(outrdf_fullpath);
+            cmdlist.add("-f");
+            cmdlist.add(rdfInputModel.getRdb_format());
+
+            rdfInputModel.setName(dbname + "-rdf.ttl");
+        }
+        //If RDFXML
+        else{
+            outrdf_fullpath = dir2.getAbsolutePath() + File.separator + dbname + "-rdf.xml";
+            cmdlist.add(outrdf_fullpath);
+            cmdlist.add("-f");
+            cmdlist.add(rdfInputModel.getRdb_format());
+
+            rdfInputModel.setName(dbname + "-rdf.xml");
+        }
+
         cmdlist.add("-b");
         cmdlist.add(rdfInputModel.getRdb_baseuri());
 
@@ -249,8 +282,8 @@ public class GeotriplesService {
             cmdlist.add(rdfInputModel.getRdb_driver());
         }
 
-        cmdlist.add("-f");
-        cmdlist.add(rdfInputModel.getRdb_format());
+//        cmdlist.add("-f");
+//        cmdlist.add(rdfInputModel.getRdb_format());
 
         if( rdfInputModel.isRdb_rml() ){
             cmdlist.add("-rml");
@@ -263,10 +296,12 @@ public class GeotriplesService {
 
         String[] dumprdf_cmd = cmdlist.toArray(new String[0]);
 
+        System.out.println("[Status] GeoTriples execution:");
+        System.out.println(Arrays.toString(dumprdf_cmd));
         GeoTriplesCMD.main(dumprdf_cmd);
 
         rdfInputModel.setOutrdf_fullpath(outrdf_fullpath);
-        rdfInputModel.setName(dbname + "-rdf.nt");
+//        rdfInputModel.setName(dbname + "-rdf.nt");
 
         System.out.println("[Status] RDB dumped to RDF");
     }
@@ -296,6 +331,8 @@ public class GeotriplesService {
             cmdlist.add(outrdf_fullpath);
             sourceShpFile = rdfInputModel.getUploadpath()  + "datafiles" + File.separator
                     + "input-data" + File.separator + sourcefile_name;
+
+            rdfInputModel.setName(sourcefile_name.substring(0, sourcefile_name.indexOf('.')) + "-rdf.nt");
         }
         //If Turtle
         else if(rdfInputModel.getShp_format().equals("TURTLE")){
@@ -304,6 +341,8 @@ public class GeotriplesService {
             cmdlist.add(outrdf_fullpath);
             cmdlist.add("-f");
             cmdlist.add(rdfInputModel.getShp_format());
+
+            rdfInputModel.setName(sourcefile_name.substring(0, sourcefile_name.indexOf('.')) + "-rdf.ttl");
         }
         //If RDFXML
         else{
@@ -312,18 +351,20 @@ public class GeotriplesService {
             cmdlist.add(outrdf_fullpath);
             cmdlist.add("-f");
             cmdlist.add(rdfInputModel.getShp_format());
-        }
 
-//        cmdlist.add("-sh");
-//        cmdlist.add(sourcefile_path);
+            rdfInputModel.setName(sourcefile_name.substring(0, sourcefile_name.indexOf('.')) + "-rdf.xml");
+        }
 
         cmdlist.add("-b");
         cmdlist.add(rdfInputModel.getShp_baseuri());
 
-        if(rdfInputModel.getShp_format().equals("NTRIPLES")){
-            cmdlist.add("-sh");
-            cmdlist.add(sourceShpFile);
-        }
+        cmdlist.add("-sh");
+        cmdlist.add(sourceShpFile);
+
+//        if(rdfInputModel.getShp_format().equals("NTRIPLES")){
+//            cmdlist.add("-sh");
+//            cmdlist.add(sourceShpFile);
+//        }
 
         /*  RML checkbox */
         if( rdfInputModel.isRdb_rml() ){
@@ -331,19 +372,30 @@ public class GeotriplesService {
         }
 
         /*  EPSG Code input */
-//        if(rdfInputModel.getShp_epsgcode() != null && !rdfInputModel.getShp_epsgcode().isEmpty()){
-//            cmdlist.add("-s");
-//            cmdlist.add(rdfInputModel.getShp_epsgcode());
-//        }
+        if(rdfInputModel.getShp_epsgcode() != null && !rdfInputModel.getShp_epsgcode().isEmpty()){
+            cmdlist.add("-s");
+            cmdlist.add(rdfInputModel.getShp_epsgcode());
+        }
 
         cmdlist.add(rdfInputModel.getShp_mapfullpath());
 
         String[] dumprdf_cmd = cmdlist.toArray(new String[0]);
 
+        System.out.println("[Status] GeoTriples execution:");
+        System.out.println(Arrays.toString(dumprdf_cmd));
+
+//        try {
+//            GeoTriplesCMD.main(dumprdf_cmd);
+//        }
+//        catch(Exception e) {
+//            System.out.println (e.getMessage () +"\n");
+//            e.printStackTrace ();
+//        }
+
         GeoTriplesCMD.main(dumprdf_cmd);
 
         rdfInputModel.setOutrdf_fullpath(outrdf_fullpath);
-        rdfInputModel.setName(sourcefile_name.substring(0, sourcefile_name.indexOf('.')) + "-rdf.nt");
+//        rdfInputModel.setName(sourcefile_name.substring(0, sourcefile_name.indexOf('.')) + "-rdf.nt");
 
         System.out.println("[Status] Shapefile dumped to RDF");
 
@@ -359,22 +411,55 @@ public class GeotriplesService {
         File temp = new File(rdfInputModel.getXml_mapfullpath());
         String out_name = temp.getName();
         out_name = out_name.substring(0, out_name.indexOf('-'));
-        out_name += "-rdf.nt";
 
-        String outrdf_fullpath = dir2.getAbsolutePath() + File.separator + out_name;
+//        out_name += "-rdf.nt";
+//        String outrdf_fullpath = dir2.getAbsolutePath() + File.separator + out_name;
+        String outrdf_fullpath;
 
         List<String> cmdlist = new ArrayList<String>();
         cmdlist.add("dump_rdf");
         cmdlist.add("-o");
-        cmdlist.add(outrdf_fullpath);
+
+        //If N-Triples
+        if(rdfInputModel.getXml_format().equals("NTRIPLES")){
+            out_name.concat("-rdf.nt");
+            outrdf_fullpath = dir2.getAbsolutePath() + File.separator + out_name;
+            cmdlist.add(outrdf_fullpath);
+
+            rdfInputModel.setName(out_name);
+        }
+        //If Turtle
+        else if(rdfInputModel.getXml_format().equals("TURTLE")){
+            out_name.concat("-rdf.ttl");
+            outrdf_fullpath = dir2.getAbsolutePath() + File.separator + out_name;
+            cmdlist.add(outrdf_fullpath);
+
+            rdfInputModel.setName(out_name);
+            cmdlist.add("-f");
+            cmdlist.add(rdfInputModel.getXml_format());
+
+        }
+        //If RDFXML
+        else{
+            out_name.concat("-rdf.xml");
+            outrdf_fullpath = dir2.getAbsolutePath() + File.separator + out_name;
+            cmdlist.add(outrdf_fullpath);
+
+            rdfInputModel.setName(out_name);
+            cmdlist.add("-f");
+            cmdlist.add(rdfInputModel.getXml_format());
+
+        }
+
         cmdlist.add("-b");
         cmdlist.add(rdfInputModel.getXml_baseuri());
 
         if( rdfInputModel.isXml_rml() ){
             cmdlist.add("-rml");
         }
-        cmdlist.add("-f");
-        cmdlist.add(rdfInputModel.getXml_format());
+
+//        cmdlist.add("-f");
+//        cmdlist.add(rdfInputModel.getXml_format());
 
         if(rdfInputModel.getXml_epsgcode() != null && !rdfInputModel.getXml_epsgcode().isEmpty()){
             cmdlist.add("-s");
@@ -385,7 +470,11 @@ public class GeotriplesService {
 
         String[] dumprdf_cmd = cmdlist.toArray(new String[0]);
 
+        System.out.println("[Status] GeoTriples execution:");
+        System.out.println(Arrays.toString(dumprdf_cmd));
         GeoTriplesCMD.main(dumprdf_cmd);
+
+        rdfInputModel.setOutrdf_fullpath(outrdf_fullpath);
         System.out.println("[Status] XML-file dumped to RDF");
     }
 

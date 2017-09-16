@@ -272,7 +272,6 @@ public class GeotriplesController {
         endValidator.validate(endmodel, result);
 
         if (result.hasErrors()){
-            System.out.println(result.getFieldError().toString());
 
             ModelAndView mav = new ModelAndView("geotriples_final", "command", endmodel);
 

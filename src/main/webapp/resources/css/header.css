@@ -42,3 +42,26 @@ body{
     /*padding-top: 7px;*/
     /*padding-bottom: 1px;*/
 /*}*/
+
+.query_results_data {
+    border: 1px solid #8e9eab!important;
+}
+
+.query_results_data {
+    font: 14px Arial, Helvetica, sans-serif;
+}
+
+/*tbody {*/
+    /*display: table-row-group;*/
+    /*vertical-align: middle;*/
+    /*border-color: inherit;*/
+/*}*/
+/*tr {*/
+    /*display: table-row;*/
+    /*vertical-align: inherit;*/
+    /*border-color: inherit;*/
+/*}*/
+/*td, th {*/
+    /*display: table-cell;*/
+    /*vertical-align: inherit;*/
+/*}*/

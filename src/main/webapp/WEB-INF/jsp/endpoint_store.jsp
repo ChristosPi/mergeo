@@ -6,7 +6,7 @@
 <head>
     <jsp:include page="header.jsp"/>
     <link href="<s:url value="/resources/css/endpoint.css"/>" rel="stylesheet">
-    <title>MerGEO|Endpoint</title>
+    <title>merGeo| Strabon</title>
 </head>
 <body>
 
@@ -26,19 +26,19 @@
                 <%-- Direct input store --%>
                 <br><legend class="col-md-offset-1">Direct store of RDF Data:</legend><br>
                 <div class="form-group">
-                    <label class="control-label col-md-2" for="graph">Graph:</label>
+                    <label class="control-label col-md-2" for="graph">Graph</label>
                     <div class="col-sm-8 input-group">
                         <textarea class="form-control" rows="1" id="graph" name="graph"></textarea>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-2" for="dinput">Direct Input:</label>
+                    <label class="control-label col-md-2" for="dinput">Direct Input <strong style="color: darkred">*</strong></label>
                     <div class="col-sm-8 input-group">
                         <textarea class="form-control" rows="5" id="dinput" name="dinput" required></textarea>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-2" for="rdfformat">RDF Format:</label>
+                    <label class="control-label col-md-2" for="rdfformat">RDF Format <strong style="color: darkred">*</strong></label>
                     <div class="col-sm-8 input-group">
                         <span class="input-group-addon input-sm"><i class="fa fa-hdd-o fa-fw"></i></span>
                         <select class="form-control" name="rdfformat" id="rdfformat" required>
@@ -50,8 +50,9 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-2" for="infecheck">Inference:</label>
-                    <div class="col-sm-1 input-group">
+                    <label class="control-label col-md-2" for="infecheck">Inference</label>
+                    <div class="col-sm-8">
+                        <%--<span class="input-group-addon input-sm"><i class="fa fa-hdd-o fa-fw"></i></span>--%>
                         <input class="form-control input-sm" id="infecheck" name="inference" type="checkbox">
                     </div>
                 </div>
@@ -68,20 +69,20 @@
             <form class="form-horizontal" method="post" action="/endpoint/uri_store" style="border:3px solid #2C3E50;">
                 <br><legend class="col-md-offset-1">Store RDF data via URI:</legend><br>
                 <div class="form-group">
-                    <label class="control-label col-md-2" for="uri_graph">Graph:</label>
+                    <label class="control-label col-md-2" for="uri_graph">Graph</label>
                     <div class="col-sm-8 input-group">
                         <textarea class="form-control" rows="1" id="uri_graph" name="uri_graph"></textarea>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-2" for="uri_input">URI input:</label>
+                    <label class="control-label col-md-2" for="uri_input">URI input <strong style="color: darkred">*</strong></label>
                     <div class="col-sm-8 input-group">
                         <span class="input-group-addon input-sm"><i class="fa fa-link fa-fw"></i></span>
                         <input class="form-control" type="text" name="uri_input" id="uri_input" placeholder="e.g., file:///home/user/example.nt">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-2" for="uri_rdfformat">RDF Format:</label>
+                    <label class="control-label col-md-2" for="uri_rdfformat">RDF Format <strong style="color: darkred">*</strong></label>
                     <div class="col-sm-8 input-group">
                         <span class="input-group-addon input-sm"><i class="fa fa-hdd-o fa-fw"></i></span>
                         <select class="form-control" name="uri_rdfformat" id="uri_rdfformat" required>

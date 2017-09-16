@@ -5,7 +5,26 @@
 <head>
     <jsp:include page="header.jsp"/>
     <link href="<s:url value="/resources/css/endpoint.css"/>" rel="stylesheet">
-    <title>MerGEO|Endpoint</title>
+    <title>merGeo|Strabon</title>
+
+    <script>
+        function reset_query() {
+            document.getElementById("querytextarea").value = "PREFIX lgd:<http://linkedgeodata.org/triplify/>\n" +
+                "PREFIX lgdgeo:<http://www.w3.org/2003/01/geo/wgs84_pos#>\n" +
+                "PREFIX lgdont:<http://linkedgeodata.org/ontology/>\n" +
+                "PREFIX geonames:<http://www.geonames.org/ontology#>\n" +
+                "PREFIX clc: <http://geo.linkedopendata.gr/corine/ontology#>\n" +
+                "PREFIX gag: <http://geo.linkedopendata.gr/greekadministrativeregion/ontology#>\n" +
+                "PREFIX geo: <http://www.opengis.net/ont/geosparql#>\n" +
+                "PREFIX geof: <http://www.opengis.net/def/function/geosparql/>\n" +
+                "PREFIX geor: <http://www.opengis.net/def/rule/geosparql/>\n" +
+                "PREFIX strdf: <http://strdf.di.uoa.gr/ontology#>\n" +
+                "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
+                "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
+                "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
+                "PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>" ;
+        }
+    </script>
 </head>
 <body>
 
@@ -20,18 +39,20 @@
         <c:choose>
             <c:when test="${storeStatus == true}">
                 <div class="row">
-                    <div class="col-md-4 col-md-offset-4">
-                        <div class="alert alert-success" role="alert" style="text-align: center;">
-                            <strong>Data store status:</strong> OK
+                    <div class="col-md-6 col-md-offset-3">
+                        <div style="text-align: center;" class="alert alert-dismissible alert-success" role="alert" style="text-align: center;">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong>[ <i class="fa fa-exclamation-circle" aria-hidden="true"></i> ] Data store status:</strong> Done
                         </div>
                     </div>
                 </div>
             </c:when>
             <c:otherwise>
                 <div class="row">
-                    <div class="col-md-4 col-md-offset-4">
-                        <div class="alert alert-danger" role="alert" style="text-align: center;">
-                            <strong>Data store status:</strong> Failed
+                    <div class="col-md-6 col-md-offset-3">
+                        <div style="text-align: center;" class="alert alert-dismissible alert-danger" role="alert" style="text-align: center;">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong>[ <i class="fa fa-exclamation-circle" aria-hidden="true"></i> ] Data store status:</strong> Failed
                         </div>
                     </div>
                 </div>
@@ -46,7 +67,6 @@
                     <button type="submit" class="btn btn-info col-md-12" style="margin-bottom:4px;white-space: normal;">Open 'Store' interface</button>
                 </form>
             </div>
-            <br>
             <div class="row">
                 <span style="text-align: center;"><h4>Example Queries:</h4></span>
                 <form action="/endpoint/exquery" method="post" >
@@ -72,13 +92,17 @@
                     <button type="submit" class="btn btn-default col-md-12" style="margin-bottom:4px;white-space: normal;">Present the first ten triples of the dataset.</button>
                 </form>
             </div>
+            <div class="row">
+                <span style="text-align: center;"><h4>Reset Query:</h4></span>
+                <button type="button" onclick="reset_query();"class="btn btn-warning col-md-12" style="margin-bottom:4px;white-space: normal;">Reset Query Textarea</button>
+            </div>
         </div>
 
         <div class="col-md-9">
             <span style="text-align: center;"><h4>Endpoint: <strong>${workEndpoint.endpointname}</strong></h4></span>
             <form action="/do_query" method="post">
                 <div class="form-group">
-                    <textarea name="query" class="form-control" rows="18" columns="15" style="text-align: justify;"><c:choose><c:when test="${empty endpointResults}">
+                    <textarea id="querytextarea" name="query" class="form-control" rows="20" columns="15" style="text-align: justify;"><c:choose><c:when test="${empty endpointResults}">
 PREFIX lgd:<http://linkedgeodata.org/triplify/>
 PREFIX lgdgeo:<http://www.w3.org/2003/01/geo/wgs84_pos#>
 PREFIX lgdont:<http://linkedgeodata.org/ontology/>
@@ -102,37 +126,53 @@ PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
                             <select class="form-control" name="format">
                                 <option value="HTML">HTML</option>
                                 <option value="XML">SPARQL/XML</option>
-                                <option value="JSON">GeoJSON</option>
+                                <option value="GEOJSON">GeoJSON</option>
                             </select>
                         </div>
 
-                        <div class="col-md-5 col-md-offset-4">
-                            <button type="submit" class="btn btn-success btn-lg">Execute Query</button>
+                         <%--Both query and update button-group --%>
+                        <div class="col-md-9">
+                            <div class="btn-group pull-right">
+                                <button type="submit" class="btn btn-primary btn-lg ">Execute <strong>Query</strong></button>
+                                <button type="button" class="btn btn-primary btn-lg disabled">Execute <strong>Update</strong></button>
+                            </div>
                         </div>
+
+                        <%-- Just query button --%>
+                        <%--<div class="col-md-5 col-md-offset-4">--%>
+                            <%--<button type="submit" class="btn btn-primary btn-block btn-lg">Execute <strong>Query</strong></button>--%>
+                        <%--</div>--%>
                     </div>
                 </div>
             </form>
         </div>
     </div>
-
+    <hr>
     <div class="row">
-        <div class="col-md-12">
-            <br/>
-            <c:if test="${not empty endpointResults.getStatusText()}">
-                <div class="alert alert-warning" role="alert">${endpointResults.getStatusText()}</div>
-            </c:if>
-            <c:if test="${not empty endpointResults.getResponse()}">
-                <span><h4>Endpoint Results:</h4></span>
-                <div class="table-responsive">
-                    <table id="resulttable" class="table table-bordered" style="text-align: left; font-size: 12px;" cellspacing="10">
-                    ${endpointResults.getResponse()}
-                    </table>
-                </div>
-            </c:if>
-            <br/>
-            <br/>
-            <br/>
-        </div>
+        <c:if test="${not empty endpointResults.getStatusText()}">
+            <div class="alert alert-warning" role="alert">${endpointResults.getStatusText()}</div>
+        </c:if>
+        <c:if test="${not empty endpointResults.getResponse()}">
+            <legend>Endpoint Results:</legend>
+            <c:choose>
+                <c:when test="${out_format == 'HTML'}">
+                    <div class="col-md-12" align="center">${endpointResults.getResponse()}</div>
+                </c:when>
+                <c:otherwise>
+                    <div class="col-md-12">
+                        <pre style="font-size: 12px;"><c:out value="${endpointResults.response}"/></pre>
+                    </div>
+                </c:otherwise>
+            </c:choose>
+            <%--<div class="table-responsive">--%>
+                <%--<table id="resulttable" class="table table-bordered" style="text-align: left; font-size: 12px;" cellspacing="10">--%>
+                <%--${endpointResults.getResponse()}--%>
+                <%--</table>--%>
+            <%--</div>--%>
+        </c:if>
+        <br/>
+        <br/>
+        <br/>
     </div>
 </div>
 

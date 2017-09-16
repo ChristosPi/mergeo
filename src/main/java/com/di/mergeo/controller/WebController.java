@@ -34,8 +34,14 @@ public class WebController {
 
         /* Deploy a default Strabon Endpoint */
         String warPath = context.getRealPath("/WEB-INF/classes/strabon-endpoint-3.3.2-SNAPSHOT.war");
+        String sextantPath = context.getRealPath("/WEB-INF/classes/SextantOL3.war");
+
         String webappsPath = tomcatPath.concat("/webapps/");
+
+        /* Loads Strabon Endpoint warfile to Tomcat */
         StartupService.loadApplication(webappsPath, warPath);
+        /* Loads Sextant warfile to Tomcat */
+//        StartupService.loadApplication(webappsPath, sextantPath);
 
         EndpointModel defEndpoint = new EndpointModel();
         defEndpoint.setHostname("localhost");
@@ -50,13 +56,6 @@ public class WebController {
         defEndpoint.setEndpointname("strabon-endpoint-3.3.2-SNAPSHOT");
 
         context.setAttribute("defEndpoint", defEndpoint);
-        //TODO fortwma sto session workEndpoint
-        //${applicationScope['defEndpoint'].getUsername()} TODO gia xrhsh se view JSP
-
-        /* Deploy a Sextant application */
-//        warPath = context.getRealPath("/WEB-INF/classes/SEXTANT.war");
-//        webappsPath = tomcatPath.concat("/webapps/");
-//        StartupService.loadApplication(webappsPath, warPath);
 
     }
     /******************************************************************************************************************/

@@ -7,9 +7,9 @@
 
 <footer class="footer-distributed">
     <div class="footer-right">
+        <a style="font-size: 9px; pointer-events: none; cursor: default;">find me:</a>
         <a target="_blank" href="https://github.com/christospi/mergeo"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a>
 
-        <a style="font-size: 11px; pointer-events: none; cursor: default;" class="footer-right">&nbsp;GitHub</a>
     </div>
 
     <div class="footer-left">

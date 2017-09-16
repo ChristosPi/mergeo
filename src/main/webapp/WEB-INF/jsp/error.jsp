@@ -6,15 +6,24 @@
 <head>
     <jsp:include page="header.jsp"/>
     <link href="<c:url value="/resources/css/index.css" />" rel="stylesheet">
-    <title>MerGEO|Error</title>
+    <title>merGeo| Error</title>
 </head>
 <body>
-    <article>
-        <h4>Something went wrong... OR DID YOU MAKE IT GO WRONG?</h4>
-        <h5>Anyway, go away from here! NOW!</h5>
-        <img src="./../../resources/img/error.png" alt="..." class="img-responsive center-block"/>
-    </article>
+<div class="container">
+    <div class="row">
+        <div style="text-align: center;" class="col-md-8 col-md-push-2">
+            <h3>Oops! An <strong>error</strong> occured...</h3>
+            <p>Something went wrong... OR DID YOU MAKE IT GO WRONG?<br>Anyway, return to Homepage, NOW!</p>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <article>
+            <img src="./../../resources/img/error.png" alt="..." class="img-responsive center-block"/>
+        </article>
+    </div>
+</div>
 
-    <jsp:include page="footer.jsp"/>
+<jsp:include page="footer.jsp"/>
 </body>
 </html>

@@ -4,7 +4,6 @@
 <head>
     <jsp:include page="bootstrap.jsp"/>
     <link href="<c:url value="/resources/css/header.css" />" rel="stylesheet">
-    <title>MerGeo</title>
 </head>
 <body>
     <section class="container-fullwidth">
@@ -13,12 +12,12 @@
                 <%--<div class="col-md-2">--%>
                     <%--<a href="http://en.uoa.gr/"><img src="./../../resources/img/uoa_logo.png" alt="uoa"></a>--%>
                 <%--</div>--%>
-                <div class="col-md-6 col-md-push-4">
-                    <a href="/"><img src="./../../resources/img/logo-main.png" alt="merGeo" width="400" height="121.65"></a>
+                <div class="col-md-6">
+                    <a href="/"><img class="img-responsive"src="./../../resources/img/logo-main.png" alt="merGeo" width="400" height="121.65"></a>
                 </div>
-                <%--<div class="col-md-2 col-md-push-5">--%>
-                    <%--<a href="http://en.uoa.gr/"><img src="./../../resources/img/dit-logo.png" alt="DiT"></a>--%>
-                <%--</div>--%>
+                <div class="col-md-2 col-md-offset-4">
+                    <a target="_blank" href="http://www.di.uoa.gr/eng"><img class="img-responsive center-block" src="./../../resources/img/dit-logo.png"  style="padding-top: 30%;" width="149.5" height="37" alt="DiT"></a>
+                </div>
             </header>
         </div>
 
@@ -36,8 +35,8 @@
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="/endpoint"><i class="fa fa-plus-circle fa-lg fa-fw" aria-hidden="true"></i>&nbsp; Create new Endpoint</a></li>
-                            <li><a href="/endpoint_run"><i class="fa fa-arrow-circle-right fa-lg fa-fw" aria-hidden="true"></i>&nbsp; Work on current Endpoint</a></li>
                             <li class="divider"></li>
+                            <li><a href="/endpoint_run"><i class="fa fa-arrow-circle-right fa-lg fa-fw" aria-hidden="true"></i>&nbsp; Work on current Endpoint</a></li>
                             <li><a href="/endpoint_default"><i class="fa fa-arrow-circle-right fa-lg fa-fw" aria-hidden="true"></i>&nbsp; Work on default Endpoint</a></li>
                         </ul>
                     </li>

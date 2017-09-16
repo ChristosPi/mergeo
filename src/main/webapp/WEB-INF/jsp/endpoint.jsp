@@ -6,7 +6,7 @@
 <head>
     <jsp:include page="header.jsp"/>
     <link href="<s:url value="/resources/css/endpoint.css"/>" rel="stylesheet">
-    <title>MerGEO|Endpoint</title>
+    <title>merGeo| Strabon</title>
 </head>
 <body>
 <div class="container">
@@ -20,9 +20,10 @@
     <c:if test="${not empty no_end}">
         <c:if test="${no_end == true}">
             <div class="row">
-                <div class="col-md-4 col-md-offset-4">
-                    <div class="alert alert-info" role="alert" style="text-align: center;">
-                        <strong>No endpoint found!</strong> Let's create a new one
+                <div class="col-md-6 col-md-offset-3">
+                    <div style="text-align: center;" class="alert alert-dismissible alert-warning" role="alert" style="text-align: center;">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>[ <i class="fa fa-exclamation-circle" aria-hidden="true"></i> ] No endpoint found!</strong> Let's create a new one
                     </div>
                 </div>
             </div>
@@ -31,9 +32,10 @@
     <c:if test="${not empty formError}">
         <c:if test="${formError == true}">
             <div class="row">
-                <div class="col-md-4 col-md-offset-4">
-                    <div class="alert alert-warning" role="alert" style="text-align: center;">
-                        <strong>Form error!</strong> Try again
+                <div class="col-md-6 col-md-offset-3">
+                    <div style="text-align: center;" class="alert alert-dismissible alert-danger" role="alert" style="text-align: center;">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>[ <i class="fa fa-exclamation-circle" aria-hidden="true"></i> ] Form error!</strong> Try again
                     </div>
                 </div>
             </div>
@@ -49,47 +51,47 @@
                         <legend>Database Properties</legend>
 
                         <div class="form-group">
-                            <form:label class="control-label col-sm-4" path="dbname" for="dbname">Database Name:</form:label>
+                            <form:label class="control-label col-sm-4" path="dbname" for="dbname">Database Name</form:label>
                             <div class="col-sm-8 input-group">
                                 <span class="input-group-addon input-sm"><i class="fa fa-database fa-fw"></i></span>
-                                <form:input path="dbname" type="text" class="form-control input-sm" id="dbname" required="required" />
+                                <form:input path="dbname" type="text" class="form-control input-sm" id="dbname" required="required" placeholder="Database name"/>
                                 <form:errors path="dbname" cssStyle="color: #ff0000;" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <form:label class="control-label col-sm-4" path="username" for="username">Username:</form:label>
+                            <form:label class="control-label col-sm-4" path="username" for="username">Username</form:label>
                             <div class="col-sm-8 input-group">
                                 <span class="input-group-addon input-sm"><i class="fa fa-user fa-fw"></i></span>
-                                <form:input path="username" type="text" class="form-control input-sm" id="username" required="required" />
+                                <form:input path="username" type="text" class="form-control input-sm" id="username" required="required" placeholder="Username"/>
                                 <form:errors path="username" cssStyle="color: #ff0000;" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <form:label class="control-label col-sm-4" path="password" for="password">Password:</form:label>
+                            <form:label class="control-label col-sm-4" path="password" for="password">Password</form:label>
                             <div class="col-sm-8 input-group">
                                 <span class="input-group-addon input-sm"><i class="fa fa-lock fa-fw"></i></span>
-                                <form:input path="password" type="password" class="form-control input-sm" id="password" required="required" />
+                                <form:input path="password" type="password" class="form-control input-sm" id="password" required="required" placeholder="Password"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <form:label class="control-label col-sm-4" path="port" for="port">Port:</form:label>
+                            <form:label class="control-label col-sm-4" path="port" for="port">Port</form:label>
                             <div class="col-sm-8 input-group">
                                 <span class="input-group-addon input-sm"><i class="fa fa-external-link-square fa-fw"></i></span>
-                                <form:input path="port" type="text" class="form-control input-sm" id="port" required="required" />
+                                <form:input path="port" type="text" class="form-control input-sm" id="port" value="5432" required="required" placeholder="Port (e.g.: 5432)"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <form:label class="control-label col-sm-4" path="hostname" for="hostname">Hostname:</form:label>
+                            <form:label class="control-label col-sm-4" path="hostname" for="hostname">Hostname</form:label>
                             <div class="col-sm-8 input-group">
                                 <span class="input-group-addon input-sm"><i class="fa fa-desktop fa-fw"></i></span>
-                                <form:input path="hostname" type="text" class="form-control input-sm" id="hostname" value="localhost" required="required" />
+                                <form:input path="hostname" type="text" class="form-control input-sm" id="hostname" value="localhost" required="required" placeholder="Hostname (e.g.: localhost)"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <form:label class="control-label col-sm-4" path="dbengine" for="dbengine">Database Engine:</form:label>
+                            <form:label class="control-label col-sm-4" path="dbengine" for="dbengine">Database Engine</form:label>
                             <div class="col-sm-8 input-group">
                                 <span class="input-group-addon input-sm"><i class="fa fa-database fa-fw"></i></span>
-                                <form:input path="dbengine" type="text" class="form-control input-sm" id="dbengine" value="postgis" required="required" />
+                                <form:input path="dbengine" type="text" class="form-control input-sm" id="dbengine" value="postgis" required="required" placeholder="Database Engine (e.g.: postgis)"/>
                             </div>
                         </div>
                     </div>
@@ -97,27 +99,27 @@
                     <div class="col-md-6">
                         <legend>Endpoint's Credentials</legend>
                         <div class="form-group">
-                            <form:label class="control-label col-sm-4" path="cp_username" for="cp_username">Credentials Username:</form:label>
+                            <form:label class="control-label col-sm-4" path="cp_username" for="cp_username">Credentials Username</form:label>
                             <div class="col-sm-8 input-group">
                                 <span class="input-group-addon input-sm"><i class="fa fa-user-circle-o fa-fw"></i></span>
-                                <form:input path="cp_username" type="text" class="form-control input-sm" id="cp_username" required="required" />
+                                <form:input path="cp_username" type="text" class="form-control input-sm" id="cp_username" required="required" placeholder="credentials.properties: Username"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <form:label class="control-label col-sm-4" path="cp_password" for="cp_password">Credentials Password:</form:label>
+                            <form:label class="control-label col-sm-4" path="cp_password" for="cp_password">Credentials Password</form:label>
                             <div class="col-sm-8 input-group">
                                 <span class="input-group-addon input-sm"><i class="fa fa-lock fa-fw"></i></span>
-                                <form:input path="cp_password" type="password" class="form-control input-sm" id="cp_password" required="required" />
+                                <form:input path="cp_password" type="password" class="form-control input-sm" id="cp_password" required="required" placeholder="credentials.properties: Password"/>
                             </div>
                         </div>
 
                         <hr>
 
                         <div class="form-group">
-                            <form:label class="control-label col-sm-4" path="endpointname" for="endpointname">Endpoint's Name:</form:label>
+                            <form:label class="control-label col-sm-4" path="endpointname" for="endpointname">Endpoint's Name</form:label>
                             <div class="col-sm-8 input-group">
                                 <span class="input-group-addon input-sm"><i class="fa fa-id-badge fa-fw"></i></span>
-                                <form:input path="endpointname" type="text" class="form-control input-sm" id="endpointname" required="required" />
+                                <form:input path="endpointname" type="text" class="form-control input-sm" id="endpointname" required="required" placeholder="Endpoint's Name"/>
                             </div>
                         </div>
 
