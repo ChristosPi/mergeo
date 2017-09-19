@@ -103,7 +103,12 @@ public class EndpointController {
 
     /* ************************************************************************************************************** */
     /******************************************************************************************************************/
+    @RequestMapping(value = "/do_store", method = RequestMethod.POST)
+    public ModelAndView doStore(){
+        return new ModelAndView("endpoint_store");
+    }
 
+    /******************************************************************************************************************/
     @RequestMapping(value = "/do_query", method = RequestMethod.POST)
     public ModelAndView doQuery(@RequestParam("query") String query, @RequestParam("format") String format,
                                 HttpServletRequest request) throws IOException {

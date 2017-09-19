@@ -1,2 +1,13 @@
+** STRABON ENDPOINT - INFO **
 Strabon Endpoint version    : strabon-endpoint-3.3.2-SNAPSHOT.war
+Hostname    ("localhost");
+Port        ("5432");
+Dbengine    ("postgis");
+Dbname      ("endpoint");
+Username    ("postgres");
+Password    ("postgres");
+Cp_username ("endpoint");
+Cp_password ("3ndpo1nt");
+
+** SEXTANT CLIENT - INFO **
 Sextant version             : SextantOL3.war (latest, from http://sextant.di.uoa.gr)

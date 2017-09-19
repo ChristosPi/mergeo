@@ -17,7 +17,7 @@
     <hr>
     <section class="row">
         <article class="col-md-6">
-            <h3>About: <strong>merGeo</strong></h3>
+            <h3>merGeo:<strong>about</strong></h3>
             <p><strong style="font-size: 18px;">merGeo</strong> is a web-application which combines the following Geospatial tools together: GeoTriples, Strabon
             and Sextant. Through this full-guided platform you can transform your data, store them into an Endpoint and finally visualize them.</p>
             <hr></ht><p><strong>&#8226; GeoTriples</strong> is a tool for transforming geospatial data from their original formats (e.g., shapefiles or spatially-enabled relational databases) into RDF.
