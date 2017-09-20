@@ -6,7 +6,7 @@
 <head>
     <jsp:include page="header.jsp"/>
     <link href="<s:url value="/resources/css/endpoint.css"/>" rel="stylesheet">
-    <title>merGeo| Strabon</title>
+    <title>mG|Strabon</title>
 </head>
 <body>
 
@@ -16,10 +16,11 @@
             <div style="text-align: center;" class="col-md-8 col-md-push-2">
                 <h3><strong>Strabon</strong> Section</h3>
                 <p>Here you can store your own data to the selected Strabon Endpoint. Either direct input, or via URI,
-                 fill out the form and voila!</p>
+                 fill out the form and voilà!</p>
             </div>
         </div><hr>
         <span style="text-align: center;"><h4>Endpoint: <strong>${workEndpoint.endpointname}</strong></h4></span>
+        <br>
         <div class="col-md-12">
 
             <form class="form-horizontal" method="post" action="/endpoint/direct_store" style="border:3px solid #2C3E50;">
@@ -78,7 +79,7 @@
                     <label class="control-label col-md-2" for="uri_input">URI input <strong style="color: darkred">*</strong></label>
                     <div class="col-sm-8 input-group">
                         <span class="input-group-addon input-sm"><i class="fa fa-link fa-fw"></i></span>
-                        <input class="form-control" type="text" name="uri_input" id="uri_input" placeholder="e.g., file:///home/user/example.nt">
+                        <input class="form-control" type="text" name="uri_input" id="uri_input" placeholder="e.g., file:///home/user/example.nt" required>
                     </div>
                 </div>
                 <div class="form-group">

@@ -8,7 +8,7 @@
     <%@ page import="java.io.*"%>
     <%@ page import="java.lang.String"%>
     <link href="<s:url value="/resources/css/geotriples.css"/>" rel="stylesheet">
-    <title>merGeo|GeoTriples</title>
+    <title>mG|GeoTriples</title>
 
     <script>
         function make_changes() {

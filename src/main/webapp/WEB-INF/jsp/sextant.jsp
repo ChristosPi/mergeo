@@ -5,7 +5,7 @@
 <head>
     <jsp:include page="header.jsp"/>
     <link href="<s:url value="/resources/css/sextant.css"/>" rel="stylesheet">
-    <title>merGeo| Sextant</title>
+    <title>mG|Sextant</title>
 </head>
 <body>
 <div class="container">

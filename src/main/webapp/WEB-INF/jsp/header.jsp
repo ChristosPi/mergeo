@@ -36,8 +36,8 @@
                         <ul class="dropdown-menu">
                             <li><a href="/endpoint"><i class="fa fa-plus-circle fa-lg fa-fw" aria-hidden="true"></i>&nbsp; Create new Endpoint</a></li>
                             <li class="divider"></li>
-                            <li><a href="/endpoint_run"><i class="fa fa-arrow-circle-right fa-lg fa-fw" aria-hidden="true"></i>&nbsp; Work on current Endpoint</a></li>
-                            <li><a href="/endpoint_default"><i class="fa fa-arrow-circle-right fa-lg fa-fw" aria-hidden="true"></i>&nbsp; Work on default Endpoint</a></li>
+                            <li><a href="/endpoint_run"><i class="fa fa-arrow-circle-right fa-lg fa-fw" aria-hidden="true"></i>&nbsp; Work on <strong>&lt;created&gt;</strong> Endpoint</a></li>
+                            <li><a href="/endpoint_default"><i class="fa fa-arrow-circle-right fa-lg fa-fw" aria-hidden="true"></i>&nbsp; Work on <strong>&lt;default&gt;</strong> Endpoint</a></li>
                         </ul>
                     </li>
                     <li><a href="/sextant"><i class="fa fa-map-marker fa-lg fa-fw" aria-hidden="true"></i>&nbsp; Sextant</a></li>

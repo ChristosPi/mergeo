@@ -6,7 +6,7 @@
 <head>
     <jsp:include page="header.jsp"/>
     <link href="<s:url value="/resources/css/endpoint.css"/>" rel="stylesheet">
-    <title>merGeo| Strabon</title>
+    <title>mG|Strabon</title>
 </head>
 <body>
 <div class="container">

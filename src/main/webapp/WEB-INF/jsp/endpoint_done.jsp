@@ -5,7 +5,7 @@
 <head>
     <jsp:include page="header.jsp"/>
     <link href="<s:url value="/resources/css/endpoint.css"/>" rel="stylesheet">
-    <title>merGeo|Strabon</title>
+    <title>mG|Strabon</title>
 
     <script>
         function reset_query() {
@@ -25,6 +25,58 @@
                 "PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>" ;
         }
     </script>
+
+    <script type="text/javascript">
+        function toggleMe(a) {
+            var e = document.getElementById(a);
+            if (!e) {
+                return true;
+            }
+            if (e.style.display == "none") {
+                e.style.display = "block";
+            } else {
+                e.style.display = "none";
+            }
+            return true;
+        }
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            var showChar = 100;
+            var ellipsestext = "...";
+            var moretext = "more";
+            var lesstext = "less";
+            $('.more').each(function() {
+                var content = $(this).html();
+
+                if(content.length > showChar) {
+
+                    var c = content.substr(0, showChar);
+                    var h = content.substr(showChar-1, content.length - showChar);
+
+                    var html = c + '<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';
+
+                    $(this).html(html);
+                }
+
+            });
+
+            $(".morelink").click(function(){
+                if($(this).hasClass("less")) {
+                    $(this).removeClass("less");
+                    $(this).html(moretext);
+                } else {
+                    $(this).addClass("less");
+                    $(this).html(lesstext);
+                }
+                $(this).parent().prev().toggle();
+                $(this).prev().toggle();
+                return false;
+            });
+        });
+    </script>
+
 </head>
 <body>
 

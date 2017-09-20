@@ -322,6 +322,12 @@ public class GeotriplesService {
 
         List<String> cmdlist = new ArrayList<String>();
         cmdlist.add("dump_rdf");
+
+        /*  RML checkbox */
+        if( rdfInputModel.isShp_rml()){
+            cmdlist.add("-rml");
+        }
+
         cmdlist.add("-o");
 
         //If N-Triples
@@ -329,8 +335,10 @@ public class GeotriplesService {
             outrdf_fullpath = dir2.getAbsolutePath() + File.separator +
                     sourcefile_name.substring(0, sourcefile_name.indexOf('.')) + "-rdf.nt";
             cmdlist.add(outrdf_fullpath);
-            sourceShpFile = rdfInputModel.getUploadpath()  + "datafiles" + File.separator
-                    + "input-data" + File.separator + sourcefile_name;
+
+            cmdlist.add("-sh");
+            sourceShpFile = rdfInputModel.getUploadpath()  + "datafiles" + File.separator + "input-data" + File.separator + sourcefile_name;
+            cmdlist.add(sourceShpFile);
 
             rdfInputModel.setName(sourcefile_name.substring(0, sourcefile_name.indexOf('.')) + "-rdf.nt");
         }
@@ -355,21 +363,18 @@ public class GeotriplesService {
             rdfInputModel.setName(sourcefile_name.substring(0, sourcefile_name.indexOf('.')) + "-rdf.xml");
         }
 
-        cmdlist.add("-b");
-        cmdlist.add(rdfInputModel.getShp_baseuri());
-
-        cmdlist.add("-sh");
-        cmdlist.add(sourceShpFile);
+//        cmdlist.add("-b");
+//        cmdlist.add(rdfInputModel.getShp_baseuri());
 
 //        if(rdfInputModel.getShp_format().equals("NTRIPLES")){
 //            cmdlist.add("-sh");
 //            cmdlist.add(sourceShpFile);
 //        }
 
-        /*  RML checkbox */
-        if( rdfInputModel.isRdb_rml() ){
-            cmdlist.add("-rml");
-        }
+//        /*  RML checkbox */
+//        if( rdfInputModel.isShp_rml()){
+//            cmdlist.add("-rml");
+//        }
 
         /*  EPSG Code input */
         if(rdfInputModel.getShp_epsgcode() != null && !rdfInputModel.getShp_epsgcode().isEmpty()){
@@ -386,10 +391,19 @@ public class GeotriplesService {
 
 //        try {
 //            GeoTriplesCMD.main(dumprdf_cmd);
+//        } catch(RuntimeException ex) {
+//            throw ex;
+//        } catch(Exception ex) {
+//            System.out.println("Exception here!");
+//            System.out.println("Exception here!");
+//            System.out.println("Exception here!");
+//            System.out.println("Exception here!");
 //        }
-//        catch(Exception e) {
-//            System.out.println (e.getMessage () +"\n");
-//            e.printStackTrace ();
+
+//        try {
+//            GeoTriplesCMD.main(dumprdf_cmd);
+//        } catch(NullPointerException e) {
+//            System.out.println("Exception here!");
 //        }
 
         GeoTriplesCMD.main(dumprdf_cmd);

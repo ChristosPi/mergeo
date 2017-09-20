@@ -3,7 +3,7 @@
 <head>
     <jsp:include page="header.jsp"/>
     <link href="<c:url value="/resources/css/index.css" />" rel="stylesheet">
-    <title>merGeo| Home</title>
+    <title>mG|Home</title>
 </head>
 
 <body>

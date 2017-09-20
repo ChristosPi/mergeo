@@ -198,7 +198,7 @@ public class EndpointController {
         mav.addObject("out_format", format);
 
         /*  Prints to console the query results as string */
-//        System.out.println(results.getResponse().toString());
+        System.out.println(results.getResponse().toString());
 
         return mav;
     }

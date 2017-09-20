@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.ServletContext;
+import java.io.File;
 import java.io.IOException;
 
 //import org.apache.velocity.exception.ResourceNotFoundException;
@@ -24,7 +25,10 @@ public class WebController {
     @Autowired
     ServletContext context;
 
-    public static String tomcatPath = System.getProperty("catalina.home"); // Something like foo/fee/tomcat
+    /* Tomcat's path in system, something like /dir1/dir2/tomcat */
+    public static String tomcatPath = System.getProperty("catalina.home");
+
+    /* Must be changed in case something else is given as a name in startup_jobs() */
     public static String endpointFolder = "/opt/tomcat/endpoint/strabon-endpoint-3.3.2-SNAPSHOT/.";
 
     private boolean startupFlag = false;
@@ -32,7 +36,7 @@ public class WebController {
     /**************************************** Does the startup work... ************************************************/
     public void startup_jobs() throws IOException, InterruptedException {
 
-        /* Deploy a default Strabon Endpoint */
+        /* Deploy defaults Strabon-Endpoint and Sextant applications */
         String warPath = context.getRealPath("/WEB-INF/classes/strabon-endpoint-3.3.2-SNAPSHOT.war");
         String sextantPath = context.getRealPath("/WEB-INF/classes/SextantOL3.war");
 
@@ -56,6 +60,16 @@ public class WebController {
         defEndpoint.setEndpointname("strabon-endpoint-3.3.2-SNAPSHOT");
 
         context.setAttribute("defEndpoint", defEndpoint);
+
+        /* Now, creates a folder named "endpoint" inside tomcat's base which contains the Strabon-Endpoint.war
+        * in order to be used later, as the base app which is been deployed to tomcat/webapps */
+        File dir = new File(System.getProperty("catalina.home") + File.separator + "endpoint" + File.separator + "strabon-endpoint-3.3.2-SNAPSHOT");
+        if (!dir.exists()) dir.mkdirs();
+
+        ProcessBuilder pb = new ProcessBuilder("unzip", "-qq", "-o", warPath, "-d", dir.getAbsolutePath());
+        Process p = null;
+        p = pb.start();
+        p.waitFor();
 
     }
     /******************************************************************************************************************/

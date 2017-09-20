@@ -7,7 +7,7 @@
 <head>
     <jsp:include page="header.jsp"/>
     <link href="<s:url value="/resources/css/geotriples.css"/>" rel="stylesheet">
-    <title>merGeo| GeoTriples</title>
+    <title>mG|GeoTriples</title>
 
     <script>
         function make_changes() {

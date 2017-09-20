@@ -4,7 +4,7 @@
 <html>
 <head>
     <jsp:include page="header.jsp"/>
-    <title>merGeo| info</title>
+    <title>mG|Info</title>
 </head>
 <body>
 <div class="container">

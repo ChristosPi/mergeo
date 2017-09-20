@@ -6,7 +6,7 @@
 <head>
     <jsp:include page="header.jsp"/>
     <link href="<s:url value="/resources/css/geotriples.css"/>" rel="stylesheet">
-    <title>merGeo| GeoTriples</title>
+    <title>mG|GeoTriples</title>
 </head>
 
 <body>
@@ -29,9 +29,9 @@
                 <div class="panel-body">
 
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="#rdatabase" data-toggle="tab">Relational Database</a></li>
-                        <li><a href="#shapefile" data-toggle="tab">Shapefile</a></li>
-                        <li><a href="#xmlfile" data-toggle="tab">XML File</a></li>
+                        <li class="active"><a href="#rdatabase" data-toggle="tab"><strong>Relational Database</strong></a></li>
+                        <li><a href="#shapefile" data-toggle="tab"><strong>Shapefile</strong></a></li>
+                        <li><a href="#xmlfile" data-toggle="tab"><strong>XML File</strong></a></li>
                     </ul>
 
                     <div class="tab-content">
