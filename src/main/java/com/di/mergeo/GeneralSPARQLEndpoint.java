@@ -54,19 +54,19 @@ public class GeneralSPARQLEndpoint extends HTTPClient{
 
 
 	/**
-	 * Executes a SPARQL query on the Endpoint and get the results
-	 * in the format specified by stSPARQLQueryResultFormat, which is
-	 * an instance of class (or a subclass) {@link TupleQueryResultFormat}.
-	 *
-	 * According to the type of the SPARQL endpoint we add the required parameters
-	 * in the http request.
-	 *
-	 * @param sparqlQuery
-	 * @param format
-	 * @param endpointType
-	 * @return
-	 * @throws IOException
-	 */
+	* Executes a SPARQL query on the Endpoint and get the results
+	* in the format specified by stSPARQLQueryResultFormat, which is
+	* an instance of class (or a subclass) {@link TupleQueryResultFormat}.
+	*
+	* According to the type of the SPARQL endpoint we add the required parameters
+	* in the http request.
+	*
+	* @param sparqlQuery
+	* @param format
+	* @param endpointType
+	* @return
+	* @throws IOException
+	*/
 	public EndpointResult query(String sparqlQuery, stSPARQLQueryResultFormat format, String endpointType) throws IOException {
 		assert(format != null);
 
