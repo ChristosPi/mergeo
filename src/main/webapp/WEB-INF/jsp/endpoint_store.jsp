@@ -18,14 +18,15 @@
                 <p>Here you can store your own data to the selected Strabon Endpoint. Either direct input, or via URI,
                  fill out the form and voilà!</p>
             </div>
-        </div><hr>
-        <span style="text-align: center;"><h4>Endpoint: <strong>${workEndpoint.endpointname}</strong></h4></span>
+        </div>
+        <hr>
+        <span style="text-align: center;"><h4>Endpoint: &nbsp;<strong>${workEndpoint.endpointname}</strong></h4></span>
         <br>
-        <div class="col-md-12">
+        <div class="col-md-12 well">
 
             <form class="form-horizontal" method="post" action="/endpoint/direct_store" style="border:3px solid #2C3E50;">
                 <%-- Direct input store --%>
-                <br><legend class="col-md-offset-1">Direct store of RDF Data:</legend><br>
+                <br><legend class="text-center"><strong>Direct store of RDF Data</strong></legend><br>
                 <div class="form-group">
                     <label class="control-label col-md-2" for="graph">Graph</label>
                     <div class="col-sm-8 input-group">
@@ -68,7 +69,7 @@
             <%-- Store from file URI --%>
 
             <form class="form-horizontal" method="post" action="/endpoint/uri_store" style="border:3px solid #2C3E50;">
-                <br><legend class="col-md-offset-1">Store RDF data via URI:</legend><br>
+                <br><legend class="text-center"><strong>Store RDF data via URI</strong></legend><br>
                 <div class="form-group">
                     <label class="control-label col-md-2" for="uri_graph">Graph</label>
                     <div class="col-sm-8 input-group">

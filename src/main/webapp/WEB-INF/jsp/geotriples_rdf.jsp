@@ -245,7 +245,7 @@
                     <div class="panel-body">
 
                         <div class="form-group">
-                            <label for="out-map">Output code:</label>
+                            <label for="out-map">Output mapping:</label>
                             <textarea form="save_form" name="map_data" readonly style="resize: none" class="form-control" rows="15" id="out-map"><%
                                 String outmap_file = (String) request.getAttribute("outmap_fullpath");
                                 if( outmap_file != null && !outmap_file.isEmpty()){

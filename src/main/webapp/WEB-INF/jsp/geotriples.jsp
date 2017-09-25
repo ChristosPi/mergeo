@@ -210,7 +210,7 @@
                 <div class="panel-heading">Generated mapping</div>
                 <div class="panel-body">
                     <div class="form-group">
-                        <label for="out-map">Output code:</label>
+                        <label for="out-map">Output mapping:</label>
                         <textarea readonly style="resize: none" class="form-control" rows="15" id="out-map"></textarea>
                     </div>
                 </div>

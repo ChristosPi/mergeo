@@ -12,12 +12,12 @@
                 <%--<div class="col-md-2">--%>
                     <%--<a href="http://en.uoa.gr/"><img src="./../../resources/img/uoa_logo.png" alt="uoa"></a>--%>
                 <%--</div>--%>
-                <div class="col-md-6">
+                <div class="col-sm-4 col-sm-offset-4">
                     <a href="/"><img class="img-responsive"src="./../../resources/img/logo-main.png" alt="merGeo" width="400" height="121.65"></a>
                 </div>
-                <div class="col-md-2 col-md-offset-4">
-                    <a target="_blank" href="http://www.di.uoa.gr/eng"><img class="img-responsive center-block" src="./../../resources/img/dit-logo.png"  style="padding-top: 30%;" width="149.5" height="37" alt="DiT"></a>
-                </div>
+                <%--<div class="col-md-2 col-md-offset-4">--%>
+                    <%--<a target="_blank" href="http://www.di.uoa.gr/eng"><img class="img-responsive center-block" src="./../../resources/img/dit-logo.png"  style="padding-top: 30%;" width="149.5" height="37" alt="DiT"></a>--%>
+                <%--</div>--%>
             </header>
         </div>
 

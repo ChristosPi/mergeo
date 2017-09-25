@@ -64,10 +64,10 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-primary">
-                <div class="panel-heading">RDF Output file</div>
+                <div class="panel-heading">Generated RDF data</div>
                 <div class="panel-body">
                     <div class="form-group">
-                        <label for="out-rdf">RDF file:</label>
+                        <label for="out-rdf">Output RDF:</label>
                         <textarea form="save_form2" name="rdf_data" readonly style="resize: none" class="form-control" rows="15" id="out-rdf"><%
                             String outrdf_file = (String) request.getAttribute("outrdf_fullpath");
                             if( outrdf_file != null && !outrdf_file.isEmpty()){
