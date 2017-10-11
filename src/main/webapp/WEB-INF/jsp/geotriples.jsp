@@ -85,7 +85,7 @@
                                     <hr>
                                     <div class="form-group">
                                         <div class="col-md-6 col-md-offset-3">
-                                            <button type="submit" class="btn btn-success btn-block">Generate mapping</button>
+                                            <button type="submit" class="btn btn-primary btn-block">Generate mapping</button>
                                         </div>
                                     </div>
 
@@ -128,7 +128,7 @@
                                     <hr>
                                     <div class="form-group ">
                                         <div class="col-md-6 col-md-offset-3">
-                                            <button type="submit" class="btn btn-success btn-block">Generate mapping</button>
+                                            <button type="submit" class="btn btn-primary btn-block">Generate mapping</button>
                                         </div>
                                     </div>
                                 </div>
@@ -193,7 +193,7 @@
                                     <hr>
                                     <div class="form-group">
                                         <div class="col-md-6 col-md-offset-3">
-                                            <button type="submit" class="btn btn-success btn-block">Generate mapping</button>
+                                            <button type="submit" class="btn btn-primary btn-block">Generate mapping</button>
                                         </div>
                                     </div>
                                 </div>
@@ -210,7 +210,7 @@
                 <div class="panel-heading">Generated mapping</div>
                 <div class="panel-body">
                     <div class="form-group">
-                        <label for="out-map">Output mapping:</label>
+                        <legend for="out-map">Produced mapping:</legend>
                         <textarea readonly style="resize: none" class="form-control" rows="15" id="out-map"></textarea>
                     </div>
                 </div>

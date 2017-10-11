@@ -45,7 +45,7 @@ public class WebController {
         /* Loads Strabon Endpoint warfile to Tomcat */
         StartupService.loadApplication(webappsPath, warPath);
         /* Loads Sextant warfile to Tomcat */
-//        StartupService.loadApplication(webappsPath, sextantPath);
+        StartupService.loadApplication(webappsPath, sextantPath);
 
         EndpointModel defEndpoint = new EndpointModel();
         defEndpoint.setHostname("localhost");
@@ -110,6 +110,10 @@ public class WebController {
         return "info";
     }
 
+    @RequestMapping(value = "/error", method = RequestMethod.GET)
+    public String error() {
+        return "error";
+    }
 
     /********************************** Testing methods for Exception Handling ****************************************/
 //    @ExceptionHandler(ResourceNotFoundException.class)

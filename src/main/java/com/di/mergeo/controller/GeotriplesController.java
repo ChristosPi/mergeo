@@ -18,9 +18,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.concurrent.TimeUnit;
 
@@ -51,6 +55,7 @@ public class GeotriplesController {
         mav.addObject("name", inputmodel.getName());
         mav.addObject("outmap_fullpath", inputmodel.getOutmap_fullpath());
         mav.addObject("type", inputmodel.getType());
+        mav.addObject("newfilename", inputmodel.getNewfilename());
 
         return mav;
     }
@@ -69,6 +74,8 @@ public class GeotriplesController {
         mav.addObject("name", inputmodel.getName());
         mav.addObject("outmap_fullpath", inputmodel.getOutmap_fullpath());
         mav.addObject("type", inputmodel.getType());
+        mav.addObject("newfilename", inputmodel.getNewfilename());
+
 
         return mav;
     }
@@ -87,6 +94,8 @@ public class GeotriplesController {
         mav.addObject("name", inputmodel.getName());
         mav.addObject("outmap_fullpath", inputmodel.getOutmap_fullpath());
         mav.addObject("type", inputmodel.getType());
+        mav.addObject("newfilename", inputmodel.getNewfilename());
+
 
         return mav;
     }
@@ -157,6 +166,43 @@ public class GeotriplesController {
      *
      ******************************************************************************************************************/
 
+    @RequestMapping(value="/download", method = RequestMethod.GET)
+    public void downloadPDFResource( HttpServletRequest request,
+                                     HttpServletResponse response,
+                                     @RequestParam("type") String filetype,
+                                     @RequestParam("filename") String filename) throws IOException {
+
+        String filepath;
+        if(filetype.equals("map")){
+            filepath = "/datafiles/map-data/";
+        }
+        else{
+            filepath = "/datafiles/rdf-data/";
+        }
+
+
+        String dataDirectory = context.getRealPath(filepath);
+
+        Path file = Paths.get(dataDirectory, filename);
+        if (Files.exists(file)) {
+
+            response.setContentType("text/html");
+            response.addHeader("Content-Disposition", "attachment; filename="+filename);
+            try
+            {
+                Files.copy(file, response.getOutputStream());
+                response.getOutputStream().flush();
+            }
+            catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+        else{
+            response.sendRedirect("/error");
+        }
+    }
+    /*******************************************************************************************************************
+     ******************************************************************************************************************/
     @RequestMapping(value = "/geotriples_map_save", method = RequestMethod.POST)
     public ModelAndView map_saveChanges(@RequestParam("name") String name,
                                         @RequestParam("outmap_fullpath") String outmap_fullpath,

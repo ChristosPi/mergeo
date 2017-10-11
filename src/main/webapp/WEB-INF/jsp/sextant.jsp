@@ -12,9 +12,15 @@
     <div class="row">
         <div style="text-align: center;" class="col-md-8 col-md-push-2">
             <h3><strong>Sextant</strong> Section</h3>
-            <p>I don't know exactly how to use Sextant. So, keep waiting here until something changes :)</p>
+            <p>Here you can have full, exclusive access on Sextant application. Enjoy!</p>
         </div>
-    </div><hr>
+    </div>
+    <hr>
+
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="http://localhost:8080/SextantOL3" allowfullscreen></iframe>
+    </div>
+
 </div>
 
     <jsp:include page="footer.jsp"/>

@@ -9,6 +9,8 @@ public class MapInputModel {
     private String outmap_fullpath;
     private String uploadpath;
     private String name;
+    private String newfilename;
+
 
     /* Characteristics for RDB input form */
     private String rdb_baseuri;
@@ -34,6 +36,14 @@ public class MapInputModel {
     private MultipartFile xml_xsdfile;
 
     /*** Getters & Setters for class data ***/
+
+    public String getNewfilename() {
+        return newfilename;
+    }
+
+    public void setNewfilename(String newfilename) {
+        this.newfilename = newfilename;
+    }
 
     public String getType() {
         return type;

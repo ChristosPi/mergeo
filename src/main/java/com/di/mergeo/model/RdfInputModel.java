@@ -1,7 +1,5 @@
 package com.di.mergeo.model;
 
-import org.springframework.web.multipart.MultipartFile;
-
 public class RdfInputModel {
 
     /* Common characteristics for every input form */
@@ -9,6 +7,7 @@ public class RdfInputModel {
     private String outrdf_fullpath;
     private String uploadpath;
     private String name;
+    private String newfilename;
 
     /* Characteristics for RDB input form */
     private String rdb_baseuri;
@@ -34,6 +33,14 @@ public class RdfInputModel {
     private String xml_epsgcode;
     private String xml_mapfullpath;
     private boolean xml_rml;
+
+    public String getNewfilename() {
+        return newfilename;
+    }
+
+    public void setNewfilename(String newfilename) {
+        this.newfilename = newfilename;
+    }
 
     public String getType() {
         return type;

@@ -121,7 +121,7 @@
                                 <hr>
                                 <div class="form-group">
                                     <div class="col-md-6 col-md-offset-3">
-                                        <button type="submit" class="btn btn-success btn-block">Dump to RDF</button>
+                                        <button type="submit" class="btn btn-primary btn-block">Dump to RDF</button>
                                     </div>
                                 </div>
                             </div>
@@ -177,7 +177,7 @@
                                 <hr>
                                 <div class="form-group">
                                     <div class="col-md-6 col-md-offset-3">
-                                        <button type="submit" class="btn btn-success btn-block">Dump to RDF</button>
+                                        <button type="submit" class="btn btn-primary btn-block">Dump to RDF</button>
                                     </div>
                                 </div>
                             </div>
@@ -226,7 +226,7 @@
                                 <hr>
                                 <div class="form-group">
                                     <div class="col-md-6 col-md-offset-3">
-                                        <button type="submit" class="btn btn-success btn-block">Dump to RDF</button>
+                                        <button type="submit" class="btn btn-primary btn-block">Dump to RDF</button>
                                     </div>
                                 </div>
                             </div>
@@ -245,8 +245,8 @@
                     <div class="panel-body">
 
                         <div class="form-group">
-                            <label for="out-map">Output mapping:</label>
-                            <textarea form="save_form" name="map_data" readonly style="resize: none" class="form-control" rows="15" id="out-map"><%
+                            <legend for="out-map">Produced mapping:</legend>
+                            <textarea form="save_form" name="map_data" readonly style="resize: none" class="form-control" rows="20" id="out-map"><%
                                 String outmap_file = (String) request.getAttribute("outmap_fullpath");
                                 if( outmap_file != null && !outmap_file.isEmpty()){
                                     FileInputStream outmap_code = new FileInputStream(outmap_file);
@@ -256,22 +256,29 @@
                             %><c:out value="${outmap_display}"/>
                             </textarea>
                         </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <button onclick="make_changes()" class="btn btn-warning">Hmm, something seems wrong. Let's edit!</button>
+                            </div>
+                            <div class="col-md-4 col-md-push-5">
+                                <form action="/geotriples_map_save" method="post" id="save_form">
+                                    <input type="hidden" name="name" value="${name}">
+                                    <input type="hidden" name="outmap_fullpath" value="${outmap_fullpath}">
+                                    <input type="hidden" name="type" value="${type}">
+                                    <button type="submit" style="visibility: hidden;" id="save-btn" class="btn btn-success">Save changes</button>
+                                </form>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a href="/download?type=map&filename=${newfilename}" class="btn btn-success btn-block">Download file</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <button onclick="make_changes()" class="btn btn-warning">Hmm, something seems wrong. Let's edit!</button>
-                </div>
-                <div class="col-md-4 col-md-push-5">
-                    <form action="/geotriples_map_save" method="post" id="save_form">
-                        <input type="hidden" name="name" value="${name}">
-                        <input type="hidden" name="outmap_fullpath" value="${outmap_fullpath}">
-                        <input type="hidden" name="type" value="${type}">
-                        <button type="submit" style="visibility: hidden;" id="save-btn" class="btn btn-success">Save changes</button>
-                    </form>
-                </div>
-            </div>
+
         </div>
     </div>
 </div>

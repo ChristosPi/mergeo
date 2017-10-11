@@ -67,7 +67,7 @@
                 <div class="panel-heading">Generated RDF data</div>
                 <div class="panel-body">
                     <div class="form-group">
-                        <label for="out-rdf">Output RDF:</label>
+                        <legend for="out-map">Produced RDF:</legend>
                         <textarea form="save_form2" name="rdf_data" readonly style="resize: none" class="form-control" rows="15" id="out-rdf"><%
                             String outrdf_file = (String) request.getAttribute("outrdf_fullpath");
                             if( outrdf_file != null && !outrdf_file.isEmpty()){
@@ -79,14 +79,17 @@
                     </div>
                     <div class="row">
                         <div class="col-md-4">
-                            <button id="editbtn" class="btn btn-warning disabled">Something seems wrong? Let's edit!</button>
+                            <a href="/download?type=rdf&filename=${name}" class="btn btn-success btn-block">Download file</a>
+                        </div>
+                        <div class="col-md-4">
+                            <button id="editbtn" class="btn btn-warning btn-block disabled">Something seems wrong? Let's edit!</button>
                             <%--<button onclick="make_changes()" id="editbtn" class="btn btn-warning">Something seems wrong? Let's edit!</button>--%>
                         </div>
-                        <div class="col-md-3 col-md-push-6">
+                        <div class="col-md-4">
                             <form action="/geotriples_rdf_save" method="post" id="save_form2">
                                 <input type="hidden" name="name" value="${name}">
                                 <input type="hidden" name="outrdf_fullpath" value="${outrdf_fullpath}">
-                                <button type="submit" style="visibility: hidden;" id="save-btn2" class="btn btn-success">Save changes</button>
+                                <button type="submit" style="visibility: hidden;" id="save-btn2" class="btn btn-success btn-block">Save changes</button>
                             </form>
                         </div>
                     </div>

@@ -30,6 +30,7 @@ public class GeotriplesService {
 
         String dbname = inputmodel.getRdb_jdbcurl().substring(inputmodel.getRdb_jdbcurl().lastIndexOf("/")+1);
         String outmap_fullpath = dir2.getAbsolutePath() + File.separator + dbname + "-map.ttl";
+        inputmodel.setNewfilename(dbname + "-map.ttl");
 
         List<String> cmdlist = new ArrayList<String>();
         cmdlist.add("generate_mapping");
@@ -95,6 +96,7 @@ public class GeotriplesService {
 
             String inputfile_name = name.substring(0, name.indexOf('.'));
             String outmap_fullpath = dir3.getAbsolutePath() + File.separator + inputfile_name + "-map.ttl";
+            inputmodel.setNewfilename(inputfile_name + "-map.ttl");
 
             List<String> cmdlist = new ArrayList<String>();
             cmdlist.add("generate_mapping");
@@ -159,6 +161,7 @@ public class GeotriplesService {
 
             String inputfile_name = name.substring(0, name.indexOf('.'));
             String outmap_fullpath = dir3.getAbsolutePath() + File.separator + inputfile_name + "-map.ttl";
+            inputmodel.setNewfilename(inputfile_name + "-map.ttl");
 
             /* Process for the XSD given file */
             if (inputmodel.getXml_xsdfile() != null && !inputmodel.getXml_xsdfile().isEmpty()) {
@@ -301,7 +304,6 @@ public class GeotriplesService {
         GeoTriplesCMD.main(dumprdf_cmd);
 
         rdfInputModel.setOutrdf_fullpath(outrdf_fullpath);
-//        rdfInputModel.setName(dbname + "-rdf.nt");
 
         System.out.println("[Status] RDB dumped to RDF");
     }
