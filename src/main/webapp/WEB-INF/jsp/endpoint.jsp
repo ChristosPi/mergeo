@@ -127,7 +127,7 @@
 
                         <div class="form-group">
                             <div class="col-sm-6 col-sm-offset-6">
-                                <button type="submit" class="btn btn-success btn-block">Create Endpoint</button>
+                                <button type="submit" class="btn btn-success btn-block"><i class="fa fa-plus-square fa-fw" aria-hidden="true"></i> Create Endpoint</button>
                             </div>
                         </div>
                     </div>

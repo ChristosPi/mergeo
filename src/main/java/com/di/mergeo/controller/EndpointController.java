@@ -283,5 +283,27 @@ public class EndpointController {
         return mav;
     }
     /******************************************************************************************************************/
+    @RequestMapping(value="/endpoint/Browse", method = RequestMethod.GET)
+    public ModelAndView downloadPDFResource( @RequestParam("view") String view,
+                                     @RequestParam("query") String query,
+                                     @RequestParam("format") String format,
+                                     @RequestParam("resource") String resource,
+                                     HttpServletRequest request) throws IOException {
 
+        EndpointModel endmodel = (EndpointModel)request.getSession().getAttribute("workEndpoint");
+
+        GeneralSPARQLEndpoint endpoint = new GeneralSPARQLEndpoint("localhost", 8080, endmodel.getEndpointname().concat("/Query"));
+        endpoint.setUser(endmodel.getCp_username());
+        endpoint.setPassword(endmodel.getCp_password());
+        query = QUERY_PREFIX + query;
+
+        EndpointResult result = endpoint.query(query, (stSPARQLQueryResultFormat) stSPARQLQueryResultFormat.valueOf(format), "strabon");
+
+        ModelAndView mav = new ModelAndView("endpoint_done");
+        mav.addObject("endpointResults", result);
+        mav.addObject("query", query);
+        mav.addObject("out_format", "HTML");
+
+        return mav;
+    }
 }

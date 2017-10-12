@@ -29,9 +29,9 @@
                 <div class="panel-body">
 
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="#rdatabase" data-toggle="tab"><strong>Relational Database</strong></a></li>
-                        <li><a href="#shapefile" data-toggle="tab"><strong>Shapefile</strong></a></li>
-                        <li><a href="#xmlfile" data-toggle="tab"><strong>XML File</strong></a></li>
+                        <li class="active"><a href="#rdatabase" data-toggle="tab"><strong><i class="fa fa-database fa-fw" aria-hidden="true"></i> Relational Database</strong></a></li>
+                        <li><a href="#shapefile" data-toggle="tab"><strong><i class="fa fa-file fa-fw" aria-hidden="true"></i> Shapefile</strong></a></li>
+                        <li><a href="#xmlfile" data-toggle="tab"><strong><i class="fa fa-file-excel-o fa-fw" aria-hidden="true"></i> XML File</strong></a></li>
                     </ul>
 
                     <div class="tab-content">
@@ -85,7 +85,7 @@
                                     <hr>
                                     <div class="form-group">
                                         <div class="col-md-6 col-md-offset-3">
-                                            <button type="submit" class="btn btn-primary btn-block">Generate mapping</button>
+                                            <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-bolt fa-fw" aria-hidden="true"></i> Generate mapping</button>
                                         </div>
                                     </div>
 
@@ -128,7 +128,7 @@
                                     <hr>
                                     <div class="form-group ">
                                         <div class="col-md-6 col-md-offset-3">
-                                            <button type="submit" class="btn btn-primary btn-block">Generate mapping</button>
+                                            <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-bolt fa-fw" aria-hidden="true"></i> Generate mapping</button>
                                         </div>
                                     </div>
                                 </div>
@@ -193,7 +193,7 @@
                                     <hr>
                                     <div class="form-group">
                                         <div class="col-md-6 col-md-offset-3">
-                                            <button type="submit" class="btn btn-primary btn-block">Generate mapping</button>
+                                            <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-bolt fa-fw" aria-hidden="true"></i> Generate mapping</button>
                                         </div>
                                     </div>
                                 </div>

@@ -17,7 +17,7 @@
 
     <div class="row">
         <div class="col-md-6">
-            <legend>merGeo:<strong>usage</strong></legend>
+            <legend>merGeo::<strong>usage</strong></legend>
             <p>You could start working on a Strabon Endpoint. You have the option to create a new one or
             work on merGeo's default Endpoint. If you want to transform data and dump them to RDF, you have
             to use the GeoTriples section, which guides you step-by-step to create your finalized data. Afterwards,
@@ -25,7 +25,7 @@
         </div>
 
         <div class="col-md-6">
-            <legend>merGeo:<strong>info</strong></legend>
+            <legend>merGeo::<strong>info</strong></legend>
             <p>merGeo web-application was developed within the dissertation ...</p>
         </div>
     </div>

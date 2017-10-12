@@ -79,17 +79,17 @@
                     </div>
                     <div class="row">
                         <div class="col-md-4">
-                            <a href="/download?type=rdf&filename=${name}" class="btn btn-success btn-block">Download file</a>
+                            <a href="/download?type=rdf&filename=${name}" class="btn btn-primary btn-sm btn-block"><i class="fa fa-download fa-fw" aria-hidden="true"></i> Download file</a>
                         </div>
                         <div class="col-md-4">
-                            <button id="editbtn" class="btn btn-warning btn-block disabled">Something seems wrong? Let's edit!</button>
+                            <button id="editbtn" class="btn btn-warning btn-sm btn-block disabled"><i class="fa fa-pencil fa-fw" aria-hidden="true"></i> Edit generated RDF file</button>
                             <%--<button onclick="make_changes()" id="editbtn" class="btn btn-warning">Something seems wrong? Let's edit!</button>--%>
                         </div>
                         <div class="col-md-4">
                             <form action="/geotriples_rdf_save" method="post" id="save_form2">
                                 <input type="hidden" name="name" value="${name}">
                                 <input type="hidden" name="outrdf_fullpath" value="${outrdf_fullpath}">
-                                <button type="submit" style="visibility: hidden;" id="save-btn2" class="btn btn-success btn-block">Save changes</button>
+                                <button type="submit" style="visibility: hidden;" id="save-btn2" class="btn btn-success btn-sm btn-block"><i class="fa fa-floppy-o fa-fw" aria-hidden="true"></i> Save changes</button>
                             </form>
                         </div>
                     </div>
@@ -98,7 +98,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12">
+        <div class="well col-md-8 col-md-offset-2 text-center" style="border:3px solid #2C3E50;">
             <legend><strong>Transformation Completed!</strong> Now, save on Endpoint:</legend>
             <%--<div class="btn-group">--%>
                 <%--<a href="#" class="btn btn-success dropdown-toggle" data-toggle="dropdown">Store to Endpoint |  <span class="caret"></span></a>--%>
@@ -125,9 +125,9 @@
 
             <div id="triplebtn" class="btn-group">
                 <button href="#" data-toggle="modal" data-target="#modalCreate" class="btn btn-primary"><i class="fa fa-plus-circle fa-fw"></i> Create new Endpoint</button>
-                <button type="submit" form="form_defstore" class="btn btn-success"><i class="fa fa-arrow-circle-right fa-fw"></i> Store on default Endpoint</button>
+                <button type="submit" form="form_defstore" class="btn btn-success"><i class="fa fa-arrow-circle-right fa-fw"></i> Store on <strong>&lt;default&gt;</strong> Endpoint</button>
                 <c:if test="${not empty endpoint}">
-                    <button type="submit" form="form_curstore" class="btn btn-success"><i class="fa fa-arrow-circle-right fa-fw"></i> Store on current Endpoint</button>
+                    <button type="submit" form="form_curstore" class="btn btn-success"><i class="fa fa-arrow-circle-right fa-fw"></i> Store on <strong>&lt;created&gt;</strong> Endpoint</button>
                 </c:if>
             </div>
         </div>

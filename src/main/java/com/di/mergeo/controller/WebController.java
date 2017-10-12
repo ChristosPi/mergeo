@@ -29,7 +29,8 @@ public class WebController {
     public static String tomcatPath = System.getProperty("catalina.home");
 
     /* Must be changed in case something else is given as a name in startup_jobs() */
-    public static String endpointFolder = "/opt/tomcat/endpoint/strabon-endpoint-3.3.2-SNAPSHOT/.";
+//    public static String endpointFolder = "/opt/tomcat/endpoint/strabon-endpoint-3.3.2-SNAPSHOT/.";
+    public static String endpointFolder = "/opt/tomcat/endpoint/strabon-endpoint-3.2.11-temporals/.";
 
     private boolean startupFlag = false;
 
@@ -37,7 +38,8 @@ public class WebController {
     public void startup_jobs() throws IOException, InterruptedException {
 
         /* Deploy defaults Strabon-Endpoint and Sextant applications */
-        String warPath = context.getRealPath("/WEB-INF/classes/strabon-endpoint-3.3.2-SNAPSHOT.war");
+//        String warPath = context.getRealPath("/WEB-INF/classes/strabon-endpoint-3.3.2-SNAPSHOT.war");
+        String warPath = context.getRealPath("/WEB-INF/classes/strabon-endpoint-3.2.11-temporals.war");
         String sextantPath = context.getRealPath("/WEB-INF/classes/SextantOL3.war");
 
         String webappsPath = tomcatPath.concat("/webapps/");
@@ -57,13 +59,15 @@ public class WebController {
         defEndpoint.setCp_username("endpoint");
         defEndpoint.setCp_password("3ndpo1nt");
         defEndpoint.setTomcat_location(tomcatPath);
-        defEndpoint.setEndpointname("strabon-endpoint-3.3.2-SNAPSHOT");
+//        defEndpoint.setEndpointname("strabon-endpoint-3.3.2-SNAPSHOT");
+        defEndpoint.setEndpointname("strabon-endpoint-3.2.11-temporals");
 
         context.setAttribute("defEndpoint", defEndpoint);
 
         /* Now, creates a folder named "endpoint" inside tomcat's base which contains the Strabon-Endpoint.war
         * in order to be used later, as the base app which is been deployed to tomcat/webapps */
-        File dir = new File(System.getProperty("catalina.home") + File.separator + "endpoint" + File.separator + "strabon-endpoint-3.3.2-SNAPSHOT");
+//        File dir = new File(System.getProperty("catalina.home") + File.separator + "endpoint" + File.separator + "strabon-endpoint-3.3.2-SNAPSHOT");
+        File dir = new File(System.getProperty("catalina.home") + File.separator + "endpoint" + File.separator + "strabon-endpoint-3.2.11-temporals");
         if (!dir.exists()) dir.mkdirs();
 
         ProcessBuilder pb = new ProcessBuilder("unzip", "-qq", "-o", warPath, "-d", dir.getAbsolutePath());

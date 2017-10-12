@@ -16,11 +16,11 @@
         </div>
     </div>
     <hr>
-
-    <div class="embed-responsive embed-responsive-16by9">
-        <iframe class="embed-responsive-item" src="http://localhost:8080/SextantOL3" allowfullscreen></iframe>
+    <div class="row" style="border:5px solid #2C3E50;">
+        <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src="http://localhost:8080/SextantOL3" allowfullscreen></iframe>
+        </div>
     </div>
-
 </div>
 
     <jsp:include page="footer.jsp"/>

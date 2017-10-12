@@ -20,11 +20,11 @@
             </div>
         </div>
         <hr>
-        <span style="text-align: center;"><h4>Endpoint: &nbsp;<strong>${workEndpoint.endpointname}</strong></h4></span>
+        <span style="text-align: center;"><h4><span class="label label-success">Active Endpoint:</span><strong>&nbsp;${workEndpoint.endpointname}</strong></h4></span>
         <br>
-        <div class="col-md-12 well">
+        <div class="col-md-12 well" style="border:3px solid #2C3E50;">
 
-            <form class="form-horizontal" method="post" action="/endpoint/direct_store" style="border:3px solid #2C3E50;">
+            <form class="form-horizontal" method="post" action="/endpoint/direct_store" style="border:1px solid #2C3E50;">
                 <%-- Direct input store --%>
                 <br><legend class="text-center"><strong>Direct store of RDF Data</strong></legend><br>
                 <div class="form-group">
@@ -61,14 +61,13 @@
                 <hr>
                 <div class="form-group">
                     <div class="col-md-6 col-md-offset-3">
-                        <button type="submit" class="btn btn-success btn-block">Store Direct Input</button>
+                        <button type="submit" class="btn btn-success btn-block"><i class="fa fa-floppy-o fa-fw" aria-hidden="true"></i> Store Direct Input</button>
                     </div>
                 </div>
             </form>
 
             <%-- Store from file URI --%>
-
-            <form class="form-horizontal" method="post" action="/endpoint/uri_store" style="border:3px solid #2C3E50;">
+            <form class="form-horizontal" method="post" action="/endpoint/uri_store" style="border:1px solid #2C3E50;">
                 <br><legend class="text-center"><strong>Store RDF data via URI</strong></legend><br>
                 <div class="form-group">
                     <label class="control-label col-md-2" for="uri_graph">Graph</label>
@@ -98,7 +97,7 @@
                 <hr>
                 <div class="form-group">
                     <div class="col-md-6 col-md-offset-3">
-                        <button type="submit" class="btn btn-success btn-block">Store from URI</button>
+                        <button type="submit" class="btn btn-success btn-block"><i class="fa fa-floppy-o fa-fw" aria-hidden="true"></i> Store from URI</button>
                     </div>
                 </div>
 

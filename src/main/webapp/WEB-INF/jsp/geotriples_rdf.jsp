@@ -121,7 +121,7 @@
                                 <hr>
                                 <div class="form-group">
                                     <div class="col-md-6 col-md-offset-3">
-                                        <button type="submit" class="btn btn-primary btn-block">Dump to RDF</button>
+                                        <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-bolt fa-fw" aria-hidden="true"></i> Dump to RDF</button>
                                     </div>
                                 </div>
                             </div>
@@ -177,7 +177,7 @@
                                 <hr>
                                 <div class="form-group">
                                     <div class="col-md-6 col-md-offset-3">
-                                        <button type="submit" class="btn btn-primary btn-block">Dump to RDF</button>
+                                        <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-bolt fa-fw" aria-hidden="true"></i> Dump to RDF</button>
                                     </div>
                                 </div>
                             </div>
@@ -226,7 +226,7 @@
                                 <hr>
                                 <div class="form-group">
                                     <div class="col-md-6 col-md-offset-3">
-                                        <button type="submit" class="btn btn-primary btn-block">Dump to RDF</button>
+                                        <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-bolt fa-fw" aria-hidden="true"></i> Dump to RDF</button>
                                     </div>
                                 </div>
                             </div>
@@ -257,22 +257,22 @@
                             </textarea>
                         </div>
                         <div class="row">
-                            <div class="col-md-4">
-                                <button onclick="make_changes()" class="btn btn-warning">Hmm, something seems wrong. Let's edit!</button>
-                            </div>
-                            <div class="col-md-4 col-md-push-5">
-                                <form action="/geotriples_map_save" method="post" id="save_form">
-                                    <input type="hidden" name="name" value="${name}">
-                                    <input type="hidden" name="outmap_fullpath" value="${outmap_fullpath}">
-                                    <input type="hidden" name="type" value="${type}">
-                                    <button type="submit" style="visibility: hidden;" id="save-btn" class="btn btn-success">Save changes</button>
-                                </form>
+                            <div class="col-md-12">
+                                <a href="/download?type=map&filename=${newfilename}" class="btn btn-primary btn-block btn-sm"><i class="fa fa-download fa-fw" aria-hidden="true"></i> Download file</a>
                             </div>
                         </div>
                         <hr>
                         <div class="row">
-                            <div class="col-md-12">
-                                <a href="/download?type=map&filename=${newfilename}" class="btn btn-success btn-block">Download file</a>
+                            <div class="col-md-6">
+                                <button onclick="make_changes()" class="btn btn-block btn-sm btn-warning"><i class="fa fa-pencil fa-fw" aria-hidden="true"></i> Edit generated mapping</button>
+                            </div>
+                            <div class="col-md-6">
+                                <form action="/geotriples_map_save" method="post" id="save_form">
+                                    <input type="hidden" name="name" value="${name}">
+                                    <input type="hidden" name="outmap_fullpath" value="${outmap_fullpath}">
+                                    <input type="hidden" name="type" value="${type}">
+                                    <button type="submit" style="visibility: hidden;" id="save-btn" class="btn btn-block btn-sm btn-success"><i class="fa fa-floppy-o fa-fw" aria-hidden="true"></i> Save changes</button>
+                                </form>
                             </div>
                         </div>
                     </div>

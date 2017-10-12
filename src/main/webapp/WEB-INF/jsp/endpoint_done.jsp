@@ -112,15 +112,19 @@
         </c:choose>
     </c:if>
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3" style="text-align: center;">
             <div class="row">
-                <span style="text-align: center;"><h4>Store data:</h4></span>
+                <span><h4>Store data:</h4></span>
                 <form action="/do_store" method="post" >
-                    <button type="submit" class="btn btn-info col-md-12" style="margin-bottom:4px;white-space: normal;">Open 'Store' interface</button>
+                    <button type="submit" class="btn btn-primary col-md-12" style="margin-bottom:4px;white-space: normal;">Open 'Store' interface</button>
                 </form>
             </div>
             <div class="row">
-                <span style="text-align: center;"><h4>Example Queries:</h4></span>
+                <span><h4>Reset Query:</h4></span>
+                <button type="button" onclick="reset_query();"class="btn btn-warning col-md-12" style="margin-bottom:4px;white-space: normal;">Reset Query Textarea</button>
+            </div>
+            <div class="row">
+                <span><h4>Example Queries:</h4></span>
                 <form action="/endpoint/exquery" method="post" >
                     <input type="hidden" value="1" name="example"/>
                     <button type="submit" class="btn btn-default col-md-12" style="margin-bottom:4px;white-space: normal;">Find all the triples in the dataset.</button>
@@ -144,14 +148,10 @@
                     <button type="submit" class="btn btn-default col-md-12" style="margin-bottom:4px;white-space: normal;">Present the first ten triples of the dataset.</button>
                 </form>
             </div>
-            <div class="row">
-                <span style="text-align: center;"><h4>Reset Query:</h4></span>
-                <button type="button" onclick="reset_query();"class="btn btn-warning col-md-12" style="margin-bottom:4px;white-space: normal;">Reset Query Textarea</button>
-            </div>
         </div>
 
         <div class="col-md-9">
-            <span style="text-align: center;"><h4>Endpoint: &nbsp;<strong>${workEndpoint.endpointname}</strong></h4></span>
+            <span style="text-align: center;"><h4><span class="label label-success">Active Endpoint:</span><strong>&nbsp;${workEndpoint.endpointname} </strong></h4></span>
             <form action="/do_query" method="post">
                 <div class="form-group">
                     <textarea id="querytextarea" name="query" class="form-control" rows="20" columns="15" style="text-align: justify;"><c:choose><c:when test="${empty endpointResults}">
