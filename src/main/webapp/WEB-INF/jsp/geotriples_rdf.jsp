@@ -24,7 +24,7 @@
     <div class="row">
         <div style="text-align: center;" class="col-md-8 col-md-push-2">
             <h3><strong>GeoTriples</strong> Section</h3>
-            <p>Now, check if everything is alright, fill out the form and dump these data to RDF.</p>
+            <p><strong>Step 2/3: </strong>Now, check if everything is alright, fill out the form and dump Data to RDF.</p>
         </div>
     </div><hr>
     <c:if test="${not empty type}">

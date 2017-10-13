@@ -20,7 +20,7 @@
             </div>
         </div>
         <hr>
-        <span style="text-align: center;"><h4><span class="label label-success">Active Endpoint:</span><strong>&nbsp;${workEndpoint.endpointname}</strong></h4></span>
+        <span style="text-align: center;"><h4><span class="label label-success"><font color="#2C3E50">Active Endpoint:</font><strong>&nbsp;${workEndpoint.endpointname}</strong></span></h4></span>
         <br>
         <div class="col-md-12 well" style="border:3px solid #2C3E50;">
 

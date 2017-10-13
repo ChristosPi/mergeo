@@ -151,7 +151,7 @@
         </div>
 
         <div class="col-md-9">
-            <span style="text-align: center;"><h4><span class="label label-success">Active Endpoint:</span><strong>&nbsp;${workEndpoint.endpointname} </strong></h4></span>
+            <span style="text-align: center;"><h4><span class="label label-success"><font color="#2C3E50">Active Endpoint:</font><strong>&nbsp;${workEndpoint.endpointname}</strong></span></h4></span>
             <form action="/do_query" method="post">
                 <div class="form-group">
                     <textarea id="querytextarea" name="query" class="form-control" rows="20" columns="15" style="text-align: justify;"><c:choose><c:when test="${empty endpointResults}">

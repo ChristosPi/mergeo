@@ -21,10 +21,12 @@
             <p><strong style="font-size: 18px;">merGeo</strong> is an application which focuses on sharing and reusing Linked Data across different applications.
                 Although many tools and applications for exploiting this abundance of information have also started to emerge, most of them focalize in a specific processing procedure.
                 However, merGeo aims to combine three very essential tasks on Linked data:
+            <ul style="list-style-type:circle">
                 <li>The transformation process from Data to Linked Data (GeoTriples)</li>
                 <li>The storing and exploration of Linked Data through SPARQL Endpoints (Strabon)</li>
-                <li>The visualization of these Linked Data on a map (Sextant)</li><br>
-                All these features were merged together into one user-friendly, step-by-step guided and simple Web Application, offering the final user a unified platform for Linked (especially geospatial) Data manipulation.</p>
+                <li>The visualization of these Linked Data on a map (Sextant)</li>
+            </ul>
+            All these features were merged together into one user-friendly, step-by-step guided and simple Web Application, offering the final user a unified platform for Linked (especially geospatial) Data manipulation.</p>
             <hr>
             <h3 class="text-center">merGeo::<strong>tools</strong></h3>
             <p><strong>&#8226; GeoTriples</strong> is a tool for transforming geospatial data from their original formats (e.g., shapefiles or spatially-enabled relational databases) into RDF.
@@ -40,10 +42,18 @@
         </article>
         <article class="col-md-6">
             <h3 class="text-center">merGeo::<strong>workflow</strong></h3>
-            <p>The following diagram displays the workflow of merGeo. The initial task is to transform Data into Linked
-            Data through Geotriples interface, then store and explore them by using Strabon RDF store and finally
-            visualize them on a map through Sextant's services.</p>
-            <img class="img-responsive " src="./../../resources/img/diagram.png" width="500" height="405.3">
+            <p>The following diagram (Fig.1) displays the workflow of merGeo. The user can either work on each tool independently
+            or combine them, by using the following order:</p>
+            <ul style="list-style-type:circle">
+                <li>The initial task is to transform Data into Linked Data through Geotriples interface</li>
+                <li>Then store and explore this Data by using Strabon RDF store</li>
+                <li>Finally visualize them on a map through Sextant's services</li>
+            </ul>
+            <hr>
+            <figure>
+                <img class="img-responsive " src="./../../resources/img/diagram.png" width="500" height="405.3">
+                <figcaption class="pull-right">[Figure 1: Workflow of merGeo application]</figcaption>
+            </figure>
         </article>
     </section>
 

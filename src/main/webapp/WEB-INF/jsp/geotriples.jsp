@@ -14,8 +14,8 @@
     <div class="row">
         <div style="text-align: center;" class="col-md-8 col-md-push-2">
             <h3><strong>GeoTriples</strong> Section</h3>
-            <p>Here you can transform your data into RDF. Fill out the form, follow the steps and finally store your
-            data into a Strabon Endpoint. Firstly, you have to generate a mapping.</p>
+            <p><strong>Step 1/3: </strong>Here you can transform your data into RDF. Fill out the form, follow the steps and finally store your
+            data into a Strabon Endpoint. To start, fill out the form and generate a mapping.</p>
         </div>
     </div>
     <hr>

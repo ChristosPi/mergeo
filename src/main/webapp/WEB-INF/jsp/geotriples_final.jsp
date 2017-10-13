@@ -22,8 +22,7 @@
     <div class="row">
         <div style="text-align: center;" class="col-md-8 col-md-push-2">
             <h3><strong>GeoTriples</strong> Section</h3>
-            <p>RDF-Data should be ready. Check if everything is alright and move forward into storing them to an
-            Endpoint.</p>
+            <p><strong>Step 3/3: </strong>Done! Your RDF Data is ready. Check if everything is alright and move forward into storing the Linked Data into a SPARQL Endpoint.</p>
         </div>
     </div><hr>
     <c:if test="${not empty name}">
