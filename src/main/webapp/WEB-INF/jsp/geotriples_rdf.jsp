@@ -257,16 +257,13 @@
                             </textarea>
                         </div>
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-4">
                                 <a href="/download?type=map&filename=${newfilename}" class="btn btn-primary btn-block btn-sm"><i class="fa fa-download fa-fw" aria-hidden="true"></i> Download file</a>
                             </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <button onclick="make_changes()" class="btn btn-block btn-sm btn-warning"><i class="fa fa-pencil fa-fw" aria-hidden="true"></i> Edit generated mapping</button>
+                            <div class="col-md-4">
+                                <button onclick="make_changes()" class="btn btn-block btn-sm btn-warning"><i class="fa fa-pencil fa-fw" aria-hidden="true"></i> Edit mapping</button>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <form action="/geotriples_map_save" method="post" id="save_form">
                                     <input type="hidden" name="name" value="${name}">
                                     <input type="hidden" name="outmap_fullpath" value="${outmap_fullpath}">
