@@ -170,10 +170,12 @@ public class EndpointController {
         }
         // SELECT DISTINCT (?s AS ?subject) WHERE { ?s ?p ?o }
         else if( example.equals("2")){
-            query = QUERY_PREFIX + "SELECT DISTINCT (?s AS ?subject)\n" +
+            query = QUERY_PREFIX + "SELECT ?s ?wkt\n" +
                     "WHERE {\n" +
-                    "\t?s ?p ?o \n" +
-                    "}";
+                    "\t?s geo:hasGeometry ?g .\n" +
+                    "\t?g rdf:type geo:Geometry .\n" +
+                    "\t?g geo:asWKT ?wkt\n" +
+                    "} LIMIT 50";
         }
         // SELECT (COUNT(?s) AS ?NumOfTriples) WHERE { ?s ?p ?o }
         else if( example.equals("3")){
@@ -196,6 +198,10 @@ public class EndpointController {
         mav.addObject("endpointResults", results);
         mav.addObject("query", query);
         mav.addObject("out_format", format);
+
+        String sexstring = query.replaceAll("\\n", " ");
+        sexstring = sexstring.replaceAll("\\t", " ");
+        mav.addObject("sexstring", sexstring);
 
         /*  Prints to console the query results as string */
         System.out.println(results.getResponse().toString());

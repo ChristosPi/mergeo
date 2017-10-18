@@ -52,7 +52,7 @@
             <hr>
             <figure>
                 <img class="img-responsive " src="./../../resources/img/diagram.png" width="500" height="405.3">
-                <figcaption class="pull-right">[Figure 1: Workflow of merGeo application]</figcaption>
+                <figcaption class="text-center"><strong>Figure 1:</strong> Workflow of merGeo application</figcaption>
             </figure>
         </article>
     </section>

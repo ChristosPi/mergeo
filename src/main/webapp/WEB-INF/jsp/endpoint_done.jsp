@@ -6,7 +6,16 @@
     <jsp:include page="header.jsp"/>
     <link href="<s:url value="/resources/css/endpoint.css"/>" rel="stylesheet">
     <title>mG|Strabon</title>
-
+    <script>
+        function call_sextant() {
+            var query ='<c:out value="${sexstring}"/>';
+            var endpname = '<c:out value="${workEndpoint.endpointname}"/>';
+            endpname = endpname + '@@@Query';
+//            document.getElementById('sextant-iframe').contentWindow.getQueryResults('test.strabon.di.uoa.gr','strabon@@@Query', query, 'testLayer', 80,false);
+            document.getElementById('sextant-iframe').contentWindow.getQueryResults('test.strabon.di.uoa.gr','strabon@@@Query','PREFIX gadm:<http://geo.linkedopendata.gr/gadm/ontology#>  PREFIX geo:<http://www.opengis.net/ont/geosparql#>  PREFIX rdf:<http://www.w3.org/TR/rdf-schema/>   select ?name ?w2 where { ?adm a <http://geo.linkedopendata.gr/gadm/AdministrativeUnit> .  ?adm gadm:hasName ?name .  ?adm gadm:belongsToAdm2 ?adm2 .  ?adm2 gadm:hasName "Paris"^^<http://www.w3.org/2001/XMLSchema#string> . ?adm geo:hasGeometry ?geo2 . ?geo2 geo:asWKT ?w2 . }', 'testLayer', 80,false);
+//            document.getElementById('sextant-iframe').contentWindow.getQueryResults('localhost', endpname, 'PREFIX gadm:<http://geo.linkedopendata.gr/gadm/ontology#>  PREFIX geo:<http://www.opengis.net/ont/geosparql#>  PREFIX rdf:<http://www.w3.org/TR/rdf-schema/> SELECT ?s ?wkt\ WHERE { ?s geo:hasGeometry ?g . ?g rdf:type geo:Geometry . ?g geo:asWKT ?wkt } LIMIT 50', 'testLayer', 80,false);
+        }
+    </script>
     <script>
         function reset_query() {
             document.getElementById("querytextarea").value = "PREFIX lgd:<http://linkedgeodata.org/triplify/>\n" +
@@ -127,25 +136,25 @@
                 <span><h4>Example Queries:</h4></span>
                 <form action="/endpoint/exquery" method="post" >
                     <input type="hidden" value="1" name="example"/>
-                    <button type="submit" class="btn btn-default col-md-12" style="margin-bottom:4px;white-space: normal;">Find all the triples in the dataset.</button>
+                    <button type="submit" class="btn btn-default col-md-12" style="margin-bottom:4px;white-space: normal;">Find all the triples in the dataset</button>
                 </form>
             </div>
             <div class="row">
                 <form action="/endpoint/exquery" method="post" >
                     <input type="hidden" value="2" name="example"/>
-                    <button type="submit" class="btn btn-default col-md-12" style="margin-bottom:4px;white-space: normal;">Select all the distinct subjects that appear in the dataset.</button>
+                    <button type="submit" class="btn btn-default col-md-12" style="margin-bottom:4px;white-space: normal;">Find geometries in the dataset<br>(limit 50)</button>
                 </form>
             </div>
             <div class="row">
                 <form action="/endpoint/exquery" method="post" >
                     <input type="hidden" value="3" name="example"/>
-                    <button type="submit" class="btn btn-default col-md-12" style="margin-bottom:4px;white-space: normal;">Find the number of triples that appear in the dataset.</button>
+                    <button type="submit" class="btn btn-default col-md-12" style="margin-bottom:4px;white-space: normal;">Find the number of triples that appear in the dataset</button>
                 </form>
             </div>
             <div class="row">
                 <form action="/endpoint/exquery" method="post" >
                     <input type="hidden" value="4" name="example"/>
-                    <button type="submit" class="btn btn-default col-md-12" style="margin-bottom:4px;white-space: normal;">Present the first ten triples of the dataset.</button>
+                    <button type="submit" class="btn btn-default col-md-12" style="margin-bottom:4px;white-space: normal;">Present the first ten triples of the dataset</button>
                 </form>
             </div>
         </div>
@@ -205,17 +214,36 @@ PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
             <div class="alert alert-warning" role="alert">${endpointResults.getStatusText()}</div>
         </c:if>
         <c:if test="${not empty endpointResults.getResponse()}">
-            <legend>Endpoint Results:</legend>
-            <c:choose>
-                <c:when test="${out_format == 'HTML'}">
-                    <div class="col-md-12" align="center">${endpointResults.getResponse()}</div>
-                </c:when>
-                <c:otherwise>
-                    <div class="col-md-12">
-                        <pre style="font-size: 12px;"><c:out value="${endpointResults.response}"/></pre>
-                    </div>
-                </c:otherwise>
-            </c:choose>
+            <div class="row">
+                <div class="col-md-4">
+                    <h4><strong>Endpoint Results:</strong></h4>
+                </div>
+                <div class="col-md-4 pull-right">
+                    <button onclick="call_sextant()" href="#" data-toggle="modal" data-target="#modalMap" class="btn btn-block btn-sm btn-warning"><i class="fa fa-map fa-fw" aria-hidden="true"></i> Show results on map</button>
+                <%--<button onclick="call_sextant()" class="btn btn-block btn-sm btn-warning"><i class="fa fa-map fa-fw" aria-hidden="true"></i> Show results on map</button>--%>
+                </div>
+            </div>
+            <%--<div class="row" id="sextant-map" style="visibility: hidden">--%>
+                <%--<br>--%>
+                <%--<div class="col-md-8 col-md-offset-2">--%>
+                    <%--<div class="embed-responsive embed-responsive-16by9">--%>
+                        <%--<iframe id="sextant-iframe" class="embed-responsive-item" src="http://localhost:8080/SextantOL3" allowfullscreen></iframe>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+            <%--</div>--%>
+            <br>
+            <div class="row">
+                <c:choose>
+                    <c:when test="${out_format == 'HTML'}">
+                        <div class="col-md-12" align="center">${endpointResults.getResponse()}</div>
+                    </c:when>
+                    <c:otherwise>
+                        <div class="col-md-12">
+                            <pre style="font-size: 12px;"><c:out value="${endpointResults.response}"/></pre>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
+            </div>
             <%--<div class="table-responsive">--%>
                 <%--<table id="resulttable" class="table table-bordered" style="text-align: left; font-size: 12px;" cellspacing="10">--%>
                 <%--${endpointResults.getResponse()}--%>
@@ -225,6 +253,23 @@ PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
         <br/>
         <br/>
         <br/>
+    </div>
+    <div id="modalMap" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h5 class="modal-title text-center"><strong>Results represented on map</strong></h5>
+                </div>
+                <div class="modal-body">
+                    <div class="row" id="sextant-map" style="border:5px solid #2C3E50;">
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe id="sextant-iframe" class="embed-responsive-item" src="http://localhost:8080/SextantOL3" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
