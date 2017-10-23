@@ -8,12 +8,17 @@
     <title>mG|Strabon</title>
     <script>
         function call_sextant() {
-            var query ='<c:out value="${sexstring}"/>';
+            <%--var query ='<c:out value="${sexstring}"/>';--%>
+            var query ='${sexstring}';
             var endpname = '<c:out value="${workEndpoint.endpointname}"/>';
+//            window.alert(query);
             endpname = endpname + '@@@Query';
+
 //            document.getElementById('sextant-iframe').contentWindow.getQueryResults('test.strabon.di.uoa.gr','strabon@@@Query', query, 'testLayer', 80,false);
-            document.getElementById('sextant-iframe').contentWindow.getQueryResults('test.strabon.di.uoa.gr','strabon@@@Query','PREFIX gadm:<http://geo.linkedopendata.gr/gadm/ontology#>  PREFIX geo:<http://www.opengis.net/ont/geosparql#>  PREFIX rdf:<http://www.w3.org/TR/rdf-schema/>   select ?name ?w2 where { ?adm a <http://geo.linkedopendata.gr/gadm/AdministrativeUnit> .  ?adm gadm:hasName ?name .  ?adm gadm:belongsToAdm2 ?adm2 .  ?adm2 gadm:hasName "Paris"^^<http://www.w3.org/2001/XMLSchema#string> . ?adm geo:hasGeometry ?geo2 . ?geo2 geo:asWKT ?w2 . }', 'testLayer', 80,false);
-//            document.getElementById('sextant-iframe').contentWindow.getQueryResults('localhost', endpname, 'PREFIX gadm:<http://geo.linkedopendata.gr/gadm/ontology#>  PREFIX geo:<http://www.opengis.net/ont/geosparql#>  PREFIX rdf:<http://www.w3.org/TR/rdf-schema/> SELECT ?s ?wkt\ WHERE { ?s geo:hasGeometry ?g . ?g rdf:type geo:Geometry . ?g geo:asWKT ?wkt } LIMIT 50', 'testLayer', 80,false);
+//            document.getElementById('sextant-iframe').contentWindow.getQueryResults('test.strabon.di.uoa.gr','strabon@@@Query','PREFIX gadm:<http://geo.linkedopendata.gr/gadm/ontology#>  PREFIX geo:<http://www.opengis.net/ont/geosparql#>  PREFIX rdf:<http://www.w3.org/TR/rdf-schema/>   select ?name ?w2 where { ?adm a <http://geo.linkedopendata.gr/gadm/AdministrativeUnit> .  ?adm gadm:hasName ?name .  ?adm gadm:belongsToAdm2 ?adm2 .  ?adm2 gadm:hasName "Paris"^^<http://www.w3.org/2001/XMLSchema#string> . ?adm geo:hasGeometry ?geo2 . ?geo2 geo:asWKT ?w2 . }', 'testLayer', 80,false);
+
+//            document.getElementById('sextant-iframe').contentWindow.getQueryResults('localhost', endpname, 'PREFIX gadm:<http://geo.linkedopendata.gr/gadm/ontology#>  PREFIX geo:<http://www.opengis.net/ont/geosparql#>  PREFIX rdf:<http://www.w3.org/TR/rdf-schema/> SELECT ?s ?wkt\ WHERE { ?s geo:hasGeometry ?g . ?g rdf:type geo:Geometry . ?g geo:asWKT ?wkt } LIMIT 50', 'testLayer', 8080,false);
+            document.getElementById('sextant-iframe').contentWindow.getQueryResults('localhost', endpname, query, 'testLayer', 8080,false);
         }
     </script>
     <script>
@@ -259,7 +264,8 @@ PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h5 class="modal-title text-center"><strong>Results represented on map</strong></h5>
+                    <h4 class="modal-title text-center"><strong>Results visualization on map</strong></h4>
+                    <h6 class="modal-title text-center">(Only if spatial information included)</h6>
                 </div>
                 <div class="modal-body">
                     <div class="row" id="sextant-map" style="border:5px solid #2C3E50;">

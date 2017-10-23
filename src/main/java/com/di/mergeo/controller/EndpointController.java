@@ -201,6 +201,12 @@ public class EndpointController {
 
         String sexstring = query.replaceAll("\\n", " ");
         sexstring = sexstring.replaceAll("\\t", " ");
+
+        System.out.println(sexstring);
+        System.out.println(sexstring);
+        System.out.println(sexstring);
+
+
         mav.addObject("sexstring", sexstring);
 
         /*  Prints to console the query results as string */

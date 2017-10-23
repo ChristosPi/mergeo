@@ -74,14 +74,14 @@
                                 String outrdf_code_str= org.apache.commons.io.IOUtils.toString(outrdf_code);
                                 request.setAttribute("outrdf_display", outrdf_code_str);
                             }
-                            %><c:out value="Due to data size, the RDF-Preview is not recommended"/></textarea>
+                            %>Due to file size preview is not recommended</textarea>
                     </div>
                     <div class="row">
                         <div class="col-md-4">
                             <a href="/download?type=rdf&filename=${name}" class="btn btn-primary btn-sm btn-block"><i class="fa fa-download fa-fw" aria-hidden="true"></i> Download file</a>
                         </div>
                         <div class="col-md-4">
-                            <button id="editbtn" class="btn btn-warning btn-sm btn-block disabled"><i class="fa fa-pencil fa-fw" aria-hidden="true"></i> Edit generated RDF file</button>
+                            <button id="editbtn" class="btn btn-warning btn-sm btn-block"><i class="fa fa-pencil fa-fw" aria-hidden="true"></i> Edit generated RDF file</button>
                             <%--<button onclick="make_changes()" id="editbtn" class="btn btn-warning">Something seems wrong? Let's edit!</button>--%>
                         </div>
                         <div class="col-md-4">

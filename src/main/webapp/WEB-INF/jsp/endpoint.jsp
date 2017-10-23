@@ -33,9 +33,9 @@
         <c:if test="${formError == true}">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
-                    <div style="text-align: center;" class="alert alert-dismissible alert-danger" role="alert" style="text-align: center;">
+                    <div style="text-align: center;" class="alert alert-dismissible alert-danger text-center" role="alert">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        <strong>[ <i class="fa fa-exclamation-circle" aria-hidden="true"></i> ] Form error!</strong> Try again
+                        <strong>[ <i class="fa fa-exclamation-circle" aria-hidden="true"></i> ] Form error!</strong> Check errors and retry
                     </div>
                 </div>
             </div>
@@ -120,6 +120,7 @@
                             <div class="col-sm-8 input-group">
                                 <span class="input-group-addon input-sm"><i class="fa fa-id-badge fa-fw"></i></span>
                                 <form:input path="endpointname" type="text" class="form-control input-sm" id="endpointname" required="required" placeholder="Endpoint's Name"/>
+                                <form:errors path="endpointname" cssStyle="color: #ff0000;" />
                             </div>
                         </div>
 

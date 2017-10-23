@@ -30,7 +30,7 @@
 
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#rdatabase" data-toggle="tab"><strong><i class="fa fa-database fa-fw" aria-hidden="true"></i> Relational Database</strong></a></li>
-                        <li><a href="#shapefile" data-toggle="tab"><strong><i class="fa fa-file fa-fw" aria-hidden="true"></i> Shapefile</strong></a></li>
+                        <li><a href="#shapefile" data-toggle="tab"><strong><i class="fa fa-file fa-fw" aria-hidden="true"></i> Shape File</strong></a></li>
                         <li><a href="#xmlfile" data-toggle="tab"><strong><i class="fa fa-file-excel-o fa-fw" aria-hidden="true"></i> XML File</strong></a></li>
                     </ul>
 
