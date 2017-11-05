@@ -54,7 +54,7 @@
         <div class="col-md-6">
             <legend align="center">merGeo::<strong>credits</strong></legend>
             <p>MerGeo web-application was developed within the dissertation named:
-                "merGeo: Engineering the geospatial-tools application" by <strong>Christos Papaloukas</strong>, under the supervision
+                "merGeo: Integration Platform for Linked Data Management Tools" by <strong>Christos Papaloukas</strong>, under the supervision
             of Professor <strong>Manolis Koubarakis</strong> and PhD Candidate <strong>George Stamoulis</strong>.</p>
         </div>
     </div>

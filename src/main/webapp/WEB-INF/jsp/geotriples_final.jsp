@@ -81,14 +81,14 @@
                             <a href="/download?type=rdf&filename=${name}" class="btn btn-primary btn-sm btn-block"><i class="fa fa-download fa-fw" aria-hidden="true"></i> Download file</a>
                         </div>
                         <div class="col-md-4">
-                            <button id="editbtn" class="btn btn-warning btn-sm btn-block"><i class="fa fa-pencil fa-fw" aria-hidden="true"></i> Edit generated RDF file</button>
-                            <%--<button onclick="make_changes()" id="editbtn" class="btn btn-warning">Something seems wrong? Let's edit!</button>--%>
+                            <button onclick="make_changes()" id="editbtn" class="btn btn-warning btn-sm btn-block"><i class="fa fa-pencil fa-fw" aria-hidden="true"></i> Edit generated RDF file</button>
+                            <%--<button onclick="make_changes()" id="editbtn" class="btn btn-warning">Edit generated RDF file</button>--%>
                         </div>
                         <div class="col-md-4">
                             <form action="/geotriples_rdf_save" method="post" id="save_form2">
                                 <input type="hidden" name="name" value="${name}">
                                 <input type="hidden" name="outrdf_fullpath" value="${outrdf_fullpath}">
-                                <button type="submit" style="visibility: hidden;" id="save-btn2" class="btn btn-success btn-sm btn-block"><i class="fa fa-floppy-o fa-fw" aria-hidden="true"></i> Save changes</button>
+                                <button disabled type="submit" style="visibility: hidden;" id="save-btn2" class="btn btn-success btn-sm btn-block"><i class="fa fa-floppy-o fa-fw" aria-hidden="true"></i> Save changes</button>
                             </form>
                         </div>
                     </div>

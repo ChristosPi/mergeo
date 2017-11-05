@@ -113,10 +113,17 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <form:label class="control-label col-sm-3" path="shp_inputfile" for="shapeinput">File input <strong style="color: darkred">*</strong></form:label>
+                                        <form:label class="control-label col-sm-3" path="shp_inputfile" for="shapeinput">Shape File<strong style="color: darkred">*</strong></form:label>
                                         <div class="col-sm-9 input-group">
                                             <form:input path="shp_inputfile" type="file" id="shapeinput" class="form-control input-sm" required="required" />
                                             <span class="help-block">Choose a file to convert with GeoTriples</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <form:label class="control-label col-sm-3" path="shx_inputfile" for="shapexinput">(.shx) File</form:label>
+                                        <div class="col-sm-9 input-group">
+                                            <form:input path="shx_inputfile" type="file" id="shapexinput" class="form-control input-sm" />
+                                            <span class="help-block">Choose a supporting .shx file</span>
                                         </div>
                                     </div>
                                     <div class="form-group">

@@ -76,8 +76,11 @@ public class GeotriplesService {
         if (!inputmodel.getShp_inputfile().isEmpty()) {
 
             String name = inputmodel.getShp_inputfile().getOriginalFilename();
+            String xname;
 
             byte[] bytes = new byte[0];
+            byte[] xbytes = new byte[0];
+
             bytes = inputmodel.getShp_inputfile().getBytes();
 
             File dir = new File(inputmodel.getUploadpath() + File.separator + "datafiles");
@@ -90,9 +93,22 @@ public class GeotriplesService {
             if (!dir3.exists()) dir3.mkdirs();
 
             File serverFile = new File(dir2.getAbsolutePath() + File.separator + name);
+            File xserverFile;
+
             BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
             stream.write(bytes);
             stream.close();
+
+            //If .shx file is given
+            if (inputmodel.getShx_inputfile() != null && !inputmodel.getShx_inputfile().isEmpty()){
+                xname = inputmodel.getShx_inputfile().getOriginalFilename();
+                xbytes = inputmodel.getShx_inputfile().getBytes();
+                xserverFile = new File(dir2.getAbsolutePath() + File.separator + xname);
+
+                BufferedOutputStream xstream = new BufferedOutputStream(new FileOutputStream(xserverFile));
+                xstream.write(xbytes);
+                xstream.close();
+            }
 
             String inputfile_name = name.substring(0, name.indexOf('.'));
             String outmap_fullpath = dir3.getAbsolutePath() + File.separator + inputfile_name + "-map.ttl";

@@ -22,6 +22,7 @@ public class MapInputModel {
 
     /* Characteristics for ShapeFile input form */
     private MultipartFile shp_inputfile;
+    private MultipartFile shx_inputfile;
     private String shp_baseuri;
     private String shp_epsgcode;
     private boolean shp_rml;
@@ -140,6 +141,14 @@ public class MapInputModel {
 
     public void setShp_baseuri(String shp_baseuri) {
         this.shp_baseuri = shp_baseuri;
+    }
+
+    public MultipartFile getShx_inputfile() {
+        return shx_inputfile;
+    }
+
+    public void setShx_inputfile(MultipartFile shx_inputfile) {
+        this.shx_inputfile = shx_inputfile;
     }
 
     public boolean isShp_rml() {
