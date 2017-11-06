@@ -28,7 +28,10 @@ public class WebController {
     /* Tomcat's path in system, something like /dir1/dir2/tomcat */
     public static String tomcatPath = System.getProperty("catalina.home");
 
-    /* Must be changed in case something else is given as a name in startup_jobs() */
+    /*TODO - Must be changed in case something else is given as a name in startup_jobs() */
+    /* This is the Default Strabon Application. We need it deployed somewhere on the computer
+    * in order to be able to change the connection.properties & credential.properties files.*/
+
     public static String endpointFolder = "/opt/tomcat/endpoint/strabon-endpoint-3.3.2-SNAPSHOT/.";
 //    public static String endpointFolder = "/opt/tomcat/endpoint/strabon-endpoint-3.2.11-temporals/.";
 
