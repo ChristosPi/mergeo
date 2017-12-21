@@ -116,8 +116,3 @@ Password    ("postgres");
 Cp_username ("endpoint");
 Cp_password ("3ndpo1nt");
 ```
-
-#### C) Contact
-
-For any further question you can contact me at:
-*sdi1100086 [ @ ] di.uoa.gr*
