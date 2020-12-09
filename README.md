@@ -2,6 +2,7 @@
 
 BSc thesis, available at: https://pergamos.lib.uoa.gr/uoa/dl/object/2075232
 
+***
 
 #### Α) Installation notes
 Due to some backend services, merGeo can only be supported on Linux systems.
