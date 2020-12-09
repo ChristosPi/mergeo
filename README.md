@@ -1,4 +1,6 @@
-### merGeo: Integration Platform For Linked Data Management Tools
+## merGeo: Integration Platform For Linked Data Management Tools
+
+BSc thesis, available at: https://pergamos.lib.uoa.gr/uoa/dl/object/2075232
 
 
 #### Α) Installation notes
